@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: dse-market-data-collector
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn dse_collector.web:app --host 0.0.0.0 --port $PORT --app-dir src
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: CRON_SECRET
+        sync: false
+      - key: ENFORCE_MARKET_WINDOW
+        value: "true"
+      - key: MARKET_TIMEZONE
+        value: Asia/Dhaka
+      - key: MARKET_OPEN
+        value: "10:00"
+      - key: MARKET_CLOSE
+        value: "14:10"
+      - key: MARKET_DAYS
+        value: "6,0,1,2,3"
