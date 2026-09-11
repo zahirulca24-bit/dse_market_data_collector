@@ -358,10 +358,10 @@ export default function MarketDashboard() {
     setNotice('');
     ingestionMutation.mutate(undefined, {
       onSuccess: (result) => {
-        setNotice(result.message || 'Ingestion worker accepted.');
+        setNotice(result.message || 'Collector request accepted.');
         void queryClient.invalidateQueries({ queryKey: getGetIngestionStatusQueryKey() });
       },
-      onError: () => setNotice('Unable to start the ingestion worker. Try again.'),
+      onError: () => setNotice('Unable to contact the collector endpoint. Try again.'),
     });
   };
 
@@ -387,11 +387,11 @@ export default function MarketDashboard() {
             </div>
 
             <section className="mt-5">
-              <div className="mb-3 flex items-center justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Historical collection</p><h2 className="mt-1 text-sm font-semibold">Backfill progress</h2></div><span className={`font-mono text-[10px] uppercase ${ingestionRunning ? 'text-emerald-700' : 'text-muted-foreground'}`}>{ingestionRunning ? 'Collector working' : `Next cycle ${formatCountdown(countdown)}`}</span></div>
+              <div className="mb-3 flex items-center justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Collection status</p><h2 className="mt-1 text-sm font-semibold">Collector status</h2></div><span className={`font-mono text-[10px] uppercase ${ingestionRunning ? 'text-emerald-700' : 'text-muted-foreground'}`}>{ingestionRunning ? 'Collector working' : `Next cycle ${formatCountdown(countdown)}`}</span></div>
               <div className="grid gap-3 sm:grid-cols-3">
                 <OverviewCard label="History coverage" value={`${formatCompact(ingestion?.completed)} / ${formatCompact(ingestion?.total)}`} detail={`${formatCompact(ingestion?.pending)} symbols remaining`} icon={Database} tone="positive" />
-                <OverviewCard label="Current task" value={ingestion?.inProgress || 'Waiting'} detail={ingestion?.inProgress ? 'Fetching one-year OHLCV history' : 'Queue is ready for the next cycle'} icon={Activity} />
-                <OverviewCard label="Last completed" value={ingestion?.lastSynced || '—'} detail={`${formatCompact(ingestion?.lastRecords)} historical records saved`} icon={Check} tone="positive" />
+                <OverviewCard label="Current task" value={ingestion?.inProgress || 'Waiting'} detail={ingestion?.inProgress ? 'Collecting current DSE snapshot' : 'Waiting for the next scheduled cycle'} icon={Activity} />
+                <OverviewCard label="Last completed" value={ingestion?.lastSynced || '—'} detail={`${formatCompact(ingestion?.lastRecords)} market rows saved`} icon={Check} tone="positive" />
               </div>
             </section>
 
@@ -425,7 +425,7 @@ export default function MarketDashboard() {
               <StockTable stocks={stocks} loading={stocksQuery.isLoading} error={Boolean(stocksQuery.isError)} onRetry={() => void stocksQuery.refetch()} selectedSymbol={selectedSymbol} onSelect={setSelectedSymbol} />
               <div className="flex flex-wrap gap-x-5 gap-y-2 border-t border-border bg-muted/30 px-5 py-3">{sectorCounts.slice(0, 5).map(([name, count]) => <span key={name} className="font-mono text-[10px] text-muted-foreground"><span className="mr-1.5 text-foreground">{name}</span>{count}</span>)}{!sectorCounts.length && <span className="font-mono text-[10px] text-muted-foreground">Sector distribution will appear with the next market snapshot.</span>}</div>
             </section>
-            <footer className="flex flex-col items-start justify-between gap-2 py-6 text-[10px] text-muted-foreground sm:flex-row sm:items-center"><span className="font-mono uppercase tracking-wider">DSE market control / internal use</span><span className="inline-flex items-center gap-1.5 font-mono"><Download size={12} /> Data refreshes from the ingestion queue</span></footer>
+            <footer className="flex flex-col items-start justify-between gap-2 py-6 text-[10px] text-muted-foreground sm:flex-row sm:items-center"><span className="font-mono uppercase tracking-wider">DSE market control / internal use</span><span className="inline-flex items-center gap-1.5 font-mono"><Download size={12} /> Data refreshes from the scheduled collector</span></footer>
           </div>
         </main>
       </div>

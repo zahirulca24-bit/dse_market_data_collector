@@ -61,6 +61,14 @@ def market_ingestion_status() -> dict:
     return ingestion_status(_storage())
 
 
+@app.post("/api/market/ingestion")
+def market_ingestion_action() -> dict:
+    return {
+        "accepted": False,
+        "message": "Collector is scheduler-managed. Use POST /api/collector/run with Bearer auth for manual collection.",
+    }
+
+
 @app.get("/api/market/ingestion/tracker")
 def market_ingestion_tracker() -> list[dict]:
     return tracker(_storage())

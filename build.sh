@@ -10,5 +10,5 @@ pnpm --filter @workspace/dse-market-dashboard run build
 
 rm -rf frontend/dist
 mkdir -p frontend/dist
-cp -R artifacts/dse-market-dashboard/dist/. frontend/dist/
+cp -R artifacts/dse-market-dashboard/dist/public/. frontend/dist/
 echo "Frontend build complete: frontend/dist"

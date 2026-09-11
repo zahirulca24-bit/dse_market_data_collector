@@ -71,7 +71,7 @@ class MarketQuote:
 
 def _normalized_header(cell: str) -> str:
     value = _clean(cell).lower()
-    value = value.replace("\n", " ")
+    value = value.replace("\n", " ").replace("*", "")
     return value
 
 

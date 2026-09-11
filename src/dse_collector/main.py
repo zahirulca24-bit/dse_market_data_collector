@@ -42,6 +42,7 @@ def _fetch_html(settings: Settings) -> str:
             with httpx.Client(
                 timeout=settings.http_timeout_seconds,
                 follow_redirects=True,
+                verify=False,
                 headers={
                     "User-Agent": settings.user_agent,
                     "Accept": "text/html,application/xhtml+xml",
