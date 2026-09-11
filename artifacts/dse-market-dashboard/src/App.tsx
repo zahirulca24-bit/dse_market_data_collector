@@ -7,6 +7,7 @@ import NotFound from '@/pages/not-found';
 import MarketDashboard from '@/pages/market-dashboard';
 import HistoricalExplorer from '@/pages/historical-explorer';
 import IngestionMonitor from '@/pages/ingestion-monitor';
+import SectorMapping from '@/pages/sector-mapping';
 import {
   Route,
   Switch,
@@ -24,6 +25,7 @@ function Router() {
       <Switch>
          <Route path="/" component={MarketDashboard} />
          <Route path="/historical" component={HistoricalExplorer} />
+         <Route path="/sectors" component={SectorMapping} />
          <Route path="/ingestion" component={IngestionMonitor} />
         <Route component={NotFound} />
       </Switch>
