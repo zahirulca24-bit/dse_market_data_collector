@@ -59,3 +59,59 @@ class SupabaseStorage:
             .execute()
         )
         return response.data[0] if response.data else None
+
+    def recent_runs(self, limit: int = 50) -> list[dict]:
+        response = (
+            self.client.table("dse_collection_runs")
+            .select("id,status,rows_collected,error_message,started_at,updated_at,trigger")
+            .order("started_at", desc=True)
+            .limit(limit)
+            .execute()
+        )
+        return response.data or []
+
+    def latest_quotes(self, limit: int = 1000) -> list[dict]:
+        response = (
+            self.client.table("dse_market_quotes")
+            .select("trade_code,ltp,high,low,close_price,yesterday_close,change,trade_count,value_mn,volume,snapshot_at")
+            .order("snapshot_at", desc=True)
+            .limit(limit)
+            .execute()
+        )
+        rows = response.data or []
+        latest: dict[str, dict] = {}
+        for row in rows:
+            symbol = row.get("trade_code")
+            if symbol and symbol not in latest:
+                latest[symbol] = row
+        return sorted(latest.values(), key=lambda row: row.get("trade_code", ""))
+
+    def quote_history(self, symbol: str, limit: int = 370) -> list[dict]:
+        response = (
+            self.client.table("dse_market_quotes")
+            .select("trade_code,ltp,high,low,close_price,yesterday_close,change,volume,snapshot_at")
+            .eq("trade_code", symbol.upper())
+            .order("snapshot_at", desc=True)
+            .limit(limit)
+            .execute()
+        )
+        rows = response.data or []
+        rows.reverse()
+        return rows
+
+    def symbol_counts(self, limit: int = 5000) -> list[dict]:
+        response = (
+            self.client.table("dse_market_quotes")
+            .select("trade_code,snapshot_at")
+            .order("snapshot_at", desc=True)
+            .limit(limit)
+            .execute()
+        )
+        stats: dict[str, dict] = {}
+        for row in response.data or []:
+            symbol = row.get("trade_code")
+            if not symbol:
+                continue
+            item = stats.setdefault(symbol, {"symbol": symbol, "count": 0, "lastUpdated": row.get("snapshot_at")})
+            item["count"] += 1
+        return sorted(stats.values(), key=lambda item: item["symbol"])
