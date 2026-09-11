@@ -71,6 +71,11 @@ def market_ingestion_logs() -> list[dict]:
     return logs(_storage())
 
 
+@app.get("/api/market/ingestion/start")
+def market_ingestion_start() -> dict:
+    return {"accepted": False, "message": "Collector is scheduler-managed. Use the secured collector endpoint for manual runs."}
+
+
 @app.get("/api/collector/status")
 def collector_status(authorization: Annotated[str | None, Header()] = None) -> dict:
     settings = Settings.from_env()
