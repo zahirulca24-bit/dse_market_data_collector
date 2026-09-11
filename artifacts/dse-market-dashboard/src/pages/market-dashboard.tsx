@@ -174,16 +174,18 @@ function MarketChart({
         priceLineVisible: false,
       });
 
+    const formatChartTime = (timeStr: string) => timeStr.substring(0, 10);
+
     if (mode === 'candles') {
       priceSeries.setData(dataPoints.map((point) => ({
-        time: point.time,
+        time: formatChartTime(point.time),
         open: point.open,
         high: point.high,
         low: point.low,
         close: point.close,
       })));
     } else {
-      priceSeries.setData(dataPoints.map((point) => ({ time: point.time, value: point.close })));
+      priceSeries.setData(dataPoints.map((point) => ({ time: formatChartTime(point.time), value: point.close })));
     }
 
     const volumeSeries = chart.addSeries(HistogramSeries, {
@@ -193,7 +195,7 @@ function MarketChart({
     });
     volumeSeries.priceScale().applyOptions({ scaleMargins: { top: 0.82, bottom: 0 } });
     volumeSeries.setData(dataPoints.map((point) => ({
-      time: point.time,
+      time: formatChartTime(point.time),
       value: point.volume,
       color: point.close >= point.open ? 'rgba(47, 143, 116, 0.45)' : 'rgba(216, 92, 81, 0.45)',
     })));
