@@ -19,10 +19,36 @@ def _int(value) -> int:
         return 0
 
 
+def _get_sector(symbol: str) -> str:
+    symbol = symbol.upper()
+    if symbol.endswith("BANK") or symbol in ["CITYBANK", "BRACBANK", "EBL", "UCB", "NBL", "PUBALIBANK", "ISLAMIBANK"]:
+        return "Bank"
+    if symbol.endswith("MF") or "1ST" in symbol or "MUTUAL" in symbol:
+        return "Mutual Funds"
+    if symbol.endswith("INS") or "INSURANCE" in symbol or symbol.endswith("LIFE"):
+        return "Insurance"
+    if "PHARMA" in symbol or symbol in ["SQURPHARMA", "RENATA", "BEXIMCO", "BXPHARMA", "ACMELAB", "ORIONPHARM"]:
+        return "Pharmaceuticals & Chemicals"
+    if symbol in ["GP", "ROBI", "BSCCL"]:
+        return "Telecommunication"
+    if symbol.endswith("SPIN") or symbol.endswith("TEX") or "YARN" in symbol:
+        return "Textile"
+    if symbol in ["BATBC", "OLYMPIC", "NTC", "AMCL(PRAN)", "BGSIL"]:
+        return "Food & Allied"
+    if "CEMENT" in symbol or symbol in ["HEIDELBCEM", "LAFSURCEML", "CONFIDCEM"]:
+        return "Cement"
+    if "ELEC" in symbol or "CABLES" in symbol or "TUBE" in symbol or symbol in ["WALTON", "SINGERBD", "BSRMSTEEL"]:
+        return "Engineering"
+    if "POWER" in symbol or "GAS" in symbol or symbol in ["TITASGAS", "UPGDCL", "SUMITPOWER", "DESCO"]:
+        return "Fuel & Power"
+    return "Miscellaneous"
+
+
 def market_stock(row: dict) -> dict:
+    symbol = row.get("trade_code", "")
     return {
-        "symbol": row.get("trade_code", ""),
-        "sector": "Unclassified",
+        "symbol": symbol,
+        "sector": _get_sector(symbol),
         "ltp": _num(row.get("ltp")),
         "ycp": _num(row.get("yesterday_close")),
         "change": _num(row.get("change")),
