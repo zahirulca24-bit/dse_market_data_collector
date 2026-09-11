@@ -1,37 +1,28 @@
 services:
   - type: web
-    name: dse-market-data-dashboard
-    runtime: node
+    name: dse-market-data-collector
+    runtime: python
     plan: free
-    region: singapore
-    branch: main
-    buildCommand: pnpm install --frozen-lockfile && pnpm run typecheck && pnpm --filter @workspace/api-server run build && pnpm --filter @workspace/dse-market-dashboard run build
-    startCommand: pnpm --filter @workspace/api-server run start
-    healthCheckPath: /api/healthz
+    buildCommand: bash build.sh
+    startCommand: uvicorn dse_collector.web:app --host 0.0.0.0 --port $PORT --app-dir src
+    healthCheckPath: /health
     autoDeploy: true
     envVars:
-      - key: NODE_ENV
-        value: production
-      - key: LOG_LEVEL
-        value: info
+      - key: PYTHON_VERSION
+        value: 3.12.8
       - key: SUPABASE_URL
         sync: false
       - key: SUPABASE_SERVICE_ROLE_KEY
         sync: false
-  - type: worker
-    name: dse-data-collector
-    runtime: python
-    region: singapore
-    plan: starter
-    buildCommand: pip install --no-cache-dir -r collector/requirements.txt && python -m compileall collector
-    startCommand: python collector/main.py --loop
-    maxShutdownDelaySeconds: 120
-    envVars:
-      - key: SUPABASE_URL
+      - key: CRON_SECRET
         sync: false
-      - key: SUPABASE_SERVICE_ROLE_KEY
-        sync: false
-      - key: DSE_BACKFILL_BATCH_SIZE
-        value: "3"
-      - key: DSE_COLLECTION_INTERVAL_SECONDS
-        value: "300"
+      - key: ENFORCE_MARKET_WINDOW
+        value: "true"
+      - key: MARKET_TIMEZONE
+        value: Asia/Dhaka
+      - key: MARKET_OPEN
+        value: "10:00"
+      - key: MARKET_CLOSE
+        value: "14:10"
+      - key: MARKET_DAYS
+        value: "6,0,1,2,3"
