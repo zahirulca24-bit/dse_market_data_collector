@@ -16,6 +16,8 @@ services:
         sync: false
       - key: CRON_SECRET
         sync: false
+      - key: COLLECTOR_INTERVAL_SECONDS
+        value: "120"
       - key: ENFORCE_MARKET_WINDOW
         value: "true"
       - key: MARKET_TIMEZONE
