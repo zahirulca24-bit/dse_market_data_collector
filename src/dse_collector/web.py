@@ -10,11 +10,20 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from .config import Settings
-from .dashboard import history, ingestion_status, logs, market_stock, overview, tracker
+from .dashboard import (
+    daily_history,
+    history,
+    ingestion_status,
+    logs,
+    market_stock,
+    monitoring,
+    overview,
+    tracker,
+)
 from .main import collect_once
 from .storage import SupabaseStorage
 
-app = FastAPI(title="DSE Market Data Collector", version="3.0.0")
+app = FastAPI(title="DSE Market Data Collector", version="3.1.0")
 
 
 def _authorized(authorization: str | None, settings: Settings) -> bool:
@@ -56,9 +65,56 @@ def stock_history(symbol: str) -> list[dict]:
     return history(_storage(), symbol)
 
 
+@app.get("/api/market/stocks/{symbol}/daily-history")
+def stock_daily_history(symbol: str) -> list[dict]:
+    return daily_history(_storage(), symbol)
+
+
+@app.get("/api/market/monitoring")
+def market_monitoring() -> dict:
+    settings = Settings.from_env()
+    storage = SupabaseStorage(settings.supabase_url, settings.supabase_service_role_key)
+    try:
+        return monitoring(storage, settings.collector_interval_seconds)
+    except Exception as exc:
+        return {
+            "supabase": {"connected": False, "status": "disconnected", "error": str(exc)},
+            "dataSave": {"status": "unknown", "lastResult": "unknown"},
+            "engine": {
+                "status": "error",
+                "currentSector": None,
+                "currentStocks": [],
+                "currentStockCount": 0,
+                "currentTask": "Unavailable",
+                "collectionMode": "unknown",
+                "intervalSeconds": settings.collector_interval_seconds,
+            },
+            "universe": {
+                "totalSectors": 0,
+                "sectorsWithHistory": 0,
+                "remainingSectors": 0,
+                "totalStocks": 0,
+                "stocksWithHistory": 0,
+                "remainingStocks": 0,
+                "historicalCoveragePct": 0,
+            },
+            "phases": [],
+            "lastRun": {"timestamp": None, "status": "unknown", "rowsSaved": 0, "error": str(exc)},
+            "nextRun": {
+                "expectedAt": None,
+                "intervalSeconds": settings.collector_interval_seconds,
+                "note": "Expected cadence; actual execution is controlled by the external scheduler.",
+            },
+            "latestSnapshot": {"timestamp": None, "rows": 0},
+            "dailyHistory": {"available": False, "error": str(exc), "rowsLoadedForMonitoring": 0},
+            "coverageRows": [],
+        }
+
+
 @app.get("/api/market/ingestion")
 def market_ingestion_status() -> dict:
-    return ingestion_status(_storage())
+    settings = Settings.from_env()
+    return ingestion_status(_storage(), settings.collector_interval_seconds)
 
 
 @app.post("/api/market/ingestion")
