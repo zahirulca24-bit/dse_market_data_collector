@@ -71,20 +71,25 @@ class SupabaseStorage:
         return response.data or []
 
     def latest_quotes(self, limit: int = 1000) -> list[dict]:
+        newest = (
+            self.client.table("dse_market_quotes")
+            .select("snapshot_at")
+            .order("snapshot_at", desc=True)
+            .limit(1)
+            .execute()
+        )
+        if not newest.data:
+            return []
+        snapshot_at = newest.data[0].get("snapshot_at")
         response = (
             self.client.table("dse_market_quotes")
             .select("trade_code,ltp,high,low,close_price,yesterday_close,change,trade_count,value_mn,volume,snapshot_at")
-            .order("snapshot_at", desc=True)
+            .eq("snapshot_at", snapshot_at)
+            .order("trade_code")
             .limit(limit)
             .execute()
         )
-        rows = response.data or []
-        latest: dict[str, dict] = {}
-        for row in rows:
-            symbol = row.get("trade_code")
-            if symbol and symbol not in latest:
-                latest[symbol] = row
-        return sorted(latest.values(), key=lambda row: row.get("trade_code", ""))
+        return response.data or []
 
     def quote_history(self, symbol: str, limit: int = 370) -> list[dict]:
         response = (
@@ -97,6 +102,36 @@ class SupabaseStorage:
         )
         rows = response.data or []
         rows.reverse()
+        return rows
+
+    def daily_history_for_symbol(self, symbol: str, limit: int = 1500) -> list[dict]:
+        response = (
+            self.client.table("dse_daily_history")
+            .select("trade_code,trade_date,open,high,low,close,volume,value_mn,source,collected_at")
+            .eq("trade_code", symbol.upper())
+            .order("trade_date", desc=False)
+            .limit(limit)
+            .execute()
+        )
+        return response.data or []
+
+    def daily_history_rows(self, max_rows: int = 250000, page_size: int = 1000) -> list[dict]:
+        rows: list[dict] = []
+        start = 0
+        while start < max_rows:
+            end = min(start + page_size - 1, max_rows - 1)
+            response = (
+                self.client.table("dse_daily_history")
+                .select("trade_code,trade_date,open,high,low,close,volume,value_mn,collected_at")
+                .order("trade_date", desc=False)
+                .range(start, end)
+                .execute()
+            )
+            batch = response.data or []
+            rows.extend(batch)
+            if len(batch) < page_size:
+                break
+            start += page_size
         return rows
 
     def symbol_counts(self, limit: int = 5000) -> list[dict]:
