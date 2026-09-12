@@ -28,6 +28,7 @@ class Settings:
     market_close: str
     market_days: tuple[int, ...]
     enforce_market_window: bool
+    collector_interval_seconds: int
     lock_ttl_seconds: int
     retry_attempts: int
     retry_backoff_seconds: float
@@ -65,6 +66,9 @@ class Settings:
             market_close=os.getenv("MARKET_CLOSE", "14:10").strip(),
             market_days=days,
             enforce_market_window=_as_bool("ENFORCE_MARKET_WINDOW", True),
+            collector_interval_seconds=max(
+                60, int(os.getenv("COLLECTOR_INTERVAL_SECONDS", "120"))
+            ),
             lock_ttl_seconds=int(os.getenv("LOCK_TTL_SECONDS", "240")),
             retry_attempts=max(1, int(os.getenv("RETRY_ATTEMPTS", "3"))),
             retry_backoff_seconds=max(0.0, float(os.getenv("RETRY_BACKOFF_SECONDS", "2"))),
