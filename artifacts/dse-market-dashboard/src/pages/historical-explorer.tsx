@@ -95,6 +95,7 @@ export default function HistoricalExplorer() {
   const [history, setHistory] = useState<DailyPoint[]>([]);
   const [historyLoading, setHistoryLoading] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState<number | null>(null);
+  const [triggering, setTriggering] = useState(false);
   const stocksQuery = useGetMarketStocks();
 
   const loadMonitoring = async () => {
@@ -140,8 +141,44 @@ export default function HistoricalExplorer() {
       .finally(() => setHistoryLoading(false));
   }, [symbol]);
 
+  const triggerManualScan = async () => {
+    const secret = window.prompt('Enter CRON_SECRET to run the collector once.');
+    if (!secret) return;
+
+    setTriggering(true);
+    try {
+      const response = await fetch('/api/collector/run?force=true', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${secret.trim()}`,
+        },
+      });
+      if (!response.ok) {
+        let detail = `HTTP ${response.status}`;
+        try {
+          const body = await response.json() as { detail?: string };
+          if (body.detail) detail = body.detail;
+        } catch {
+          // Keep the HTTP status when the response body is not JSON.
+        }
+        throw new Error(detail);
+      }
+      await loadMonitoring();
+      if (symbol) {
+        const historyResponse = await fetch(`/api/market/stocks/${encodeURIComponent(symbol)}/daily-history`);
+        if (historyResponse.ok) {
+          setHistory(await historyResponse.json() as DailyPoint[]);
+        }
+      }
+    } catch (error) {
+      window.alert(`Manual scan failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setTriggering(false);
+    }
+  };
+
   const phaseById = useMemo(() => new Map((monitoring?.phases ?? []).map((phase) => [phase.id, phase])), [monitoring?.phases]);
-  const current = phaseById.get('current_period');
+  const current = phaseById.get('current');
   const phase1 = phaseById.get('phase1');
   const phase2 = phaseById.get('phase2');
   const phase3 = phaseById.get('phase3');
