@@ -36,20 +36,29 @@ import {
   getGetIngestionTrackerQueryKey,
   getGetMarketOverviewQueryKey,
   getGetMarketStocksQueryKey,
-  getGetStockHistoryQueryKey,
   getHealthCheckQueryKey,
   useGetIngestionLogs,
   useGetIngestionStatus,
   useGetIngestionTracker,
   useGetMarketOverview,
   useGetMarketStocks,
-  useGetStockHistory,
   useHealthCheck,
   useStartIngestion,
 } from '@workspace/api-client-react';
-import type { HistoryPoint, IngestionLog, IngestionStatus, IngestionTrackerRow, MarketStock } from '@workspace/api-client-react';
+import type { IngestionLog, IngestionStatus, IngestionTrackerRow, MarketStock } from '@workspace/api-client-react';
 import { useLocation } from 'wouter';
 import { Sidebar } from '@/components/sidebar';
+
+type DailyHistoryPoint = {
+  time: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+  valueMn?: number | null;
+  source?: string;
+};
 
 const numberFormat = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
 const compactFormat = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
@@ -123,12 +132,12 @@ function MarketChart({
   loading,
   mode,
 }: {
-  points: HistoryPoint[] | undefined;
+  points: DailyHistoryPoint[] | undefined;
   loading: boolean;
   mode: 'line' | 'candles';
 }) {
   const chartContainerRef = useRef<HTMLDivElement>(null);
-  const dataPoints = points ?? [];
+  const dataPoints = (points ?? []).filter((point) => [point.open, point.high, point.low, point.close].every(Number.isFinite));
   const closeValues = dataPoints.map((point) => point.close);
   const periodChange = closeValues[closeValues.length - 1] - closeValues[0];
 
@@ -319,21 +328,23 @@ export default function MarketDashboard() {
   const [selectedSymbol, setSelectedSymbol] = useState('DSEX');
   const [search, setSearch] = useState('');
   const [sector, setSector] = useState('all');
-  const [chartMode, setChartMode] = useState<'line' | 'candles'>('line');
+  const [chartMode, setChartMode] = useState<'line' | 'candles'>('candles');
+  const [dailyHistory, setDailyHistory] = useState<DailyHistoryPoint[]>([]);
+  const [dailyHistoryLoading, setDailyHistoryLoading] = useState(false);
+  const [dailyHistoryError, setDailyHistoryError] = useState(false);
   const [notice, setNotice] = useState('');
 
   const overviewQuery = useGetMarketOverview({ query: { queryKey: getGetMarketOverviewQueryKey(), refetchInterval: 30000 } });
   const ingestionQuery = useGetIngestionStatus({ query: { queryKey: getGetIngestionStatusQueryKey(), refetchInterval: 15000 } });
   const healthQuery = useHealthCheck({ query: { queryKey: getHealthCheckQueryKey(), refetchInterval: 60000 } });
   const stocksQuery = useGetMarketStocks({ sector: sector === 'all' ? undefined : sector, search: search.trim() || undefined }, { query: { queryKey: getGetMarketStocksQueryKey({ sector: sector === 'all' ? undefined : sector, search: search.trim() || undefined }), refetchInterval: 30000 } });
-  const historyQuery = useGetStockHistory(selectedSymbol, { query: { queryKey: getGetStockHistoryQueryKey(selectedSymbol), refetchInterval: 30000, enabled: Boolean(selectedSymbol) } });
   const ingestionMutation = useStartIngestion();
 
   const overview = overviewQuery.data;
   const stocks = stocksQuery.data;
   const sectors = overview?.sectors || [];
   const selectedStock = stocks?.find((stock) => stock.symbol === selectedSymbol) || overview?.stocks?.find((stock) => stock.symbol === selectedSymbol);
-  const history = historyQuery.data;
+  const history = dailyHistory;
   const ingestion = ingestionQuery.data || overview?.ingestion;
   const countdown = ingestion?.nextRunAt
     ? Math.max(0, Math.ceil((new Date(ingestion.nextRunAt).getTime() - Date.now()) / 1000))
@@ -346,6 +357,29 @@ export default function MarketDashboard() {
     if (overview?.stocks?.length && !overview.stocks.some((stock) => stock.symbol === selectedSymbol)) setSelectedSymbol(overview.stocks[0].symbol);
   }, [overview, selectedSymbol]);
 
+  const loadDailyHistory = async (symbolToLoad = selectedSymbol) => {
+    if (!symbolToLoad) return;
+    setDailyHistoryLoading(true);
+    setDailyHistoryError(false);
+    try {
+      const response = await fetch(`/api/market/stocks/${encodeURIComponent(symbolToLoad)}/daily-history`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const rows = await response.json() as DailyHistoryPoint[];
+      setDailyHistory(rows);
+    } catch {
+      setDailyHistory([]);
+      setDailyHistoryError(true);
+    } finally {
+      setDailyHistoryLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    void loadDailyHistory(selectedSymbol);
+    const timer = window.setInterval(() => void loadDailyHistory(selectedSymbol), 30000);
+    return () => window.clearInterval(timer);
+  }, [selectedSymbol]);
+
   const sectorCounts = useMemo(() => {
     const counts = new Map<string, number>();
     (overview?.stocks || []).forEach((stock) => counts.set(stock.sector, (counts.get(stock.sector) || 0) + 1));
@@ -353,7 +387,7 @@ export default function MarketDashboard() {
   }, [overview?.stocks]);
 
   const refreshAll = () => {
-    void Promise.all([overviewQuery.refetch(), ingestionQuery.refetch(), healthQuery.refetch(), stocksQuery.refetch(), historyQuery.refetch()]);
+    void Promise.all([overviewQuery.refetch(), ingestionQuery.refetch(), healthQuery.refetch(), stocksQuery.refetch(), loadDailyHistory()]);
   };
 
   const startIngestion = () => {
@@ -400,11 +434,11 @@ export default function MarketDashboard() {
             <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
               <section className="rounded-lg border border-border bg-card">
                 <div className="flex flex-col gap-3 border-b border-border px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div><div className="flex items-center gap-2"><LineChart size={16} className="text-[#bf8d13]" /><h2 className="text-sm font-semibold">Selected symbol history</h2></div><p className="mt-1 text-xs text-muted-foreground">Daily close and traded volume · {history?.length || 0} observations</p></div>
-                   <div className="flex flex-wrap items-center gap-2"><div className="relative"><Search size={13} className="absolute left-2.5 top-2.5 text-muted-foreground" /><input data-testid="input-symbol-search" value={selectedSymbol} onChange={(event) => setSelectedSymbol(event.target.value.toUpperCase())} placeholder="Symbol" className="h-8 w-28 rounded-md border border-border bg-background pl-8 pr-2 font-mono text-xs uppercase outline-none transition-colors focus:border-[#bf8d13] focus:ring-2 focus:ring-[#f4c95d]/30" /></div><span className="rounded bg-muted px-2 py-1 font-mono text-xs font-medium">{selectedSymbol || '—'}</span><div className="flex rounded-md border border-border bg-muted p-0.5"><button type="button" onClick={() => setChartMode('line')} className={`rounded px-2 py-1 font-mono text-[10px] ${chartMode === 'line' ? 'bg-card font-semibold shadow-sm' : 'text-muted-foreground'}`}>Line</button><button type="button" onClick={() => setChartMode('candles')} className={`rounded px-2 py-1 font-mono text-[10px] ${chartMode === 'candles' ? 'bg-card font-semibold shadow-sm' : 'text-muted-foreground'}`}>OHLC</button></div></div>
+                  <div><div className="flex items-center gap-2"><LineChart size={16} className="text-[#bf8d13]" /><h2 className="text-sm font-semibold">Selected symbol history</h2></div><p className="mt-1 text-xs text-muted-foreground">Stored daily OHLCV candles · {history?.length || 0} observations</p></div>
+                   <div className="flex flex-wrap items-center gap-2"><div className="relative"><Search size={13} className="absolute left-2.5 top-2.5 text-muted-foreground" /><input data-testid="input-symbol-search" value={selectedSymbol} onChange={(event) => setSelectedSymbol(event.target.value.toUpperCase())} placeholder="Symbol" className="h-8 w-28 rounded-md border border-border bg-background pl-8 pr-2 font-mono text-xs uppercase outline-none transition-colors focus:border-[#bf8d13] focus:ring-2 focus:ring-[#f4c95d]/30" /></div><span className="rounded bg-muted px-2 py-1 font-mono text-xs font-medium">{selectedSymbol || '—'}</span><div className="flex rounded-md border border-border bg-muted p-0.5"><button type="button" onClick={() => setChartMode('candles')} className={`rounded px-2 py-1 font-mono text-[10px] ${chartMode === 'candles' ? 'bg-card font-semibold shadow-sm' : 'text-muted-foreground'}`}>Candles</button><button type="button" onClick={() => setChartMode('line')} className={`rounded px-2 py-1 font-mono text-[10px] ${chartMode === 'line' ? 'bg-card font-semibold shadow-sm' : 'text-muted-foreground'}`}>Line</button></div></div>
                 </div>
                 <div className="px-5 pb-5 pt-4">
-                   {historyQuery.isError ? <ErrorState onRetry={() => void historyQuery.refetch()} detail="History could not be loaded for this symbol." /> : <MarketChart points={history} loading={historyQuery.isLoading} mode={chartMode} />}
+                   {dailyHistoryError ? <ErrorState onRetry={() => void loadDailyHistory()} detail="Stored daily OHLCV history could not be loaded for this symbol." /> : <MarketChart points={history} loading={dailyHistoryLoading} mode={chartMode} />}
                   <div className="mt-5 grid grid-cols-2 gap-3 border-t border-border pt-4 sm:grid-cols-4">
                     <div><p className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">Last close</p><p className="mt-1 font-mono text-sm">{selectedStock ? formatNumber(selectedStock.ltp) : history?.length ? formatNumber(history[history.length - 1].close) : '—'}</p></div>
                     <div><p className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">Period move</p><p className="mt-1 text-sm"><ToneValue value={historyChange} /></p></div>
