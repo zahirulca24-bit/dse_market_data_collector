@@ -156,6 +156,18 @@ def _phase_stats(rows: list[dict], total_stocks: int) -> tuple[list[dict], list[
             row for row in rows
             if start_date <= str(row.get("trade_date") or "") <= end_date
         ]
+
+        # Do not expose periods for which no verified daily-history rows exist.
+        if not phase_rows:
+            continue
+
+        actual_dates = sorted(
+            str(row.get("trade_date") or "")
+            for row in phase_rows
+            if row.get("trade_date")
+        )
+        actual_start_date = actual_dates[0] if actual_dates else start_date
+        actual_end_date = actual_dates[-1] if actual_dates else end_date
         by_symbol: dict[str, list[dict]] = {}
         for row in phase_rows:
             symbol = str(row.get("trade_code") or "").upper()
@@ -174,8 +186,8 @@ def _phase_stats(rows: list[dict], total_stocks: int) -> tuple[list[dict], list[
         summaries.append({
             "id": phase_id,
             "label": label,
-            "startDate": start_date,
-            "endDate": end_date,
+            "startDate": actual_start_date,
+            "endDate": actual_end_date,
             "symbolsWithData": symbols_with_data,
             "totalStocks": total_stocks,
             "remainingStocks": max(total_stocks - symbols_with_data, 0),

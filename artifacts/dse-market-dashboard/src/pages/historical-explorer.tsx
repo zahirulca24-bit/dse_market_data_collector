@@ -170,10 +170,6 @@ export default function HistoricalExplorer() {
   };
 
   const phaseById = useMemo(() => new Map((monitoring?.phases ?? []).map((phase) => [phase.id, phase])), [monitoring?.phases]);
-  const current = phaseById.get('current');
-  const phase1 = phaseById.get('phase1');
-  const phase2 = phaseById.get('phase2');
-  const phase3 = phaseById.get('phase3');
 
   const countdown = secondsLeft === null
     ? 'N/A'
@@ -232,23 +228,20 @@ export default function HistoricalExplorer() {
           <SummaryCard label="Daily history table" value={monitoring?.dailyHistory.available ? 'Available' : 'Unavailable'} note={monitoring ? `${monitoring.dailyHistory.rowsLoadedForMonitoring.toLocaleString()} rows scanned for coverage` : undefined} />
         </section>
 
-        <section className="mt-5 grid gap-3 lg:grid-cols-4">
-          {[current, phase1, phase2, phase3].map((phase, index) => {
-            const fallback = ['Current Period', 'Phase 1', 'Phase 2', 'Phase 3'][index];
-            return <div key={phase?.id ?? fallback} className="rounded-lg border border-border bg-card p-4">
-              <div className="flex items-start justify-between gap-2">
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{phase?.label ?? fallback}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{phase ? `${phase.startDate} → ${phase.endDate}` : 'Pending'}</p>
-                </div>
-                <Database size={16} className="text-muted-foreground" />
+        {monitoring?.phases.length ? <section className="mt-5 grid gap-3 lg:grid-cols-4">
+          {monitoring.phases.map((phase) => <div key={phase.id} className="rounded-lg border border-border bg-card p-4">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{phase.label}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{phase.startDate} → {phase.endDate}</p>
               </div>
-              <p className="mt-4 text-2xl font-semibold">{phase ? `${phase.symbolsWithData} / ${phase.totalStocks}` : 'N/A'}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{phase ? `${phase.rows.toLocaleString()} rows · ${phase.coveragePct.toFixed(2)}%` : 'No verified data'}</p>
-              <p className={`mt-3 font-mono text-[10px] uppercase ${tone(phase?.status ?? 'pending')}`}>{phase?.status ?? 'pending'}</p>
-            </div>;
-          })}
-        </section>
+              <Database size={16} className="text-muted-foreground" />
+            </div>
+            <p className="mt-4 text-2xl font-semibold">{phase.symbolsWithData} / {phase.totalStocks}</p>
+            <p className="mt-1 text-xs text-muted-foreground">{phase.rows.toLocaleString()} rows · {phase.coveragePct.toFixed(2)}%</p>
+            <p className={`mt-3 font-mono text-[10px] uppercase ${tone(phase.status)}`}>{phase.status}</p>
+          </div>)}
+        </section> : null}
 
         <section className="mt-5 rounded-lg border border-border bg-card p-5">
           <h2 className="font-semibold">Historical coverage by stock</h2>
