@@ -77,7 +77,7 @@ def market_stock(row: dict) -> dict:
 
 
 def ingestion_status(storage: SupabaseStorage, interval_seconds: int = 120) -> dict:
-    latest = storage.latest_run() or {}
+    latest = storage.latest_market_run() or {}
     symbols = storage.symbol_counts()
     total = len(symbols)
     status = latest.get("status", "")
@@ -201,7 +201,7 @@ def _phase_stats(rows: list[dict], total_stocks: int) -> tuple[list[dict], list[
 
 
 def monitoring(storage: SupabaseStorage, interval_seconds: int = 120) -> dict:
-    latest_run = storage.latest_run() or {}
+    latest_run = storage.latest_historical_run() or {}
     live_rows = storage.latest_quotes()
     stocks = [market_stock(row) for row in live_rows]
     total_stocks = len(stocks)
@@ -228,6 +228,14 @@ def monitoring(storage: SupabaseStorage, interval_seconds: int = 120) -> dict:
     phases, coverage_rows = _phase_stats(daily_rows, total_stocks)
 
     run_status = latest_run.get("status") or "unknown"
+    trigger = str(latest_run.get("trigger") or "")
+    trigger_parts = trigger.split(":", 2)
+    active_phase = trigger_parts[1] if len(trigger_parts) > 1 and trigger_parts[0] == "historical" else None
+    active_symbols = (
+        [item for item in trigger_parts[2].split(",") if item]
+        if len(trigger_parts) > 2 and trigger_parts[0] == "historical"
+        else []
+    )
     last_at = latest_run.get("updated_at") or latest_run.get("started_at")
     last_dt = _iso_dt(last_at)
     next_run_at = (
@@ -261,10 +269,15 @@ def monitoring(storage: SupabaseStorage, interval_seconds: int = 120) -> dict:
         "engine": {
             "status": engine_status,
             "currentSector": None,
-            "currentStocks": [],
-            "currentStockCount": 0,
-            "currentTask": "Market-wide live snapshot" if run_status == "running" else "Waiting",
-            "collectionMode": "market-wide",
+            "currentStocks": active_symbols if run_status == "running" else [],
+            "currentStockCount": len(active_symbols) if run_status == "running" else 0,
+            "currentTask": (
+                f"Historical {active_phase}: {', '.join(active_symbols)}"
+                if run_status == "running" and active_phase
+                else "Waiting for next 3-stock historical batch"
+            ),
+            "currentPhase": active_phase,
+            "collectionMode": "historical-phase-batch",
             "intervalSeconds": interval_seconds,
         },
         "universe": {
@@ -286,7 +299,7 @@ def monitoring(storage: SupabaseStorage, interval_seconds: int = 120) -> dict:
         "nextRun": {
             "expectedAt": next_run_at,
             "intervalSeconds": interval_seconds,
-            "note": "Expected cadence; actual execution is controlled by the external scheduler.",
+            "note": "Internal 2-minute scheduler runs while the Render service is awake.",
         },
         "latestSnapshot": {
             "timestamp": max((stock["updatedAt"] for stock in stocks if stock["updatedAt"]), default=None),
