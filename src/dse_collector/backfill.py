@@ -23,8 +23,27 @@ MAX_ATTEMPTS = 3
 ARCHIVE_URL = "https://www.dsebd.org/day_end_archive.php"
 
 
-def _phase_dates(start_date: str, fixed_end: str | None) -> tuple[str, str]:
-    return start_date, fixed_end or date.today().isoformat()
+def _archive_floor() -> date:
+    today = date.today()
+    try:
+        return today.replace(year=today.year - 2)
+    except ValueError:
+        return today.replace(year=today.year - 2, day=28)
+
+
+def _phase_dates(start_date: str, fixed_end: str | None) -> tuple[str, str] | None:
+    requested_start = date.fromisoformat(start_date)
+    requested_end = date.fromisoformat(fixed_end) if fixed_end else date.today()
+    floor = _archive_floor()
+
+    if requested_end < floor:
+        return None
+
+    effective_start = max(requested_start, floor)
+    if effective_start > requested_end:
+        return None
+
+    return effective_start.isoformat(), requested_end.isoformat()
 
 
 def _parse_run_results(run: dict) -> list[dict]:
@@ -97,7 +116,10 @@ def _select_batch(storage: SupabaseStorage) -> tuple[str, str, str, list[str]] |
 
         remaining.sort(key=lambda item: (item[0], item[1]))
         selected = [symbol for _, symbol in remaining[:BATCH_SIZE]]
-        start, end = _phase_dates(start_date, fixed_end)
+        phase_dates = _phase_dates(start_date, fixed_end)
+        if phase_dates is None:
+            continue
+        start, end = phase_dates
         return phase_id, start, end, selected
 
     return None
