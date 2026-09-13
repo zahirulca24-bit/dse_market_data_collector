@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Database, RefreshCw, Search } from 'lucide-react';
 import { useGetMarketStocks } from '@workspace/api-client-react';
 import { Sidebar } from '@/components/sidebar';
+import { HistoricalCandlestickChart, type DailyPoint, validateDailyHistory } from '@/components/historical-candlestick-chart';
 
 type PhaseSummary = {
   id: string;
@@ -56,17 +57,6 @@ type Monitoring = {
   coverageRows: CoverageRow[];
 };
 
-type DailyPoint = {
-  time: string;
-  open: number | null;
-  high: number | null;
-  low: number | null;
-  close: number | null;
-  volume: number;
-  valueMn?: number | null;
-  source?: string;
-};
-
 function fmtTime(value: string | null | undefined) {
   if (!value) return 'N/A';
   const date = new Date(value);
@@ -96,6 +86,8 @@ export default function HistoricalExplorer() {
   const [historyLoading, setHistoryLoading] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState<number | null>(null);
   const [triggering, setTriggering] = useState(false);
+  const [chartMode, setChartMode] = useState<'candles' | 'line'>('candles');
+  const [phaseFilter, setPhaseFilter] = useState('all');
   const stocksQuery = useGetMarketStocks();
 
   const loadMonitoring = async () => {
@@ -189,6 +181,18 @@ export default function HistoricalExplorer() {
       ? 'Due / overdue'
       : `${String(Math.floor(secondsLeft / 60)).padStart(2, '0')}:${String(secondsLeft % 60).padStart(2, '0')}`;
 
+  const filteredHistory = useMemo(() => {
+    if (phaseFilter === 'all') return history;
+    const phase = phaseById.get(phaseFilter);
+    if (!phase) return history;
+    return history.filter((row) => row.time >= phase.startDate && row.time <= phase.endDate);
+  }, [history, phaseFilter, phaseById]);
+
+  const validatedHistory = useMemo(() => validateDailyHistory(filteredHistory), [filteredHistory]);
+  const issueRows = validatedHistory.filter((row) => row.issues.length > 0);
+  const errorRows = issueRows.filter((row) => row.issues.some((issue) => issue.severity === 'error'));
+  const warningRows = issueRows.filter((row) => row.issues.some((issue) => issue.severity === 'warning'));
+
   return <div className="flex min-h-[100dvh] bg-background text-foreground">
     <Sidebar active="historical" />
     <main className="min-w-0 flex-1 terminal-grid px-5 py-8 md:px-10">
@@ -265,20 +269,65 @@ export default function HistoricalExplorer() {
         </section>
 
         <section className="mt-5 rounded-lg border border-border bg-card p-5">
-          <label className="block text-xs font-semibold" htmlFor="historical-symbol">Daily OHLCV explorer</label>
-          <div className="mt-2 flex max-w-md gap-2">
-            <div className="relative flex-1"><Search size={14} className="absolute left-3 top-3 text-muted-foreground" /><input id="historical-symbol" value={symbol} onChange={(event) => setSymbol(event.target.value.toUpperCase())} className="h-10 w-full rounded-md border border-border bg-background pl-9 pr-3 font-mono text-sm uppercase" /></div>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <label className="block text-xs font-semibold" htmlFor="historical-symbol">Daily OHLCV explorer</label>
+              <p className="mt-1 text-xs text-muted-foreground">Visual validation uses the exact rows stored in dse_daily_history.</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <div className="flex rounded-md border border-border bg-muted p-0.5">
+                <button type="button" onClick={() => setChartMode('candles')} className={`rounded px-3 py-1.5 font-mono text-[10px] ${chartMode === 'candles' ? 'bg-card font-semibold shadow-sm' : 'text-muted-foreground'}`}>Candles</button>
+                <button type="button" onClick={() => setChartMode('line')} className={`rounded px-3 py-1.5 font-mono text-[10px] ${chartMode === 'line' ? 'bg-card font-semibold shadow-sm' : 'text-muted-foreground'}`}>Line</button>
+              </div>
+              <select aria-label="Historical phase filter" value={phaseFilter} onChange={(event) => setPhaseFilter(event.target.value)} className="h-8 rounded-md border border-border bg-background px-3 font-mono text-[10px]">
+                <option value="all">All stored dates</option>
+                {monitoring?.phases.map((phase) => <option key={phase.id} value={phase.id}>{phase.label}</option>)}
+              </select>
+            </div>
+          </div>
+
+          <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
+            <div className="relative w-full sm:max-w-xs"><Search size={14} className="absolute left-3 top-3 text-muted-foreground" /><input id="historical-symbol" value={symbol} onChange={(event) => setSymbol(event.target.value.toUpperCase())} className="h-10 w-full rounded-md border border-border bg-background pl-9 pr-3 font-mono text-sm uppercase" /></div>
             <select aria-label="Choose stock" value={symbol} onChange={(event) => setSymbol(event.target.value)} className="h-10 rounded-md border border-border bg-background px-3 text-sm">{stocksQuery.data?.map((stock) => <option key={stock.symbol} value={stock.symbol}>{stock.symbol}</option>)}</select>
           </div>
         </section>
 
         <section className="mt-5 rounded-lg border border-border bg-card p-5">
-          <h2 className="font-semibold">{symbol || 'Select a symbol'} daily history</h2>
-          <p className="mt-1 text-xs text-muted-foreground">Stored day candles from dse_daily_history.</p>
-          {historyLoading ? <p className="py-12 text-sm text-muted-foreground">Loading saved daily history…</p> : !history.length ? <p className="py-12 text-sm text-muted-foreground">No saved daily OHLCV history for this symbol.</p> : <div className="mt-5 overflow-x-auto">
-            <table className="w-full min-w-[760px] text-left text-sm">
-              <thead className="border-b text-[10px] uppercase tracking-wider text-muted-foreground"><tr><th className="pb-3">Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Volume</th><th>Value (Mn)</th></tr></thead>
-              <tbody>{history.slice().reverse().map((row) => <tr key={row.time} className="border-b border-border/60 font-mono text-xs"><td className="py-3">{row.time}</td><td>{row.open ?? 'N/A'}</td><td>{row.high ?? 'N/A'}</td><td>{row.low ?? 'N/A'}</td><td>{row.close ?? 'N/A'}</td><td>{row.volume.toLocaleString()}</td><td>{row.valueMn ?? 'N/A'}</td></tr>)}</tbody>
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+            <div>
+              <h2 className="font-semibold">{symbol || 'Select a symbol'} candlestick validation</h2>
+              <p className="mt-1 text-xs text-muted-foreground">{filteredHistory.length.toLocaleString()} stored daily candles in the selected range.</p>
+            </div>
+            <div className="flex flex-wrap gap-2 font-mono text-[10px]">
+              <span className="rounded border border-border bg-muted px-2 py-1">Rows {filteredHistory.length}</span>
+              <span className={`rounded border px-2 py-1 ${errorRows.length ? 'border-rose-200 bg-rose-50 text-rose-700' : 'border-emerald-200 bg-emerald-50 text-emerald-700'}`}>Errors {errorRows.length}</span>
+              <span className={`rounded border px-2 py-1 ${warningRows.length ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-emerald-200 bg-emerald-50 text-emerald-700'}`}>Warnings {warningRows.length}</span>
+            </div>
+          </div>
+
+          <div className="mt-5">
+            {historyLoading ? <p className="py-20 text-center text-sm text-muted-foreground">Loading saved daily history…</p> : !filteredHistory.length ? <p className="py-20 text-center text-sm text-muted-foreground">No saved daily OHLCV history for this symbol and phase.</p> : <HistoricalCandlestickChart points={filteredHistory} mode={chartMode} />}
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-3 font-mono text-[10px] text-muted-foreground">
+            <span><span className="mr-1 inline-block h-2.5 w-2.5 rounded-sm bg-emerald-600" />Up candle</span>
+            <span><span className="mr-1 inline-block h-2.5 w-2.5 rounded-sm bg-rose-500" />Down / invalid candle</span>
+            <span><span className="mr-1 inline-block h-2.5 w-2.5 rounded-sm bg-amber-500" />Validation warning</span>
+            <span>Hover a candle to inspect Date + OHLC + Volume.</span>
+          </div>
+        </section>
+
+        <section className="mt-5 rounded-lg border border-border bg-card p-5">
+          <h2 className="font-semibold">{symbol || 'Select a symbol'} raw OHLCV rows</h2>
+          <p className="mt-1 text-xs text-muted-foreground">Chart and table use the same Supabase daily-history response. Validation flags make mismatches visible.</p>
+          {historyLoading ? <p className="py-12 text-sm text-muted-foreground">Loading saved daily history…</p> : !filteredHistory.length ? <p className="py-12 text-sm text-muted-foreground">No saved daily OHLCV history for this symbol.</p> : <div className="mt-5 overflow-x-auto">
+            <table className="w-full min-w-[980px] text-left text-sm">
+              <thead className="border-b text-[10px] uppercase tracking-wider text-muted-foreground"><tr><th className="pb-3">Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Volume</th><th>Value (Mn)</th><th>Validation</th></tr></thead>
+              <tbody>{validatedHistory.slice().reverse().map((row, index) => {
+                const hasError = row.issues.some((issue) => issue.severity === 'error');
+                const hasWarning = row.issues.some((issue) => issue.severity === 'warning');
+                return <tr key={`${row.time}-${index}`} className={`border-b border-border/60 font-mono text-xs ${hasError ? 'bg-rose-50/70' : hasWarning ? 'bg-amber-50/70' : ''}`}><td className="py-3">{row.time}</td><td>{row.open ?? 'N/A'}</td><td>{row.high ?? 'N/A'}</td><td>{row.low ?? 'N/A'}</td><td>{row.close ?? 'N/A'}</td><td>{row.volume.toLocaleString()}</td><td>{row.valueMn ?? 'N/A'}</td><td>{row.issues.length ? <div className="flex flex-wrap gap-1">{row.issues.map((issue) => <span key={issue.key} className={`rounded px-1.5 py-0.5 ${issue.severity === 'error' ? 'bg-rose-100 text-rose-700' : 'bg-amber-100 text-amber-700'}`}>{issue.label}</span>)}</div> : <span className="text-emerald-700">OK</span>}</td></tr>;
+              })}</tbody>
             </table>
           </div>}
         </section>
