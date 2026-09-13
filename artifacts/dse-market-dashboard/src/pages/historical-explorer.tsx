@@ -141,7 +141,7 @@ export default function HistoricalExplorer() {
   }, [symbol]);
 
   const phaseById = useMemo(() => new Map((monitoring?.phases ?? []).map((phase) => [phase.id, phase])), [monitoring?.phases]);
-  const current = phaseById.get('current');
+  const current = phaseById.get('current_period');
   const phase1 = phaseById.get('phase1');
   const phase2 = phaseById.get('phase2');
   const phase3 = phaseById.get('phase3');
@@ -162,9 +162,14 @@ export default function HistoricalExplorer() {
             <h1 className="mt-1 text-3xl font-semibold">Historical data & collector monitor</h1>
             <p className="mt-2 text-sm text-muted-foreground">Verify Supabase storage, collector activity and daily OHLCV coverage.</p>
           </div>
-          <button type="button" onClick={() => void loadMonitoring()} className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-xs font-semibold">
-            <RefreshCw size={14} /> Refresh
-          </button>
+          <div className="flex gap-2">
+            <button type="button" onClick={() => void loadMonitoring()} className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-xs font-semibold hover:bg-accent hover:text-accent-foreground transition-colors">
+              <RefreshCw size={14} /> Refresh
+            </button>
+            <button type="button" onClick={triggerManualScan} disabled={triggering} className="inline-flex items-center gap-2 rounded-md border border-transparent bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50">
+              {triggering ? <RefreshCw size={14} className="animate-spin" /> : <Database size={14} />} Manual Scan
+            </button>
+          </div>
         </div>
 
         {monitorError ? <div className="mt-5 rounded-md border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">Monitoring API error: {monitorError}</div> : null}
