@@ -40,8 +40,6 @@ class Settings:
         cron_secret = os.getenv("CRON_SECRET", "").strip()
         if not url or not key:
             raise RuntimeError("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required")
-        if not cron_secret:
-            raise RuntimeError("CRON_SECRET is required")
 
         days = tuple(
             int(value.strip())
