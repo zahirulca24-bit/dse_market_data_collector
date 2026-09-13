@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 from supabase import Client, create_client
 
 
@@ -13,6 +15,15 @@ class SupabaseStorage:
         self.client.table("dse_market_quotes").upsert(
             rows,
             on_conflict="trade_code,snapshot_at",
+        ).execute()
+        return len(rows)
+
+    def upsert_daily_history(self, rows: list[dict]) -> int:
+        if not rows:
+            return 0
+        self.client.table("dse_daily_history").upsert(
+            rows,
+            on_conflict="trade_code,trade_date",
         ).execute()
         return len(rows)
 
@@ -40,6 +51,15 @@ class SupabaseStorage:
             {"status": "success", "rows_collected": rows_collected}
         ).eq("id", run_id).execute()
 
+    def finish_historical_run(self, run_id: str, rows_collected: int, results: list[dict]) -> None:
+        self.client.table("dse_collection_runs").update(
+            {
+                "status": "success",
+                "rows_collected": rows_collected,
+                "error_message": json.dumps({"results": results}, separators=(",", ":"))[:2000],
+            }
+        ).eq("id", run_id).execute()
+
     def skip_run(self, run_id: str, reason: str) -> None:
         self.client.table("dse_collection_runs").update(
             {"status": "skipped", "error_message": reason[:2000]}
@@ -60,11 +80,44 @@ class SupabaseStorage:
         )
         return response.data[0] if response.data else None
 
+    def latest_market_run(self) -> dict | None:
+        response = (
+            self.client.table("dse_collection_runs")
+            .select("id,status,rows_collected,error_message,started_at,updated_at,trigger")
+            .not_.like("trigger", "historical:%")
+            .order("started_at", desc=True)
+            .limit(1)
+            .execute()
+        )
+        return response.data[0] if response.data else None
+
+    def latest_historical_run(self) -> dict | None:
+        response = (
+            self.client.table("dse_collection_runs")
+            .select("id,status,rows_collected,error_message,started_at,updated_at,trigger")
+            .like("trigger", "historical:%")
+            .order("started_at", desc=True)
+            .limit(1)
+            .execute()
+        )
+        return response.data[0] if response.data else None
+
     def recent_runs(self, limit: int = 50) -> list[dict]:
         response = (
             self.client.table("dse_collection_runs")
             .select("id,status,rows_collected,error_message,started_at,updated_at,trigger")
             .order("started_at", desc=True)
+            .limit(limit)
+            .execute()
+        )
+        return response.data or []
+
+    def historical_runs(self, limit: int = 5000) -> list[dict]:
+        response = (
+            self.client.table("dse_collection_runs")
+            .select("id,status,rows_collected,error_message,started_at,updated_at,trigger")
+            .like("trigger", "historical:%")
+            .order("started_at", desc=False)
             .limit(limit)
             .execute()
         )
@@ -147,6 +200,9 @@ class SupabaseStorage:
             symbol = row.get("trade_code")
             if not symbol:
                 continue
-            item = stats.setdefault(symbol, {"symbol": symbol, "count": 0, "lastUpdated": row.get("snapshot_at")})
+            item = stats.setdefault(
+                symbol,
+                {"symbol": symbol, "count": 0, "lastUpdated": row.get("snapshot_at")},
+            )
             item["count"] += 1
         return sorted(stats.values(), key=lambda item: item["symbol"])

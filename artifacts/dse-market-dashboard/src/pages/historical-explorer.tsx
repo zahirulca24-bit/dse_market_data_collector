@@ -142,12 +142,12 @@ export default function HistoricalExplorer() {
   }, [symbol]);
 
   const triggerManualScan = async () => {
-    const secret = window.prompt('Enter CRON_SECRET to run the collector once.');
+    const secret = window.prompt('Enter CRON_SECRET to run the next 3-stock historical batch.');
     if (!secret) return;
 
     setTriggering(true);
     try {
-      const response = await fetch('/api/collector/run?force=true', {
+      const response = await fetch('/api/collector/historical/run', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${secret.trim()}`,

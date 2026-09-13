@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import asyncio
 import hmac
+import logging
 import os
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Annotated
 
@@ -9,6 +12,7 @@ from fastapi import FastAPI, Header, HTTPException, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from .backfill import run_historical_batch
 from .config import Settings
 from .dashboard import (
     daily_history,
@@ -23,7 +27,41 @@ from .dashboard import (
 from .main import collect_once
 from .storage import SupabaseStorage
 
-app = FastAPI(title="DSE Market Data Collector", version="3.1.0")
+logger = logging.getLogger("dse_collector.web")
+
+_scheduler_task: asyncio.Task | None = None
+
+
+async def _historical_scheduler_loop() -> None:
+    settings = Settings.from_env()
+    await asyncio.sleep(10)
+    while True:
+        try:
+            result = await asyncio.to_thread(run_historical_batch, "scheduler")
+            logger.info("Historical scheduler result: %s", result)
+        except asyncio.CancelledError:
+            raise
+        except Exception:
+            logger.exception("Historical scheduler cycle failed")
+        await asyncio.sleep(settings.collector_interval_seconds)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    global _scheduler_task
+    _scheduler_task = asyncio.create_task(_historical_scheduler_loop())
+    try:
+        yield
+    finally:
+        if _scheduler_task:
+            _scheduler_task.cancel()
+            try:
+                await _scheduler_task
+            except asyncio.CancelledError:
+                pass
+
+
+app = FastAPI(title="DSE Market Data Collector", version="3.2.0", lifespan=lifespan)
 
 
 def _authorized(authorization: str | None, settings: Settings) -> bool:
@@ -161,6 +199,19 @@ def run_collector(
         raise HTTPException(status_code=401, detail="unauthorized")
     try:
         return collect_once(trigger="http", force=force)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.post("/api/collector/historical/run")
+def run_historical_collector(
+    authorization: Annotated[str | None, Header()] = None,
+) -> dict:
+    settings = Settings.from_env()
+    if not _authorized(authorization, settings):
+        raise HTTPException(status_code=401, detail="unauthorized")
+    try:
+        return run_historical_batch(trigger="http")
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
