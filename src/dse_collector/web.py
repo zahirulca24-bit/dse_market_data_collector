@@ -27,6 +27,8 @@ app = FastAPI(title="DSE Market Data Collector", version="3.1.0")
 
 
 def _authorized(authorization: str | None, settings: Settings) -> bool:
+    if not settings.cron_secret:
+        return False
     if not authorization or not authorization.startswith("Bearer "):
         return False
     supplied = authorization[7:].strip()
