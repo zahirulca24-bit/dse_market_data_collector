@@ -282,7 +282,7 @@ function AppHeader({ asOf, health, onRefresh, refreshing }: { asOf?: string; hea
   return (
     <header className="sticky top-0 z-20 flex min-h-[70px] items-center justify-between border-b border-border bg-background/95 px-5 py-3 backdrop-blur-md md:px-8">
       <div className="flex items-center gap-3">
-        <button data-testid="button-mobile-menu" className="rounded-md p-2 text-muted-foreground hover:bg-muted md:hidden"><Menu size={19} /></button>
+        <button data-testid="button-mobile-menu" type="button" aria-label="Open navigation" onClick={() => window.dispatchEvent(new Event('dse-open-mobile-sidebar'))} className="rounded-md p-2 text-muted-foreground hover:bg-muted md:hidden"><Menu size={19} /></button>
         <div>
           <div className="flex items-center gap-2"><span className="font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">DSE / Market control</span><span className="hidden rounded bg-emerald-100 px-1.5 py-0.5 font-mono text-[9px] font-medium uppercase text-emerald-700 sm:inline-flex">Live</span></div>
           <h1 className="mt-0.5 text-xl font-semibold tracking-tight">Market dashboard</h1>
