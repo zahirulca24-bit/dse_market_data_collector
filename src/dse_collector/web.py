@@ -84,6 +84,11 @@ def health() -> dict:
     return {"status": "ok"}
 
 
+@app.get("/api/wake")
+def wake() -> str:
+    return "ok"
+
+
 @app.get("/api/market/overview")
 def market_overview() -> dict:
     return overview(_storage())
