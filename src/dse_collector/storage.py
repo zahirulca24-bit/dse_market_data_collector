@@ -9,6 +9,9 @@ class SupabaseStorage:
     def __init__(self, url: str, service_role_key: str) -> None:
         self.client: Client = create_client(url, service_role_key)
 
+    def connection_check(self) -> None:
+        self.client.table("dse_collection_runs").select("id").limit(1).execute()
+
     def upsert_quotes(self, rows: list[dict]) -> int:
         if not rows:
             return 0
