@@ -119,8 +119,9 @@ def stock_daily_history(symbol: str) -> list[dict]:
 def market_monitoring() -> dict:
     settings = Settings.from_env()
     storage = SupabaseStorage(settings.supabase_url, settings.supabase_service_role_key)
+
     try:
-        return monitoring(storage, settings.collector_interval_seconds)
+        storage.connection_check()
     except Exception as exc:
         return {
             "supabase": {"connected": False, "status": "disconnected", "error": str(exc)},
@@ -145,14 +146,48 @@ def market_monitoring() -> dict:
             },
             "phases": [],
             "lastRun": {"timestamp": None, "status": "unknown", "rowsSaved": 0, "error": str(exc)},
-            "nextRun": {
-                "expectedAt": None,
-                "intervalSeconds": settings.collector_interval_seconds,
-                "note": "Expected cadence; actual execution is controlled by the external scheduler.",
-            },
+            "nextRun": {"expectedAt": None, "intervalSeconds": settings.collector_interval_seconds, "note": "Supabase is unavailable."},
             "latestSnapshot": {"timestamp": None, "rows": 0},
             "dailyHistory": {"available": False, "error": str(exc), "rowsLoadedForMonitoring": 0},
             "coverageRows": [],
+            "monitoring": {"status": "unavailable", "error": None},
+        }
+
+    try:
+        result = monitoring(storage, settings.collector_interval_seconds)
+        result["supabase"] = {"connected": True, "status": "connected"}
+        result["monitoring"] = {"status": "ok", "error": None}
+        return result
+    except Exception as exc:
+        logger.exception("Monitoring calculation failed while Supabase remained connected")
+        return {
+            "supabase": {"connected": True, "status": "connected"},
+            "dataSave": {"status": "unknown", "lastResult": "unknown"},
+            "engine": {
+                "status": "error",
+                "currentSector": None,
+                "currentStocks": [],
+                "currentStockCount": 0,
+                "currentTask": "Monitoring error",
+                "collectionMode": "unknown",
+                "intervalSeconds": settings.collector_interval_seconds,
+            },
+            "universe": {
+                "totalSectors": 0,
+                "sectorsWithHistory": 0,
+                "remainingSectors": 0,
+                "totalStocks": 0,
+                "stocksWithHistory": 0,
+                "remainingStocks": 0,
+                "historicalCoveragePct": 0,
+            },
+            "phases": [],
+            "lastRun": {"timestamp": None, "status": "unknown", "rowsSaved": 0, "error": None},
+            "nextRun": {"expectedAt": None, "intervalSeconds": settings.collector_interval_seconds, "note": "Monitoring calculation failed; Supabase connection is healthy."},
+            "latestSnapshot": {"timestamp": None, "rows": 0},
+            "dailyHistory": {"available": False, "error": None, "rowsLoadedForMonitoring": 0},
+            "coverageRows": [],
+            "monitoring": {"status": "error", "error": str(exc)},
         }
 
 
