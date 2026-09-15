@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from dse_collector.scheduler_state import cycle_finished, cycle_started, scheduler_started, snapshot
+from dse_collector.web import _exception_message
 
 
 def test_scheduler_state_tracks_real_cycle_transitions() -> None:
@@ -31,3 +32,14 @@ def test_scheduler_state_preserves_cycle_error() -> None:
     state = snapshot(True)
     assert state["cycle_status"] == "error"
     assert state["last_error"] == "boom"
+
+
+def test_empty_exception_message_gets_nonempty_error_marker() -> None:
+    exc = TimeoutError()
+    message = _exception_message(exc)
+    assert message == "TimeoutError"
+    cycle_started()
+    cycle_finished(120, message)
+    state = snapshot(True)
+    assert state["cycle_status"] == "error"
+    assert state["last_error"] == "TimeoutError"
