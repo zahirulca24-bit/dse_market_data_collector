@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import date, datetime, timedelta, timezone
 
+from .sectors import sector_for_symbol
 from .storage import SupabaseStorage
 
 
@@ -36,36 +37,11 @@ def _iso_dt(value: str | None) -> datetime | None:
         return None
 
 
-def _get_sector(symbol: str) -> str:
-    symbol = symbol.upper()
-    if symbol.endswith("BANK") or symbol in ["CITYBANK", "BRACBANK", "EBL", "UCB", "NBL", "PUBALIBANK", "ISLAMIBANK"]:
-        return "Bank"
-    if symbol.endswith("MF") or "1ST" in symbol or "MUTUAL" in symbol:
-        return "Mutual Funds"
-    if symbol.endswith("INS") or "INSURANCE" in symbol or symbol.endswith("LIFE"):
-        return "Insurance"
-    if "PHARMA" in symbol or symbol in ["SQURPHARMA", "RENATA", "BEXIMCO", "BXPHARMA", "ACMELAB", "ORIONPHARM"]:
-        return "Pharmaceuticals & Chemicals"
-    if symbol in ["GP", "ROBI", "BSCCL"]:
-        return "Telecommunication"
-    if symbol.endswith("SPIN") or symbol.endswith("TEX") or "YARN" in symbol:
-        return "Textile"
-    if symbol in ["BATBC", "OLYMPIC", "NTC", "AMCL(PRAN)", "BGSIL"]:
-        return "Food & Allied"
-    if "CEMENT" in symbol or symbol in ["HEIDELBCEM", "LAFSURCEML", "CONFIDCEM"]:
-        return "Cement"
-    if "ELEC" in symbol or "CABLES" in symbol or "TUBE" in symbol or symbol in ["WALTON", "SINGERBD", "BSRMSTEEL"]:
-        return "Engineering"
-    if "POWER" in symbol or "GAS" in symbol or symbol in ["TITASGAS", "UPGDCL", "SUMITPOWER", "DESCO"]:
-        return "Fuel & Power"
-    return "Miscellaneous"
-
-
 def market_stock(row: dict) -> dict:
     symbol = row.get("trade_code", "")
     return {
         "symbol": symbol,
-        "sector": _get_sector(symbol),
+        "sector": sector_for_symbol(symbol),
         "ltp": _num(row.get("ltp")),
         "ycp": _num(row.get("yesterday_close")),
         "change": _num(row.get("change")),
@@ -83,11 +59,7 @@ def ingestion_status(storage: SupabaseStorage, interval_seconds: int = 120) -> d
     status = latest.get("status", "")
     last_at = latest.get("updated_at") or latest.get("started_at")
     last_dt = _iso_dt(last_at)
-    next_run_at = (
-        (last_dt + timedelta(seconds=interval_seconds)).isoformat()
-        if last_dt
-        else None
-    )
+    next_run_at = ((last_dt + timedelta(seconds=interval_seconds)).isoformat() if last_dt else None)
     return {
         "total": total,
         "completed": total if status == "success" else 0,
@@ -149,23 +121,12 @@ def _phase_stats(rows: list[dict], total_stocks: int) -> tuple[list[dict], list[
     today = date.today().isoformat()
     summaries: list[dict] = []
     coverage_rows: list[dict] = []
-
     for phase_id, label, start_date, fixed_end in PHASES:
         end_date = fixed_end or today
-        phase_rows = [
-            row for row in rows
-            if start_date <= str(row.get("trade_date") or "") <= end_date
-        ]
-
-        # Do not expose periods for which no verified daily-history rows exist.
+        phase_rows = [row for row in rows if start_date <= str(row.get("trade_date") or "") <= end_date]
         if not phase_rows:
             continue
-
-        actual_dates = sorted(
-            str(row.get("trade_date") or "")
-            for row in phase_rows
-            if row.get("trade_date")
-        )
+        actual_dates = sorted(str(row.get("trade_date") or "") for row in phase_rows if row.get("trade_date"))
         actual_start_date = actual_dates[0] if actual_dates else start_date
         actual_end_date = actual_dates[-1] if actual_dates else end_date
         by_symbol: dict[str, list[dict]] = {}
@@ -173,16 +134,9 @@ def _phase_stats(rows: list[dict], total_stocks: int) -> tuple[list[dict], list[
             symbol = str(row.get("trade_code") or "").upper()
             if symbol:
                 by_symbol.setdefault(symbol, []).append(row)
-
         symbols_with_data = len(by_symbol)
         coverage_pct = round((symbols_with_data / total_stocks) * 100, 2) if total_stocks else 0.0
-        if total_stocks and symbols_with_data >= total_stocks:
-            status = "complete"
-        elif symbols_with_data:
-            status = "in_progress"
-        else:
-            status = "pending"
-
+        status = "complete" if total_stocks and symbols_with_data >= total_stocks else "in_progress"
         summaries.append({
             "id": phase_id,
             "label": label,
@@ -195,11 +149,10 @@ def _phase_stats(rows: list[dict], total_stocks: int) -> tuple[list[dict], list[
             "coveragePct": coverage_pct,
             "status": status,
         })
-
         for symbol, symbol_rows in sorted(by_symbol.items()):
             dates = sorted(str(row.get("trade_date") or "") for row in symbol_rows if row.get("trade_date"))
             coverage_rows.append({
-                "sector": _get_sector(symbol),
+                "sector": sector_for_symbol(symbol),
                 "symbol": symbol,
                 "earliestDate": dates[0] if dates else None,
                 "latestDate": dates[-1] if dates else None,
@@ -208,7 +161,6 @@ def _phase_stats(rows: list[dict], total_stocks: int) -> tuple[list[dict], list[
                 "coveragePct": None,
                 "status": "data_available",
             })
-
     return summaries, coverage_rows
 
 
@@ -218,7 +170,6 @@ def monitoring(storage: SupabaseStorage, interval_seconds: int = 120) -> dict:
     stocks = [market_stock(row) for row in live_rows]
     total_stocks = len(stocks)
     sectors = sorted({stock["sector"] for stock in stocks})
-
     daily_available = True
     daily_error = None
     try:
@@ -227,67 +178,34 @@ def monitoring(storage: SupabaseStorage, interval_seconds: int = 120) -> dict:
         daily_rows = []
         daily_available = False
         daily_error = str(exc)
-
-    distinct_history_symbols = {
-        str(row.get("trade_code") or "").upper()
-        for row in daily_rows
-        if row.get("trade_code")
-    }
-    sectors_with_history = {
-        _get_sector(symbol) for symbol in distinct_history_symbols
-    }
-
+    distinct_history_symbols = {str(row.get("trade_code") or "").upper() for row in daily_rows if row.get("trade_code")}
+    sectors_with_history = {sector_for_symbol(symbol) for symbol in distinct_history_symbols}
     phases, coverage_rows = _phase_stats(daily_rows, total_stocks)
-
     run_status = latest_run.get("status") or "unknown"
     trigger = str(latest_run.get("trigger") or "")
     trigger_parts = trigger.split(":", 2)
     active_phase = trigger_parts[1] if len(trigger_parts) > 1 and trigger_parts[0] == "historical" else None
-    active_symbols = (
-        [item for item in trigger_parts[2].split(",") if item]
-        if len(trigger_parts) > 2 and trigger_parts[0] == "historical"
-        else []
-    )
+    active_symbols = ([item for item in trigger_parts[2].split(",") if item] if len(trigger_parts) > 2 and trigger_parts[0] == "historical" else [])
     last_at = latest_run.get("updated_at") or latest_run.get("started_at")
     last_dt = _iso_dt(last_at)
-    next_run_at = (
-        (last_dt + timedelta(seconds=interval_seconds)).isoformat()
-        if last_dt
-        else None
-    )
-
+    next_run_at = ((last_dt + timedelta(seconds=interval_seconds)).isoformat() if last_dt else None)
     if run_status == "running":
-        save_status = "saving"
-        engine_status = "running"
+        save_status, engine_status = "saving", "running"
     elif run_status == "failed":
-        save_status = "failed"
-        engine_status = "error"
+        save_status, engine_status = "failed", "error"
     elif run_status in {"success", "skipped"}:
-        save_status = "idle"
-        engine_status = "idle"
+        save_status, engine_status = "idle", "idle"
     else:
-        save_status = "unknown"
-        engine_status = "idle"
-
+        save_status, engine_status = "unknown", "idle"
     return {
-        "supabase": {
-            "connected": True,
-            "status": "connected",
-        },
-        "dataSave": {
-            "status": save_status,
-            "lastResult": run_status,
-        },
+        "supabase": {"connected": True, "status": "connected"},
+        "dataSave": {"status": save_status, "lastResult": run_status},
         "engine": {
             "status": engine_status,
             "currentSector": None,
             "currentStocks": active_symbols if run_status == "running" else [],
             "currentStockCount": len(active_symbols) if run_status == "running" else 0,
-            "currentTask": (
-                f"Historical {active_phase}: {', '.join(active_symbols)}"
-                if run_status == "running" and active_phase
-                else "Waiting for next 3-stock historical batch"
-            ),
+            "currentTask": (f"Historical {active_phase}: {', '.join(active_symbols)}" if run_status == "running" and active_phase else "Waiting for next 3-stock historical batch"),
             "currentPhase": active_phase,
             "collectionMode": "historical-phase-batch",
             "intervalSeconds": interval_seconds,
@@ -302,40 +220,16 @@ def monitoring(storage: SupabaseStorage, interval_seconds: int = 120) -> dict:
             "historicalCoveragePct": round((len(distinct_history_symbols) / total_stocks) * 100, 2) if total_stocks else 0.0,
         },
         "phases": phases,
-        "lastRun": {
-            "timestamp": last_at,
-            "status": run_status,
-            "rowsSaved": _int(latest_run.get("rows_collected")),
-            "error": latest_run.get("error_message"),
-        },
-        "nextRun": {
-            "expectedAt": next_run_at,
-            "intervalSeconds": interval_seconds,
-            "note": "Internal 2-minute scheduler runs while the Render service is awake.",
-        },
-        "latestSnapshot": {
-            "timestamp": max((stock["updatedAt"] for stock in stocks if stock["updatedAt"]), default=None),
-            "rows": total_stocks,
-        },
-        "dailyHistory": {
-            "available": daily_available,
-            "error": daily_error,
-            "rowsLoadedForMonitoring": len(daily_rows),
-        },
+        "lastRun": {"timestamp": last_at, "status": run_status, "rowsSaved": _int(latest_run.get("rows_collected")), "error": latest_run.get("error_message")},
+        "nextRun": {"expectedAt": next_run_at, "intervalSeconds": interval_seconds, "note": "Internal 2-minute scheduler runs while the Render service is awake."},
+        "latestSnapshot": {"timestamp": max((stock["updatedAt"] for stock in stocks if stock["updatedAt"]), default=None), "rows": total_stocks},
+        "dailyHistory": {"available": daily_available, "error": daily_error, "rowsLoadedForMonitoring": len(daily_rows)},
         "coverageRows": coverage_rows,
     }
 
 
 def tracker(storage: SupabaseStorage) -> list[dict]:
-    return [
-        {
-            "symbol": item["symbol"],
-            "status": "completed",
-            "totalRecordsInserted": item["count"],
-            "lastUpdated": item.get("lastUpdated") or "",
-        }
-        for item in storage.symbol_counts()
-    ]
+    return [{"symbol": item["symbol"], "status": "completed", "totalRecordsInserted": item["count"], "lastUpdated": item.get("lastUpdated") or ""} for item in storage.symbol_counts()]
 
 
 def logs(storage: SupabaseStorage) -> list[dict]:
