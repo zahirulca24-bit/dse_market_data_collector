@@ -1,224 +1,237 @@
-# 📈 DSE Market Data Dashboard
+# 📈 DSE Market Data Collector & Dashboard
 
-A modern, dark-themed market dashboard for exploring **Dhaka Stock Exchange (DSE)** market data, stock history, OHLCV charts, market breadth, and automated data ingestion.
+A Dhaka Stock Exchange (DSE) market-data collector and monitoring dashboard backed by Supabase.
 
-## 🚀 Overview
+## Current system
 
-DSE Market Data Dashboard is designed to provide a clean and powerful interface for monitoring Bangladesh stock market data.
+The repository currently contains:
 
-The application includes:
+- Python 3.12 / FastAPI collector API
+- React + TypeScript monitoring dashboard
+- live DSE market snapshot collection
+- historical daily OHLCV collection
+- Supabase persistence
+- automatic historical backfill in 3-stock batches
+- candlestick and volume visualization
+- historical coverage and ingestion monitoring
+- lightweight Render wake endpoint for external cron
 
-- 📊 DSE market overview
-- 🔎 Searchable stock list
-- 🏢 Sector-based stock information
-- 📈 Historical price charts
-- 🕯️ OHLC / Candlestick data
-- 📦 Trading volume visualization
-- ❤️ API health monitoring
-- 🔄 Automated market-data ingestion
-- ⏱️ Rate-limited background worker
-- 🗄️ PostgreSQL / Supabase-backed storage
-
-## ✨ Features
-
-### Market Dashboard
-
-View overall DSE market activity from a modern TradingView-inspired interface.
-
-### Stock Search
-
-Quickly search and select listed companies to inspect their market information.
-
-### Historical Data
-
-Selecting a stock can load historical market data including:
-
-- Open
-- High
-- Low
-- Close
-- Volume
-
-### Interactive Charts
-
-The dashboard supports interactive market visualization using Lightweight Charts.
-
-### Data Ingestion Worker
-
-A background ingestion system processes stock symbols in controlled cycles.
-
-The worker is designed to:
-
-- Process symbols sequentially
-- Respect data-source rate limits
-- Track ingestion progress
-- Record failed symbols
-- Continue processing even when an individual symbol fails
-
-## 🛠️ Tech Stack
-
-### Frontend
-
-- React
-- TypeScript
-- Lightweight Charts
-
-### Backend
-
-- Node.js
-- Express 5
-- TypeScript
-
-### Database
-
-- PostgreSQL
-- Supabase
-- Drizzle ORM
-
-### Validation & API
-
-- Zod
-- drizzle-zod
-- OpenAPI
-- Orval
-
-### Tooling
-
-- pnpm Workspaces
-- TypeScript
-- esbuild
-- Prettier
-
-## 📁 Project Structure
+## Data flow
 
 ```text
-DSE-Market-Data-Dashboard/
-├── artifacts/
-│   ├── dse-market-dashboard/    # Dashboard frontend
-│   └── api-server/              # Backend API
-│
-├── lib/
-│   └── api-spec/                # OpenAPI specification
-│
-├── scripts/                     # Project scripts
-├── package.json
-├── pnpm-workspace.yaml
-└── tsconfig.base.json
-⚙️ Installation
-1. Clone the repository
-git clone https://github.com/zahirulk92-maker/DSE-Market-Data-Dashboard.git
-2. Enter the project
-cd DSE-Market-Data-Dashboard
-3. Install dependencies
+DSE public data source
+        │
+        ▼
+Python / FastAPI collector
+        │
+        ├── Live market snapshot collection
+        │
+        └── Historical daily OHLCV backfill
+                │
+                ▼
+             Supabase
+                │
+                ▼
+        FastAPI read endpoints
+                │
+                ▼
+      React monitoring dashboard
+```
 
-This project uses pnpm.
+## Historical collection
 
-pnpm install
-▶️ Development
-Start the API server
-pnpm --filter @workspace/api-server run dev
+Historical backfill is scheduler-driven.
 
-The API server runs on port:
+- Internal scheduler interval: 120 seconds
+- Batch size: 3 stocks per historical cycle
+- Each selected stock is requested for the active historical period
+- Results are upserted into `dse_daily_history`
+- Historical run state is recorded in `dse_collection_runs`
+- The collector progresses through available historical periods
+- Periods outside the publicly available DSE archive window are skipped rather than repeatedly retried
 
-8080
-Start the dashboard
-pnpm --filter @workspace/dse-market-dashboard run dev
-✅ Type Check
-pnpm run typecheck
-🏗️ Build
-pnpm run build
-🔄 Generate API Client
+The DSE public archive is a rolling source. The application should only present historical periods for which verified data is actually stored; unavailable older periods are not treated as application data.
 
-After modifying the OpenAPI specification:
+## Render Free wake flow
 
-pnpm --filter @workspace/api-spec run codegen
-🔐 Environment Configuration
+On Render Free, the web service may spin down while idle. The application therefore exposes a lightweight endpoint:
 
-Supabase credentials are managed outside the application source code.
+```text
+GET /api/wake
+```
 
-## Python collection engine
+It returns only `ok`. It does not collect market data, write to Supabase, or require a collector secret.
 
-The Render Blueprint includes a continuously running Python Background Worker. It runs one collection cycle every five minutes. Each cycle:
+The deployed setup can use an external scheduler such as cron-job.org every two minutes:
 
-- updates the current, sector-wise market snapshot for all available stocks;
-- takes up to three pending symbols from the backfill queue;
-- fetches at least the previous 366 days of OHLCV history for those symbols; and
-- saves the snapshot, history, tracker state, and run log to Supabase.
+```text
+cron-job.org
+    │
+    ▼
+GET /api/wake
+    │
+    ▼
+Render service remains awake
+    │
+    ▼
+Internal 120-second historical scheduler runs
+```
 
-Before deploying the collector, apply `supabase/migrations/20260911000000_create_dse_collection.sql` in the target Supabase project and add these Render environment variables to both the web service and the Cron Job:
+The wake request and the historical collection job are intentionally separate.
+
+## Supabase tables
+
+The collector currently relies on these core tables:
+
+- `dse_market_quotes` — live/intraday market snapshots
+- `dse_daily_history` — daily OHLCV historical records
+- `dse_collection_runs` — live and historical run history/status
+- `dse_collector_lock` — collector locking support
+
+Daily historical records are uniquely identified by stock symbol and trade date.
+
+## API overview
+
+Public/read endpoints include:
+
+```text
+GET /health
+GET /api/healthz
+GET /api/wake
+GET /api/market/overview
+GET /api/market/stocks
+GET /api/market/stocks/{symbol}/history
+GET /api/market/stocks/{symbol}/daily-history
+GET /api/market/monitoring
+GET /api/market/ingestion
+GET /api/market/ingestion/tracker
+GET /api/market/ingestion/logs
+```
+
+Collector actions are protected and require the configured collector authorization secret:
+
+```text
+POST /api/collector/run
+POST /api/collector/historical/run
+GET  /api/collector/status
+```
+
+## Frontend
+
+The React/TypeScript dashboard includes:
+
+- Live Overview
+- Historical Explorer
+- Sector Mapping
+- Ingestion Monitor
+- searchable stock browser
+- stored daily OHLCV candlestick chart
+- volume visualization
+- historical coverage monitoring
+- mobile navigation
+
+Frontend source:
+
+```text
+artifacts/dse-market-dashboard/
+```
+
+## Backend / collector
+
+Collector source:
+
+```text
+src/dse_collector/
+```
+
+Important modules include:
+
+```text
+web.py          FastAPI application and internal scheduler
+backfill.py     phased historical batch collection
+storage.py      Supabase persistence/read helpers
+dashboard.py    dashboard data shaping and monitoring
+main.py         live collection entry point
+config.py       environment configuration
+```
+
+## Environment configuration
+
+Keep all secrets server-side. Typical collector configuration includes:
 
 ```text
 SUPABASE_URL=https://<project-ref>.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=<server-only secret>
+CRON_SECRET=<collector-action secret>
+COLLECTOR_INTERVAL_SECONDS=120
 ```
 
-The collector uses the public `bdshare` Python package to crawl DSE current and historical data; no separate DSE data URL or token is required. Never place the Supabase service-role key in the React frontend.
+Never commit the Supabase service-role key, collector secret, database password, or other credentials to GitHub or expose them to the React browser bundle.
 
-Do not commit API keys, database passwords, or other secrets to the repository.
+## Deployment model
 
-🧠 Architecture
+Current production model:
 
-The application follows a workspace-based architecture containing separate frontend, backend, API specification, and shared project components.
+```text
+React dashboard + FastAPI web service
+                │
+              Render
+                │
+                ▼
+             Supabase
 
-The dashboard communicates with the backend API, while the backend handles database access and DSE market-data ingestion.
+cron-job.org ──GET /api/wake──► Render
+```
 
-DSE Data Source
-      │
-      ▼
-Ingestion Worker
-      │
-      ▼
-PostgreSQL / Supabase
-      │
-      ▼
-Express API
-      │
-      ▼
-React Dashboard
-      │
-      ▼
-Interactive Market Charts
-🗺️ Roadmap
+The internal scheduler only runs while the Render process is awake.
 
-Planned improvements include:
+## Data integrity principles
 
- Live DSE market feed
- Complete historical data ingestion
- Advanced candlestick charts
- Technical indicators
- Market movers
- Top gainers and losers
- Sector performance
- Company fundamentals
- Watchlist
- Portfolio tracking
- Market alerts
- Improved analytics
- Production deployment
-🇧🇩 Purpose
+- Do not generate mock OHLCV data for missing DSE history.
+- Do not show unavailable historical periods as if they exist.
+- Upsert daily history by symbol + trade date.
+- Keep service-role credentials server-side only.
+- Keep manual collector actions protected.
+- Treat the public DSE source availability window as an external limitation.
 
-The goal of this project is to build a modern and extensible market-data platform focused on the Dhaka Stock Exchange (DSE) and the Bangladesh capital market.
+## Development workflow
 
-🤝 Contributing
+Recommended repository workflow:
 
-Contributions, bug reports, feature suggestions, and improvements are welcome.
-
-Recommended workflow:
-
-Create Branch
+```text
+Create branch
     ↓
-Make Changes
+Make scoped change
     ↓
-Test
+Test / verify
     ↓
 Commit
     ↓
-Open Pull Request
+Open pull request
     ↓
 Review
     ↓
 Merge
-📄 License
+```
 
-This project is licensed under the MIT License.
+## Roadmap
 
+Planned improvements include:
+
+- authoritative DSE sector mapping
+- scalable historical coverage aggregation
+- scheduler/wake-state accuracy improvements
+- database-driven historical range reporting
+- stock detail page
+- market movers
+- data quality center
+- historical coverage map
+- CSV export center
+
+## Purpose
+
+The goal is to maintain a reliable DSE market-data foundation that can later serve the separate DSE Signal application without recollecting the same raw market history.
+
+## License
+
+MIT
