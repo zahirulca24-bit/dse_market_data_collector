@@ -24,6 +24,10 @@ _scheduler_task: asyncio.Task | None = None
 _INITIAL_SCHEDULER_DELAY_SECONDS = 10
 
 
+def _exception_message(exc: Exception) -> str:
+    return str(exc).strip() or exc.__class__.__name__
+
+
 async def _historical_scheduler_loop() -> None:
     settings = Settings.from_env()
     scheduler_started(_INITIAL_SCHEDULER_DELAY_SECONDS)
@@ -37,7 +41,7 @@ async def _historical_scheduler_loop() -> None:
         except asyncio.CancelledError:
             raise
         except Exception as exc:
-            error = str(exc)
+            error = _exception_message(exc)
             logger.exception("Historical scheduler cycle failed")
         finally:
             cycle_finished(settings.collector_interval_seconds, error)
@@ -59,7 +63,7 @@ async def lifespan(app: FastAPI):
                 pass
 
 
-app = FastAPI(title="DSE Market Data Collector", version="3.3.0", lifespan=lifespan)
+app = FastAPI(title="DSE Market Data Collector", version="3.3.1", lifespan=lifespan)
 
 
 def _authorized(authorization: str | None, settings: Settings) -> bool:
