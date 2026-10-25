@@ -74,6 +74,26 @@ async def _historical_scheduler_loop() -> None:
         try:
             result = await asyncio.to_thread(run_historical_batch, "scheduler")
             logger.info("Historical scheduler result: %s", result)
+
+            # Automated live market quote collection and Telegram alert evaluation
+            try:
+                await asyncio.to_thread(collect_once, "scheduler", False)
+                tg_token = os.getenv("TELEGRAM_BOT_TOKEN")
+                tg_chat = os.getenv("TELEGRAM_CHAT_ID")
+                webhook_url = os.getenv("WEBHOOK_ALERT_URL")
+                if tg_token and tg_chat:
+                    storage = SupabaseStorage(settings.supabase_url, settings.supabase_service_role_key)
+                    alert_eval = await asyncio.to_thread(
+                        check_and_evaluate_alerts,
+                        storage,
+                        tg_token,
+                        tg_chat,
+                        webhook_url,
+                    )
+                    if alert_eval.get("fired_alerts_count", 0) > 0:
+                        logger.info("Dispatched %s alerts to Telegram", alert_eval["fired_alerts_count"])
+            except Exception as inner_exc:
+                logger.debug("Automated alert check cycle note: %s", inner_exc)
         except asyncio.CancelledError:
             raise
         except Exception as exc:
