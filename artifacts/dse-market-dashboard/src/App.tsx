@@ -8,6 +8,8 @@ import MarketDashboard from '@/pages/market-dashboard';
 import HistoricalExplorer from '@/pages/historical-explorer';
 import IngestionMonitor from '@/pages/ingestion-monitor';
 import SectorMapping from '@/pages/sector-mapping';
+import AdvancedChartPage from '@/pages/advanced-chart';
+import AgentAnalysisPage from '@/pages/agent-analysis';
 import {
   Route,
   Switch,
@@ -24,6 +26,8 @@ function Router() {
     <RoutedErrorBoundary>
       <Switch>
          <Route path="/" component={MarketDashboard} />
+         <Route path="/chart" component={AdvancedChartPage} />
+         <Route path="/agents" component={AgentAnalysisPage} />
          <Route path="/historical" component={HistoricalExplorer} />
          <Route path="/sectors" component={SectorMapping} />
          <Route path="/ingestion" component={IngestionMonitor} />

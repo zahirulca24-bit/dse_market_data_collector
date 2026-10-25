@@ -1,0 +1,353 @@
+{
+  "SQURPHARMA": {
+    "cached_at": 1792962095.6047451,
+    "data": {
+      "symbol": "SQURPHARMA",
+      "as_on": "Sep 30, 2026",
+      "sponsor_pct": 44.15,
+      "govt_pct": 0.0,
+      "institute_pct": 13.94,
+      "foreign_pct": 14.13,
+      "public_pct": 27.78,
+      "historical_reports": [
+        {
+          "as_on": "Jun 30, 2025 (year ended)",
+          "sponsor_pct": 43.59,
+          "govt_pct": 0.0,
+          "institute_pct": 14.05,
+          "foreign_pct": 15.14,
+          "public_pct": 27.22
+        },
+        {
+          "as_on": "Aug 31, 2026",
+          "sponsor_pct": 44.15,
+          "govt_pct": 0.0,
+          "institute_pct": 13.9,
+          "foreign_pct": 14.33,
+          "public_pct": 27.62
+        },
+        {
+          "as_on": "Sep 30, 2026",
+          "sponsor_pct": 44.15,
+          "govt_pct": 0.0,
+          "institute_pct": 13.94,
+          "foreign_pct": 14.13,
+          "public_pct": 27.78
+        }
+      ],
+      "sponsor_change_pct": 0.0,
+      "institute_change_pct": 0.04,
+      "public_change_pct": 0.16,
+      "name": "Square Pharmaceuticals PLC"
+    }
+  },
+  "MPETROLEUM": {
+    "cached_at": 1792962096.4070716,
+    "data": {
+      "symbol": "MPETROLEUM",
+      "as_on": "Sep 30, 2026",
+      "sponsor_pct": 0.0,
+      "govt_pct": 58.67,
+      "institute_pct": 33.06,
+      "foreign_pct": 0.1,
+      "public_pct": 8.17,
+      "historical_reports": [
+        {
+          "as_on": "Jun 30, 2025 (year ended)",
+          "sponsor_pct": 0.0,
+          "govt_pct": 58.67,
+          "institute_pct": 33.42,
+          "foreign_pct": 0.09,
+          "public_pct": 7.82
+        },
+        {
+          "as_on": "Aug 31, 2026",
+          "sponsor_pct": 0.0,
+          "govt_pct": 58.67,
+          "institute_pct": 33.33,
+          "foreign_pct": 0.1,
+          "public_pct": 7.9
+        },
+        {
+          "as_on": "Sep 30, 2026",
+          "sponsor_pct": 0.0,
+          "govt_pct": 58.67,
+          "institute_pct": 33.06,
+          "foreign_pct": 0.1,
+          "public_pct": 8.17
+        }
+      ],
+      "sponsor_change_pct": 0.0,
+      "institute_change_pct": -0.27,
+      "public_change_pct": 0.27,
+      "name": "Meghna Petroleum PLC."
+    }
+  },
+  "BATBC": {
+    "cached_at": 1792962098.8172314,
+    "data": {
+      "symbol": "BATBC",
+      "as_on": "Sep 30, 2026",
+      "sponsor_pct": 72.91,
+      "govt_pct": 0.64,
+      "institute_pct": 14.6,
+      "foreign_pct": 2.9,
+      "public_pct": 8.95,
+      "historical_reports": [
+        {
+          "as_on": "Dec 31, 2025 (year ended)",
+          "sponsor_pct": 72.91,
+          "govt_pct": 0.64,
+          "institute_pct": 14.43,
+          "foreign_pct": 3.23,
+          "public_pct": 8.79
+        },
+        {
+          "as_on": "Aug 31, 2026",
+          "sponsor_pct": 72.91,
+          "govt_pct": 0.64,
+          "institute_pct": 14.59,
+          "foreign_pct": 2.88,
+          "public_pct": 8.98
+        },
+        {
+          "as_on": "Sep 30, 2026",
+          "sponsor_pct": 72.91,
+          "govt_pct": 0.64,
+          "institute_pct": 14.6,
+          "foreign_pct": 2.9,
+          "public_pct": 8.95
+        }
+      ],
+      "sponsor_change_pct": 0.0,
+      "institute_change_pct": 0.01,
+      "public_change_pct": -0.03,
+      "name": "British American Tobacco Bangladesh"
+    }
+  },
+  "GP": {
+    "cached_at": 1792962099.2952201,
+    "data": {
+      "symbol": "GP",
+      "as_on": "Sep 30, 2026",
+      "sponsor_pct": 90.0,
+      "govt_pct": 0.0,
+      "institute_pct": 6.86,
+      "foreign_pct": 0.14,
+      "public_pct": 3.0,
+      "historical_reports": [
+        {
+          "as_on": "Dec 31, 2025 (year ended)",
+          "sponsor_pct": 90.0,
+          "govt_pct": 0.0,
+          "institute_pct": 6.63,
+          "foreign_pct": 0.8,
+          "public_pct": 2.57
+        },
+        {
+          "as_on": "Aug 31, 2026",
+          "sponsor_pct": 90.0,
+          "govt_pct": 0.0,
+          "institute_pct": 6.85,
+          "foreign_pct": 0.17,
+          "public_pct": 2.98
+        },
+        {
+          "as_on": "Sep 30, 2026",
+          "sponsor_pct": 90.0,
+          "govt_pct": 0.0,
+          "institute_pct": 6.86,
+          "foreign_pct": 0.14,
+          "public_pct": 3.0
+        }
+      ],
+      "sponsor_change_pct": 0.0,
+      "institute_change_pct": 0.01,
+      "public_change_pct": 0.02,
+      "name": "Grameenphone Ltd."
+    }
+  },
+  "BRACBANK": {
+    "cached_at": 1792962099.7751763,
+    "data": {
+      "symbol": "BRACBANK",
+      "as_on": "Sep 30, 2026",
+      "sponsor_pct": 46.17,
+      "govt_pct": 0.0,
+      "institute_pct": 13.15,
+      "foreign_pct": 32.35,
+      "public_pct": 8.33,
+      "historical_reports": [
+        {
+          "as_on": "Dec 31, 2025 (year ended)",
+          "sponsor_pct": 46.17,
+          "govt_pct": 0.0,
+          "institute_pct": 11.48,
+          "foreign_pct": 36.06,
+          "public_pct": 6.29
+        },
+        {
+          "as_on": "Aug 31, 2026",
+          "sponsor_pct": 46.17,
+          "govt_pct": 0.0,
+          "institute_pct": 13.04,
+          "foreign_pct": 32.39,
+          "public_pct": 8.4
+        },
+        {
+          "as_on": "Sep 30, 2026",
+          "sponsor_pct": 46.17,
+          "govt_pct": 0.0,
+          "institute_pct": 13.15,
+          "foreign_pct": 32.35,
+          "public_pct": 8.33
+        }
+      ],
+      "sponsor_change_pct": 0.0,
+      "institute_change_pct": 0.11,
+      "public_change_pct": -0.07,
+      "name": "BRAC Bank PLC"
+    }
+  },
+  "NCCBANK": {
+    "cached_at": 1792962100.339809,
+    "data": {
+      "symbol": "NCCBANK",
+      "as_on": "Sep 30, 2026",
+      "sponsor_pct": 42.2,
+      "govt_pct": 0.0,
+      "institute_pct": 20.61,
+      "foreign_pct": 0.18,
+      "public_pct": 37.01,
+      "historical_reports": [
+        {
+          "as_on": "Dec 31, 2025 (year ended)",
+          "sponsor_pct": 41.58,
+          "govt_pct": 0.0,
+          "institute_pct": 25.65,
+          "foreign_pct": 0.03,
+          "public_pct": 32.74
+        },
+        {
+          "as_on": "Aug 31, 2026",
+          "sponsor_pct": 42.1,
+          "govt_pct": 0.0,
+          "institute_pct": 21.24,
+          "foreign_pct": 0.03,
+          "public_pct": 36.63
+        },
+        {
+          "as_on": "Sep 30, 2026",
+          "sponsor_pct": 42.2,
+          "govt_pct": 0.0,
+          "institute_pct": 20.61,
+          "foreign_pct": 0.18,
+          "public_pct": 37.01
+        }
+      ],
+      "sponsor_change_pct": 0.1,
+      "institute_change_pct": -0.63,
+      "public_change_pct": 0.38,
+      "name": "NCC Bank PLC"
+    }
+  },
+  "JANATAINS": {
+    "cached_at": 1792962101.2830582,
+    "data": {
+      "symbol": "JANATAINS",
+      "as_on": "Sep 30, 2026",
+      "sponsor_pct": 39.87,
+      "govt_pct": 0.0,
+      "institute_pct": 8.06,
+      "foreign_pct": 0.0,
+      "public_pct": 52.07,
+      "historical_reports": [
+        {
+          "as_on": "Dec 31, 2025 (year ended)",
+          "sponsor_pct": 39.87,
+          "govt_pct": 0.0,
+          "institute_pct": 8.32,
+          "foreign_pct": 0.0,
+          "public_pct": 51.81
+        },
+        {
+          "as_on": "Aug 31, 2026",
+          "sponsor_pct": 39.87,
+          "govt_pct": 0.0,
+          "institute_pct": 7.56,
+          "foreign_pct": 0.0,
+          "public_pct": 52.57
+        },
+        {
+          "as_on": "Sep 30, 2026",
+          "sponsor_pct": 39.87,
+          "govt_pct": 0.0,
+          "institute_pct": 8.06,
+          "foreign_pct": 0.0,
+          "public_pct": 52.07
+        }
+      ],
+      "sponsor_change_pct": 0.0,
+      "institute_change_pct": 0.5,
+      "public_change_pct": -0.5,
+      "name": "Janata Insurance PLC"
+    }
+  },
+  "LHBL": {
+    "cached_at": 1792962101.8329954,
+    "data": {
+      "symbol": "LHBL",
+      "name": "LafargeHolcim Bangladesh Limited",
+      "sponsor_pct": 64.68,
+      "govt_pct": 0.0,
+      "institute_pct": 18.52,
+      "foreign_pct": 0.72,
+      "public_pct": 16.08,
+      "as_on": "Sep 30, 2026",
+      "sponsor_change_pct": 0.0,
+      "institute_change_pct": 0.35
+    }
+  },
+  "BEXIMCO": {
+    "cached_at": 1792962102.279598,
+    "data": {
+      "symbol": "BEXIMCO",
+      "as_on": "Sep 30, 2026",
+      "sponsor_pct": 33.11,
+      "govt_pct": 0.0,
+      "institute_pct": 30.29,
+      "foreign_pct": 0.36,
+      "public_pct": 36.24,
+      "historical_reports": [
+        {
+          "as_on": "Jun 30, 2024 (year ended)",
+          "sponsor_pct": 33.11,
+          "govt_pct": 0.0,
+          "institute_pct": 32.76,
+          "foreign_pct": 0.94,
+          "public_pct": 33.19
+        },
+        {
+          "as_on": "Aug 31, 2026",
+          "sponsor_pct": 33.11,
+          "govt_pct": 0.0,
+          "institute_pct": 30.58,
+          "foreign_pct": 0.35,
+          "public_pct": 35.96
+        },
+        {
+          "as_on": "Sep 30, 2026",
+          "sponsor_pct": 33.11,
+          "govt_pct": 0.0,
+          "institute_pct": 30.29,
+          "foreign_pct": 0.36,
+          "public_pct": 36.24
+        }
+      ],
+      "sponsor_change_pct": 0.0,
+      "institute_change_pct": -0.29,
+      "public_change_pct": 0.28,
+      "name": "Bangladesh Export Import Company Ltd."
+    }
+  }
+}

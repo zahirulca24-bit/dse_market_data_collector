@@ -17,7 +17,7 @@ def _number(value: str) -> float | None:
         return None
 
 def fetch_historical_data(symbol: str, start_date: str, end_date: str) -> list[dict]:
-    url = f"https://www.dsebd.org/day_end_archive.php?startDate={start_date}&endDate={end_date}&inst={symbol}&archive=data"
+    url = f"https://old.dsebd.org/day_end_archive.php?startDate={start_date}&endDate={end_date}&inst={symbol}&archive=data"
     
     with httpx.Client(timeout=30, verify=False) as client:
         r = client.get(url)

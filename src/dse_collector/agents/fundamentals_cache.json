@@ -1,0 +1,513 @@
+{
+  "SQURPHARMA": {
+    "cached_at": 1792961651.3443773,
+    "data": {
+      "symbol": "SQURPHARMA",
+      "ltp": 218.9,
+      "market_cap_mn": 194664.642,
+      "paid_up_capital_mn": 8864.51,
+      "sector": "Pharmaceuticals & Chemicals",
+      "current_pe": 7.07,
+      "trailing_pe": 7.53,
+      "category": "A",
+      "history": [
+        {
+          "year": "2021",
+          "eps": 17.99,
+          "nav": 17.99
+        },
+        {
+          "year": "2022",
+          "eps": 20.51,
+          "nav": 20.51
+        },
+        {
+          "year": "2023",
+          "eps": 21.41,
+          "nav": 21.41
+        },
+        {
+          "year": "2024",
+          "eps": 23.61,
+          "nav": 23.61
+        },
+        {
+          "year": "2025",
+          "eps": 27.04,
+          "nav": 27.04
+        },
+        {
+          "year": "2021",
+          "eps": 11.98,
+          "nav": 11.98
+        },
+        {
+          "year": "2022",
+          "eps": 10.57,
+          "nav": 10.57
+        },
+        {
+          "year": "2023",
+          "eps": 9.8,
+          "nav": 105.0
+        },
+        {
+          "year": "2024",
+          "eps": 8.93,
+          "nav": 110.0
+        },
+        {
+          "year": "2025",
+          "eps": 7.73,
+          "nav": 120.0
+        }
+      ],
+      "eps": 7.73,
+      "nav": 120.0,
+      "name": "Square Pharmaceuticals PLC",
+      "listing_year": 1995,
+      "dividend_yield": 5.22,
+      "last_dividend_cash_pct": 110.0
+    }
+  },
+  "MPETROLEUM": {
+    "cached_at": 1792961652.203642,
+    "data": {
+      "symbol": "MPETROLEUM",
+      "ltp": 208.6,
+      "market_cap_mn": 22606.345,
+      "paid_up_capital_mn": 1082.16,
+      "sector": "Fuel & Power",
+      "current_pe": 3.71,
+      "trailing_pe": 3.16,
+      "category": "A",
+      "history": [
+        {
+          "year": "2021",
+          "eps": 26.07,
+          "nav": 26.07
+        },
+        {
+          "year": "2022",
+          "eps": 29.25,
+          "nav": 29.25
+        },
+        {
+          "year": "2023",
+          "eps": 40.86,
+          "nav": 40.86
+        },
+        {
+          "year": "2024",
+          "eps": 50.11,
+          "nav": 50.11
+        },
+        {
+          "year": "2025",
+          "eps": 61.39,
+          "nav": 61.39
+        },
+        {
+          "year": "2021",
+          "eps": 7.0,
+          "nav": 150.0
+        },
+        {
+          "year": "2022",
+          "eps": 6.93,
+          "nav": 150.0
+        },
+        {
+          "year": "2023",
+          "eps": 4.97,
+          "nav": 160.0
+        },
+        {
+          "year": "2024",
+          "eps": 3.96,
+          "nav": 170.0
+        },
+        {
+          "year": "2025",
+          "eps": 3.34,
+          "nav": 200.0
+        }
+      ],
+      "eps": 3.34,
+      "nav": 200.0,
+      "name": "Meghna Petroleum PLC.",
+      "listing_year": 2007,
+      "dividend_yield": 8.15,
+      "last_dividend_cash_pct": 170.0
+    }
+  },
+  "BATBC": {
+    "cached_at": 1792961652.8504157,
+    "data": {
+      "symbol": "BATBC",
+      "ltp": 217.3,
+      "market_cap_mn": 117504.0,
+      "paid_up_capital_mn": 5400.0,
+      "sector": "Food & Allied",
+      "current_pe": 14.25,
+      "trailing_pe": 20.25,
+      "category": "A",
+      "history": [
+        {
+          "year": "2021",
+          "eps": 27.72,
+          "nav": 27.72
+        },
+        {
+          "year": "2022",
+          "eps": 33.1,
+          "nav": 33.1
+        },
+        {
+          "year": "2023",
+          "eps": 33.11,
+          "nav": 33.11
+        },
+        {
+          "year": "2024",
+          "eps": 32.42,
+          "nav": 32.42
+        },
+        {
+          "year": "2025",
+          "eps": 10.81,
+          "nav": 10.81
+        },
+        {
+          "year": "2021",
+          "eps": 22.93,
+          "nav": 22.93
+        },
+        {
+          "year": "2022",
+          "eps": 15.67,
+          "nav": 15.67
+        },
+        {
+          "year": "2023",
+          "eps": 15.67,
+          "nav": 15.67
+        },
+        {
+          "year": "2024",
+          "eps": 11.34,
+          "nav": 11.34
+        },
+        {
+          "year": "2025",
+          "eps": 22.99,
+          "nav": 22.99
+        }
+      ],
+      "eps": 22.99,
+      "nav": 22.99,
+      "name": "British American Tobacco Bangladesh",
+      "listing_year": 1977,
+      "dividend_yield": 7.85,
+      "last_dividend_cash_pct": 300.0
+    }
+  },
+  "GP": {
+    "cached_at": 1792961653.542344,
+    "data": {
+      "symbol": "GP",
+      "ltp": 238.1,
+      "market_cap_mn": 322046.555,
+      "paid_up_capital_mn": 13503.0,
+      "sector": "Telecommunication",
+      "current_pe": 11.35,
+      "trailing_pe": 11.26,
+      "category": "A",
+      "history": [
+        {
+          "year": "2021",
+          "eps": 25.28,
+          "nav": 25.28
+        },
+        {
+          "year": "2022",
+          "eps": 22.29,
+          "nav": 22.29
+        },
+        {
+          "year": "2023",
+          "eps": 24.49,
+          "nav": 24.49
+        },
+        {
+          "year": "2024",
+          "eps": 26.89,
+          "nav": 26.89
+        },
+        {
+          "year": "2025",
+          "eps": 21.9,
+          "nav": 21.9
+        },
+        {
+          "year": "2021",
+          "eps": 13.83,
+          "nav": 13.83
+        },
+        {
+          "year": "2022",
+          "eps": 12.86,
+          "nav": 12.86
+        },
+        {
+          "year": "2023",
+          "eps": 11.7,
+          "nav": 11.7
+        },
+        {
+          "year": "2024",
+          "eps": 12.02,
+          "nav": 12.02
+        },
+        {
+          "year": "2025",
+          "eps": 11.77,
+          "nav": 11.77
+        }
+      ],
+      "eps": 11.77,
+      "nav": 11.77,
+      "name": "Grameenphone Ltd.",
+      "listing_year": 2009,
+      "dividend_yield": 7.9,
+      "last_dividend_cash_pct": 220.0
+    }
+  },
+  "BRACBANK": {
+    "cached_at": 1792961654.2631578,
+    "data": {
+      "symbol": "BRACBANK",
+      "ltp": 68.0,
+      "market_cap_mn": 155232.513,
+      "paid_up_capital_mn": 22895.65,
+      "sector": "Bank",
+      "current_pe": 6.51,
+      "trailing_pe": 6.21,
+      "category": "A",
+      "history": [
+        {
+          "year": "2021",
+          "eps": 3.93,
+          "nav": 41.08
+        },
+        {
+          "year": "2022",
+          "eps": 4.02,
+          "nav": 40.86
+        },
+        {
+          "year": "2023",
+          "eps": 4.73,
+          "nav": 41.36
+        },
+        {
+          "year": "2024",
+          "eps": 6.95,
+          "nav": 44.11
+        },
+        {
+          "year": "2025",
+          "eps": 9.12,
+          "nav": 51.56
+        },
+        {
+          "year": "2021",
+          "eps": 14.09,
+          "nav": 14.09
+        },
+        {
+          "year": "2022",
+          "eps": 9.58,
+          "nav": null
+        },
+        {
+          "year": "2023",
+          "eps": 7.57,
+          "nav": null
+        },
+        {
+          "year": "2024",
+          "eps": 7.05,
+          "nav": null
+        },
+        {
+          "year": "2025",
+          "eps": 6.92,
+          "nav": null
+        }
+      ],
+      "eps": 6.92,
+      "nav": 44.5,
+      "name": "BRAC Bank PLC",
+      "listing_year": 2007,
+      "dividend_yield": 4.01,
+      "last_dividend_cash_pct": 25.0
+    }
+  },
+  "JANATAINS": {
+    "cached_at": 1792961655.0100121,
+    "data": {
+      "symbol": "JANATAINS",
+      "ltp": 31.6,
+      "market_cap_mn": 1502.961,
+      "paid_up_capital_mn": 484.83,
+      "sector": "Insurance",
+      "current_pe": 19.13,
+      "trailing_pe": 23.01,
+      "category": "A",
+      "history": [
+        {
+          "year": "2021",
+          "eps": 1.21,
+          "nav": 14.41
+        },
+        {
+          "year": "2022",
+          "eps": 1.2,
+          "nav": 14.55
+        },
+        {
+          "year": "2023",
+          "eps": 1.24,
+          "nav": 14.69
+        },
+        {
+          "year": "2024",
+          "eps": 1.31,
+          "nav": 14.96
+        },
+        {
+          "year": "2025",
+          "eps": 1.1,
+          "nav": 15.07
+        },
+        {
+          "year": "2021",
+          "eps": 39.58,
+          "nav": 39.58
+        },
+        {
+          "year": "2022",
+          "eps": 23.79,
+          "nav": 23.79
+        },
+        {
+          "year": "2023",
+          "eps": 26.81,
+          "nav": 26.81
+        },
+        {
+          "year": "2024",
+          "eps": 21.54,
+          "nav": 21.54
+        },
+        {
+          "year": "2025",
+          "eps": 21.28,
+          "nav": 21.28
+        }
+      ],
+      "eps": 21.28,
+      "nav": 21.28,
+      "name": "Janata Insurance PLC",
+      "listing_year": 1994,
+      "dividend_yield": 4.49,
+      "last_dividend_cash_pct": 11.0
+    }
+  },
+  "LHBL": {
+    "cached_at": 1792961657.1311915,
+    "data": {
+      "symbol": "LHBL",
+      "name": "LafargeHolcim Bangladesh Limited",
+      "sector": "Cement",
+      "category": "A",
+      "listing_year": 2003,
+      "ltp": 61.2,
+      "current_pe": 11.8,
+      "trailing_pe": 12.1,
+      "eps": 5.18,
+      "nav": 19.8,
+      "paid_up_capital_mn": 11613.74,
+      "market_cap_mn": 71076.09,
+      "dividend_yield": 6.54,
+      "last_dividend_cash_pct": 40.0
+    }
+  },
+  "BEXIMCO": {
+    "cached_at": 1792961657.7052927,
+    "data": {
+      "symbol": "BEXIMCO",
+      "ltp": 20.4,
+      "market_cap_mn": 19807.962,
+      "paid_up_capital_mn": 9432.36,
+      "sector": "Miscellaneous",
+      "category": "B",
+      "history": [
+        {
+          "year": "2020",
+          "eps": 0.51,
+          "nav": 69.33
+        },
+        {
+          "year": "2021",
+          "eps": 7.53,
+          "nav": 78.28
+        },
+        {
+          "year": "2022",
+          "eps": 14.32,
+          "nav": 14.32
+        },
+        {
+          "year": "2023",
+          "eps": 7.95,
+          "nav": 96.94
+        },
+        {
+          "year": "2024",
+          "eps": -0.4,
+          "nav": 95.16
+        },
+        {
+          "year": "2020",
+          "eps": 25.53,
+          "nav": 25.53
+        },
+        {
+          "year": "2021",
+          "eps": 11.88,
+          "nav": 11.88
+        },
+        {
+          "year": "2022",
+          "eps": 9.06,
+          "nav": 30.0
+        },
+        {
+          "year": "2023",
+          "eps": 14.54,
+          "nav": 14.54
+        }
+      ],
+      "eps": 14.54,
+      "nav": 14.54,
+      "name": "Bangladesh Export Import Company Ltd.",
+      "listing_year": 1989,
+      "current_pe": 28.5,
+      "trailing_pe": 26.8,
+      "dividend_yield": 2.16,
+      "last_dividend_cash_pct": 25.0
+    }
+  }
+}

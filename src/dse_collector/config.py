@@ -53,7 +53,7 @@ class Settings:
             cron_secret=cron_secret,
             dse_source_url=os.getenv(
                 "DSE_SOURCE_URL",
-                "https://www.dsebd.org/latest_share_price_scroll_by_ltp.php",
+                "https://old.dsebd.org/latest_share_price_scroll_by_ltp.php",
             ).strip(),
             http_timeout_seconds=float(os.getenv("HTTP_TIMEOUT_SECONDS", "20")),
             user_agent=os.getenv(

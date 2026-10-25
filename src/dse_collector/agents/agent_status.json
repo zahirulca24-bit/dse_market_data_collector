@@ -1,0 +1,221 @@
+[
+  {
+    "id": "trader-scanner",
+    "index": 1,
+    "name": "DSE Chart Setup Scanner",
+    "category": "Discovery & Technical Setups",
+    "status": "open",
+    "description": "Scans all 400+ DSE securities for 20D Breakouts, Bull Flags, 20 SMA Reclaims, and Oversold Bounces.",
+    "skills": [
+      "breakout_20d",
+      "bull_flag",
+      "reclaim_ma20",
+      "oversold_bounce",
+      "oversold"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "run_scan",
+      "filter_setups",
+      "view_chart"
+    ]
+  },
+  {
+    "id": "trader-entry",
+    "index": 2,
+    "name": "Tactical Entry Order Agent",
+    "category": "Execution Planning",
+    "status": "open",
+    "description": "Calculates optimal limit buy zones, pullback buy triggers, and confirmation candle thresholds.",
+    "skills": [
+      "limit_pricing",
+      "pullback_entry",
+      "breakout_trigger"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "evaluate_entry",
+      "set_triggers",
+      "pullback_zones"
+    ]
+  },
+  {
+    "id": "trader-exit",
+    "index": 3,
+    "name": "Dynamic Exit & Target Agent",
+    "category": "Trade Management",
+    "status": "open",
+    "description": "Computes 1:2 and 1:3 risk-to-reward take profits, trailing ATR stops, and scale-out tranches.",
+    "skills": [
+      "tp_levels",
+      "trailing_stop",
+      "atr_risk_cushion"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "calculate_exit_plan",
+      "atr_trailing_stop",
+      "multi_tranche_targets"
+    ]
+  },
+  {
+    "id": "trader-timemachine",
+    "index": 4,
+    "name": "TimeMachine Backtest & Replay Agent",
+    "category": "Simulation & Backtesting",
+    "status": "open",
+    "description": "Simulates historical execution on past DSE market regimes with win-rate and profit-factor analytics.",
+    "skills": [
+      "historical_replay",
+      "expectancy_calc",
+      "max_drawdown"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "historical_backtest",
+      "monte_carlo_replay",
+      "odds_calculator"
+    ]
+  },
+  {
+    "id": "trader-risk",
+    "index": 5,
+    "name": "Capital Risk & Exposure Guard",
+    "category": "Risk Management",
+    "status": "open",
+    "description": "Enforces strict portfolio allocation caps, circuit breaker protection, and single-stock exposure limits.",
+    "skills": [
+      "max_risk_per_trade",
+      "circuit_guard",
+      "sector_concentration"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "risk_audit",
+      "check_position_cap",
+      "reward_risk_gate"
+    ]
+  },
+  {
+    "id": "trader-budget",
+    "index": 6,
+    "name": "Position Sizing & Budget Agent",
+    "category": "Capital Allocation",
+    "status": "open",
+    "description": "Calculates exact share quantities to purchase according to account equity, 4-way constraints, and Kelly criterion.",
+    "skills": [
+      "kelly_criterion",
+      "fixed_fractional",
+      "four_way_sizing",
+      "cash_reserve_ratio"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "size_trade",
+      "four_way_limits",
+      "generate_bracket_order"
+    ]
+  },
+  {
+    "id": "trader-alerts",
+    "index": 7,
+    "name": "Instant Alert & Notification Agent",
+    "category": "Notifications & Webhooks",
+    "status": "open",
+    "description": "Dispatches instant Telegram messages, browser push alerts, and webhooks on breakout triggers.",
+    "skills": [
+      "telegram_bot",
+      "browser_push",
+      "webhook_dispatch",
+      "dse_market_clock"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "dse_clock",
+      "check_alerts",
+      "dispatch_telegram",
+      "dispatch_webhook"
+    ]
+  },
+  {
+    "id": "trader-broker",
+    "index": 8,
+    "name": "DSE Paper Trading Execution Broker",
+    "category": "Order Routing & Paper Trading",
+    "status": "open",
+    "description": "High-fidelity DSE virtual paper trading engine with order execution, active position tracking, 0.4% brokerage commission, and bracket orders.",
+    "skills": [
+      "dse_paper_trading",
+      "portfolio_tracker",
+      "commission_calc",
+      "order_blotter"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "place_paper_order",
+      "close_position",
+      "account_summary",
+      "reset_account"
+    ]
+  },
+  {
+    "id": "trader-news",
+    "index": 9,
+    "name": "Corporate Disclosures & News Agent",
+    "category": "Fundamental Intelligence",
+    "status": "open",
+    "description": "Extracts and analyzes price-sensitive corporate announcements, AGM/EGM dates, and dividends.",
+    "skills": [
+      "dse_news_parser",
+      "sentiment_scoring",
+      "psi_extraction"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "fetch_live_news",
+      "analyze_sentiment",
+      "audit_disclosures",
+      "watchlist_news_feed"
+    ]
+  },
+  {
+    "id": "trader-analyst",
+    "index": 10,
+    "name": "Financial Valuation & Analyst Agent",
+    "category": "Valuation & Fundamentals",
+    "status": "open",
+    "description": "Evaluates P/E ratios, NAV, EPS trends, debt ratios, and industry peer group comparison.",
+    "skills": [
+      "pe_nav_analysis",
+      "eps_growth",
+      "peer_valuation"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "evaluate_valuation",
+      "graham_fair_value",
+      "sector_pe_benchmark",
+      "fundamental_health_score"
+    ]
+  },
+  {
+    "id": "trader-pelosi",
+    "index": 11,
+    "name": "Sponsor & Smart Money Flow Agent",
+    "category": "Institutional Tracking",
+    "status": "open",
+    "description": "Monitors Sponsor / Director share buy-sell declarations, institutional holdings, and block market volume.",
+    "skills": [
+      "director_trades",
+      "block_market_tracker",
+      "institutional_accumulation"
+    ],
+    "badge": "Approved & Operational",
+    "actions": [
+      "evaluate_smart_money",
+      "director_buy_sell_blotter",
+      "shareholding_pattern",
+      "institutional_accumulation"
+    ]
+  }
+]

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Activity, Database, LineChart, PieChart, X } from 'lucide-react';
+import { Activity, Bot, CandlestickChart, Database, LineChart, PieChart, X } from 'lucide-react';
 import { useLocation } from 'wouter';
 
-type ActivePage = 'overview' | 'historical' | 'sectors' | 'ingestion';
+type ActivePage = 'overview' | 'historical' | 'sectors' | 'ingestion' | 'prochart' | 'agents';
 
 const navigation = [
   { id: 'overview' as const, href: '/', label: 'Live overview', icon: Activity },
+  { id: 'prochart' as const, href: '/chart', label: 'Advanced Chart', icon: CandlestickChart },
+  { id: 'agents' as const, href: '/agents', label: 'Analysis with Agent', icon: Bot },
   { id: 'historical' as const, href: '/historical', label: 'Historical explorer', icon: LineChart },
   { id: 'sectors' as const, href: '/sectors', label: 'Sector mapping', icon: PieChart },
   { id: 'ingestion' as const, href: '/ingestion', label: 'Ingestion monitor', icon: Database },

@@ -1,0 +1,11 @@
+{
+  "starting_cash": 500000.0,
+  "cash_balance": 500000.0,
+  "commission_rate": 0.004,
+  "positions": {},
+  "pending_orders": [],
+  "order_blotter": [],
+  "closed_trades": [],
+  "total_commission_paid": 0.0,
+  "updated_at": "2026-10-26 00:50:54"
+}

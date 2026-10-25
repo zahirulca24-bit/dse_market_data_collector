@@ -12,7 +12,7 @@ from .storage import SupabaseStorage
 logger = logging.getLogger("dse_collector.backfill")
 BATCH_SIZE = 3
 MAX_ATTEMPTS = 3
-ARCHIVE_URL = "https://www.dsebd.org/day_end_archive.php"
+ARCHIVE_URL = "https://old.dsebd.org/day_end_archive.php"
 
 
 def _parse_run_results(run: dict) -> list[dict]:
