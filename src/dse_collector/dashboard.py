@@ -39,7 +39,38 @@ def history(storage: SupabaseStorage, symbol: str) -> list[dict]:
     return points
 
 def daily_history(storage: SupabaseStorage, symbol: str) -> list[dict]:
-    return [{"time":r.get("trade_date") or "","open":r.get("open"),"high":r.get("high"),"low":r.get("low"),"close":r.get("close"),"volume":_int(r.get("volume")),"valueMn":r.get("value_mn"),"source":r.get("source") or ""} for r in storage.daily_history_for_symbol(symbol)]
+    bars = [{"time":r.get("trade_date") or "","open":r.get("open"),"high":r.get("high"),"low":r.get("low"),"close":r.get("close"),"volume":_int(r.get("volume")),"valueMn":r.get("value_mn"),"source":r.get("source") or ""} for r in storage.daily_history_for_symbol(symbol)]
+    try:
+        latest_q = storage.quote_history(symbol, limit=1)
+        if latest_q:
+            q = latest_q[-1]
+            snap = str(q.get("snapshot_at") or "")
+            q_time = snap[:10]
+            ltp = _num(q.get("ltp"))
+            if q_time and ltp and ltp > 0:
+                last_time = bars[-1]["time"] if bars else ""
+                if not bars or q_time > last_time:
+                    o = _num(q.get("yesterday_close")) or ltp
+                    h = max(_num(q.get("high")) or ltp, ltp)
+                    l = min(_num(q.get("low")) or ltp, ltp)
+                    bars.append({
+                        "time": q_time,
+                        "open": o,
+                        "high": h,
+                        "low": l,
+                        "close": ltp,
+                        "volume": _int(q.get("volume")),
+                        "valueMn": _num(q.get("value_mn")) or 0.0,
+                        "source": "live_tape"
+                    })
+                elif q_time == last_time:
+                    bars[-1]["close"] = ltp
+                    if _num(q.get("high")): bars[-1]["high"] = max(bars[-1].get("high") or ltp, _num(q.get("high")))
+                    if _num(q.get("low")): bars[-1]["low"] = min(bars[-1].get("low") or ltp, _num(q.get("low")))
+                    if _int(q.get("volume")): bars[-1]["volume"] = _int(q.get("volume"))
+    except Exception:
+        pass
+    return bars
 
 def _phase_stats(storage: SupabaseStorage, total_stocks: int) -> tuple[list[dict], list[dict], set[str]]:
     summaries=[]; coverage_rows=[]; all_symbols:set[str]=set()
