@@ -1,8 +1,1907 @@
 {
-  "timestamp": 1792962921.7253401,
+  "timestamp": 1793032423.8343081,
   "rows": [
     {
-      "id": "psi-34110269",
+      "id": "psi-34154340",
+      "code": "EXCH",
+      "name": "EXCH",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "14:33",
+      "filedAt": "2026-10-26",
+      "summary": "DSE NEWS: Daily Turnover of Main Board",
+      "body": "Today's (26.10.2026) Total Trades: 133,552; Volume: 140,620,082 and Turnover: Tk. 4,105.78 million.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154339",
+      "code": "INTRACO",
+      "name": "Intraco Refueling Station PLC",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "14:32",
+      "filedAt": "2026-10-26",
+      "summary": "INTRACO: Category Change",
+      "body": "The Company will be placed in 'B' category from existing 'Z' category with effect from October 27, 2026 as the Company has reported disbursement of 1.25% Cash Dividend for the year ended June 30, 2025.",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "BULLISH",
+      "sentiment_score": 50,
+      "impact_level": "HIGH",
+      "metrics": {
+        "cash_dividend_pct": 1.25
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154338",
+      "code": "INTRACO",
+      "name": "Intraco Refueling Station PLC",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "14:32",
+      "filedAt": "2026-10-26",
+      "summary": "INTRACO: Dividend Disbursement",
+      "body": "The Company has informed that it has disbursed the Cash Dividend for the year ended June 30, 2025 to the respective shareholders.",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "BULLISH",
+      "sentiment_score": 50,
+      "impact_level": "HIGH",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154333",
+      "code": "SALVO",
+      "name": "Salvo Organic Industries PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "14:29",
+      "filedAt": "2026-10-26",
+      "summary": "SALVO: Qualified Opinion",
+      "body": "The auditor of the company has given the Qualified Opinion in the auditor's report for the year ended June 30, 2026. To view the details, please visit: https://new.dsebd.org/api/auditorFilings/file/SALVO-June-2026.pdf?prefix=pdf%2Fpages%2Ffilings-auditors-opinion%2F",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154334",
+      "code": "FINEFOODS",
+      "name": "Fine Foods Limited",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "14:27",
+      "filedAt": "2026-10-26",
+      "summary": "FINEFOODS: Qualified Opinion",
+      "body": "The auditor of the company has given the Qualified Opinion paragraph in the auditor's report for the year ended June 30, 2026. To view the details, please visit: https://new.dsebd.org/api/auditorFilings/file/FINEFOODS-June-2026.pdf?prefix=pdf%2Fpages%2Ffilings-auditors-opinion%2F",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154337",
+      "code": "DESCO",
+      "name": "Dhaka Electric Supply Company Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "14:26",
+      "filedAt": "2026-10-26",
+      "summary": "DESCO: Qualified Opinion and Emphasis of Matter",
+      "body": "The auditor of the company has given the Qualified Opinion and Emphasis of Matter paragraph in the auditor's report for the year ended June 30, 2026. To view the details, please visit: https://new.dsebd.org/api/auditorFilings/file/DESCO-June-2026.pdf?prefix=pdf%2Fpages%2Ffilings-auditors-opinion%2F",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154336",
+      "code": "CITYBANK",
+      "name": "City Bank PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "14:22",
+      "filedAt": "2026-10-26",
+      "summary": "CITYBANK: Transmission of Deceased Sponsor's Bonus Shares to Successor",
+      "body": "(Continuation news of CITYBANK): to the BO account of Mr. Mohammed Shoeb, one of the deceased's four legal successors, who is also a Sponsor of the Company, as per Succession Certificate of the Honorable Court. The Company has also informed that the other three legal successors have not applied for the transmission of their respective portions of the shares. Accordingly, their respective portions will not be transmitted at this time. (end)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154335",
+      "code": "CITYBANK",
+      "name": "City Bank PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "14:22",
+      "filedAt": "2026-10-26",
+      "summary": "CITYBANK: Transmission of Deceased Sponsor's Bonus Shares to Successor",
+      "body": "Referring to their earlier news disseminated by DSE on 26.10.2025, the company has informed that late Mr. Deen Mohammad, a Sponsor of City Bank PLC, held 73,937,078 shares of the company (current holding). He passed away on April 27, 2021. The company has further informed that 4,219,235 shares out of total 9,643,966 bonus shares from the 2025 stock dividend of Late Mr. Deen Mohammad will be transmitted (cont.)",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "26.10.2025"
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154331",
+      "code": "IBBLPBOND",
+      "name": "IBBL Mudaraba Perpetual Bond",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "13:51",
+      "filedAt": "2026-10-26",
+      "summary": "IBBLPBOND: Annual Profit Disbursement",
+      "body": "The issuer of the IBBL Mudaraba Perpetual Bond has informed that it has disbursed the profit of the bond for the year ended December 31, 2025 to the respective bondholders.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154332",
+      "code": "BXPHARMA",
+      "name": "Beximco Pharmaceuticals PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "13:35",
+      "filedAt": "2026-10-26",
+      "summary": "BXPHARMA: Change of Board Meeting Time under LR 19(1)",
+      "body": "The Company has further informed that, the Board meeting under LR 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, will be held on October 28, 2026 at 4:00 PM instead of 5:00 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154330",
+      "code": "ICBAGRANI1",
+      "name": "ICB AMCL First Agrani Bank Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "13:35",
+      "filedAt": "2026-10-26",
+      "summary": "ICBAGRANI1: Dividend Disbursement",
+      "body": "The Asset Manager of the Fund has informed that it has disbursed the Cash Dividend for the year ended June 30, 2026 to the respective unit holders.",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "BULLISH",
+      "sentiment_score": 50,
+      "impact_level": "HIGH",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154326",
+      "code": "TB20Y1034",
+      "name": "20Y BGTB 29/10/2034",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:38",
+      "filedAt": "2026-10-26",
+      "summary": "TB20Y1034: Suspension for Record Date",
+      "body": "Trading of 20Y BGTB 29/10/2034 Government Securities will remain suspended on record date i.e., 28.10.2026 and day before the record date i.e., 27.10.2026. Trading of the Government Securities will resume on 29.10.2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "BEARISH",
+      "sentiment_score": -50,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "29.10.2026",
+        "record_date": "i.e., 28.10.2026"
+      },
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154325",
+      "code": "TB15Y1029",
+      "name": "15Y BGTB 29/10/2029",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:37",
+      "filedAt": "2026-10-26",
+      "summary": "TB15Y1029: Suspension for Record Date",
+      "body": "Trading of 15Y BGTB 29/10/2029 Government Securities will remain suspended on record date i.e., 28.10.2026 and day before the record date i.e., 27.10.2026. Trading of the Government Securities will resume on 29.10.2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "BEARISH",
+      "sentiment_score": -50,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "29.10.2026",
+        "record_date": "i.e., 28.10.2026"
+      },
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154324",
+      "code": "TB20Y0429",
+      "name": "20Y BGTB 29/04/2029",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:37",
+      "filedAt": "2026-10-26",
+      "summary": "TB20Y0429: Suspension for Record Date",
+      "body": "Trading of 20Y BGTB 29/04/2029 Government Securities will remain suspended on record date i.e., 28.10.2026 and day before the record date i.e., 27.10.2026. Trading of the Government Securities will resume on 29.10.2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "BEARISH",
+      "sentiment_score": -50,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "29.10.2026",
+        "record_date": "i.e., 28.10.2026"
+      },
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154323",
+      "code": "TB20Y1028",
+      "name": "20Y BGTB 29/10/2028",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:37",
+      "filedAt": "2026-10-26",
+      "summary": "TB20Y1028: Suspension for Record Date",
+      "body": "Trading of 20Y BGTB 29/10/2028 Government Securities will remain suspended on record date i.e., 28.10.2026 and day before the record date i.e., 27.10.2026. Trading of the Government Securities will resume on 29.10.2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "BEARISH",
+      "sentiment_score": -50,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "29.10.2026",
+        "record_date": "i.e., 28.10.2026"
+      },
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154322",
+      "code": "TB15Y0437",
+      "name": "15Y BGTB 27/04/2037",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:36",
+      "filedAt": "2026-10-26",
+      "summary": "TB15Y0437: Resumption after Record Date",
+      "body": "Trading of 15Y BGTB 27/04/2037 Government Securities will resume on 27.10.2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "27.10.2026"
+      },
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154321",
+      "code": "TB20Y0436",
+      "name": "20Y BGTB 27/04/2036",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:35",
+      "filedAt": "2026-10-26",
+      "summary": "TB20Y0436: Resumption after Record Date",
+      "body": "Trading of 20Y BGTB 27/04/2036 Government Securities will resume on 27.10.2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "27.10.2026"
+      },
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154320",
+      "code": "TB20Y0431",
+      "name": "20Y BGTB 27/04/2031",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:35",
+      "filedAt": "2026-10-26",
+      "summary": "TB20Y0431: Resumption after Record Date",
+      "body": "Trading of 20Y BGTB 27/04/2031 Government Securities will resume on 27.10.2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "27.10.2026"
+      },
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154319",
+      "code": "TB15Y0431",
+      "name": "15Y BGTB 27/04/2031",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:35",
+      "filedAt": "2026-10-26",
+      "summary": "TB15Y0431: Resumption after Record Date",
+      "body": "Trading of 15Y BGTB 27/04/2031 Government Securities will resume on 27.10.2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "27.10.2026"
+      },
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154318",
+      "code": "TB20Y1030",
+      "name": "20Y BGTB 27/10/2030",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:34",
+      "filedAt": "2026-10-26",
+      "summary": "TB20Y1030: Resumption after Record Date",
+      "body": "Trading of 20Y BGTB 27/10/2030 Government Securities will resume on 27.10.2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "27.10.2026"
+      },
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154317",
+      "code": "IBNSINA",
+      "name": "The IBN SINA  Pharmaceutical Industry PLC",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:30",
+      "filedAt": "2026-10-26",
+      "summary": "IBNSINA: Resumption after Record Date",
+      "body": "Trading of the shares of the company will resume on 27-Oct-2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {},
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154316",
+      "code": "ENVOYTEX",
+      "name": "Envoy Textiles Limited",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:30",
+      "filedAt": "2026-10-26",
+      "summary": "ENVOYTEX: Resumption after Record Date",
+      "body": "Trading of the shares of the company will resume on 27-Oct-2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {},
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154315",
+      "code": "APEXSPINN",
+      "name": "Apex Spinning & Knitting Mills Limited",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:29",
+      "filedAt": "2026-10-26",
+      "summary": "APEXSPINN: Suspension for Record Date",
+      "body": "Trading of the shares of the company will remain suspended on record date i.e., 27-Oct-2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "BEARISH",
+      "sentiment_score": -50,
+      "impact_level": "HIGH",
+      "metrics": {},
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154312",
+      "code": "HAKKANIPUL",
+      "name": "Hakkani Pulp & Paper Mills PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:29",
+      "filedAt": "2026-10-26",
+      "summary": "HAKKANIPUL: Board Meeting schedule under LR 19(1)",
+      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 31, 2026 at 2:00 PM to consider, among others, annual audited financial statements of the Company for the year ended June 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 31, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154314",
+      "code": "APEXFOODS",
+      "name": "Apex Foods Limited",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:29",
+      "filedAt": "2026-10-26",
+      "summary": "APEXFOODS: Suspension for Record Date",
+      "body": "Trading of the shares of the company will remain suspended on record date i.e., 27-Oct-2026.",
+      "category": "RECORD_DATE_AGM",
+      "sentiment": "BEARISH",
+      "sentiment_score": -50,
+      "impact_level": "HIGH",
+      "metrics": {},
+      "risk_warnings": [
+        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
+      ]
+    },
+    {
+      "id": "psi-34154313",
+      "code": "EHL",
+      "name": "Eastern Housing Limited",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:29",
+      "filedAt": "2026-10-26",
+      "summary": "EHL: Spot News",
+      "body": "Trading of the shares of the company will be allowed only in the Spot Market and Block transaction will also be settled as per spot settlement cycle with cum benefit from 27.10.2026 to 28.10.2026 and trading of the shares will remain suspended on record date i.e., 29.10.2026.",
+      "category": "REGULATORY_QUERY",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "record_date": "i.e., 29.10.2026"
+      },
+      "risk_warnings": [
+        "Regulatory query or market intervention flag: Check DSE surveillance notice."
+      ]
+    },
+    {
+      "id": "psi-34154328",
+      "code": "MAGURAPLEX",
+      "name": "Magura Multiplex PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:27",
+      "filedAt": "2026-10-26",
+      "summary": "MAGURAPLEX: Board Meeting schedule under LR 19(1)",
+      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on November 09, 2026 at 4:30 PM to consider, among others, annual audited financial statements of the Company for the year ended June 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "november 09, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154327",
+      "code": "MONOSPOOL",
+      "name": "Monospool Bangladesh PLC",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:26",
+      "filedAt": "2026-10-26",
+      "summary": "MONOSPOOL: Board Meeting schedule under LR 19(1)",
+      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on November 09, 2026 at 3:00 PM to consider, among others, annual audited financial statements of the Company for the year ended June 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "november 09, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154329",
+      "code": "DHAKAINS",
+      "name": "Dhaka Insurance Limited",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "12:24",
+      "filedAt": "2026-10-26",
+      "summary": "DHAKAINS: Board Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 29, 2026 at 2:30 PM to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 29, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154310",
+      "code": "GLDNJMF",
+      "name": "ICB AMCL CMSF Golden Jubilee Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:59",
+      "filedAt": "2026-10-26",
+      "summary": "GLDNJMF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 10.06 per unit on the basis of current market price and Tk. 11.38 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,006,420,146.41 on the basis of current market price and Tk. 1,138,379,643.94 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154309",
+      "code": "ICBAGRANI1",
+      "name": "ICB AMCL First Agrani Bank Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:53",
+      "filedAt": "2026-10-26",
+      "summary": "ICBAGRANI1: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 9.55 per unit on the basis of current market price and Tk. 12.16 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 937,244,348.80 on the basis of current market price and Tk. 1,193,944,479.94 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154308",
+      "code": "ICBSONALI1",
+      "name": "ICB AMCL Sonali Bank Limited 1st Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:52",
+      "filedAt": "2026-10-26",
+      "summary": "ICBSONALI1: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.75 per unit on the basis of current market price and Tk. 12.50 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 874,633,911.30 on the basis of current market price and Tk. 1,249,793,890.08 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154307",
+      "code": "IFILISLMF1",
+      "name": "IFIL Islamic Mutual Fund-1",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:51",
+      "filedAt": "2026-10-26",
+      "summary": "IFILISLMF1: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 7.22 per unit on the basis of current market price and Tk. 11.23 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 722,178,285.25 on the basis of current market price and Tk. 1,122,926,037.65 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154306",
+      "code": "PF1STMF",
+      "name": "Phoenix Finance 1st Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:50",
+      "filedAt": "2026-10-26",
+      "summary": "PF1STMF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.42 per unit on the basis of current market price and Tk. 12.19 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 505,286,471.39 on the basis of current market price and Tk. 731,393,824.23 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154305",
+      "code": "ICB3RDNRB",
+      "name": "ICB AMCL Third NRB Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:49",
+      "filedAt": "2026-10-26",
+      "summary": "ICB3RDNRB: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.27 per unit on the basis of current market price and Tk. 12.22 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 826,526,153.15 on the basis of current market price and Tk. 1,221,853,520.33 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154304",
+      "code": "PRIME1ICBA",
+      "name": "Prime Bank 1st ICB AMCL Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:49",
+      "filedAt": "2026-10-26",
+      "summary": "PRIME1ICBA: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.31 per unit on the basis of current market price and Tk. 12.71 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 830,670,787.58 on the basis of current market price and Tk. 1,271,479,728.95 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154303",
+      "code": "ICBEPMF1S1",
+      "name": "ICB Employees Provident MF 1: Scheme 1",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:47",
+      "filedAt": "2026-10-26",
+      "summary": "ICBEPMF1S1: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.15 per unit on the basis of current market price and Tk. 12.13 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 611,196,341.17 on the basis of current market price and Tk. 909,509,469.59 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154302",
+      "code": "ICBAMCL2ND",
+      "name": "ICB AMCL Second Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:46",
+      "filedAt": "2026-10-26",
+      "summary": "ICBAMCL2ND: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 9.07 per unit on the basis of current market price and Tk. 13.01 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 453,446,126.83 on the basis of current market price and Tk. 650,598,196.79 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154301",
+      "code": "1STPRIMFMF",
+      "name": "Prime Finance First Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:45",
+      "filedAt": "2026-10-26",
+      "summary": "1STPRIMFMF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.95 per unit on the basis of current market price and Tk. 14.99 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 178,932,861.86 on the basis of current market price and Tk. 299,804,106.95 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154311",
+      "code": "NHFIL",
+      "name": "National Housing Finance PLC",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:42",
+      "filedAt": "2026-10-26",
+      "summary": "NHFIL: Board Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 29, 2026 at 4:00 PM to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 29, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154289",
+      "code": "RELIANCE1",
+      "name": "Reliance One the first scheme of Reliance Insurance Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:34",
+      "filedAt": "2026-10-26",
+      "summary": "RELIANCE1: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 10.49 per unit on the basis of current market price and Tk. 10.70 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 634,891,716.00 on the basis of current market price and Tk. 647,432,542.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154288",
+      "code": "GRAMEENS2",
+      "name": "Grameen One : Scheme Two",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:33",
+      "filedAt": "2026-10-26",
+      "summary": "GRAMEENS2: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 15.88 per unit on the basis of current market price and Tk. 10.48 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 2,896,426,548.00 on the basis of current market price and Tk. 1,903,142,002.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154287",
+      "code": "SEMLIBBLSF",
+      "name": "SEML IBBL Shariah Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:31",
+      "filedAt": "2026-10-26",
+      "summary": "SEMLIBBLSF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 9.81 per unit on the basis of current market price and Tk. 11.74 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 981,228,050.10 on the basis of current market price and Tk. 1,173,850,819.64 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154286",
+      "code": "SEMLFBSLGF",
+      "name": "SEML FBLSL Growth Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:30",
+      "filedAt": "2026-10-26",
+      "summary": "SEMLFBSLGF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 9.89 per unit on the basis of current market price and Tk. 11.72 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 721,233,386.64 on the basis of current market price and Tk. 854,950,118.53 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154299",
+      "code": "TRUSTB1MF",
+      "name": "Trust Bank 1st Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:30",
+      "filedAt": "2026-10-26",
+      "summary": "TRUSTB1MF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 6.59 per unit on the basis of current market price and Tk. 11.52 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 2,000,700,810.00 on the basis of current market price and Tk. 3,496,358,038.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154298",
+      "code": "POPULAR1MF",
+      "name": "Popular Life First Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:30",
+      "filedAt": "2026-10-26",
+      "summary": "POPULAR1MF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 7.17 per unit on the basis of current market price and Tk. 11.54 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 2,145,139,827.00 on the basis of current market price and Tk. 3,450,651,525.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154297",
+      "code": "PHPMF1",
+      "name": "PHP First Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:29",
+      "filedAt": "2026-10-26",
+      "summary": "PHPMF1: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 6.81 per unit on the basis of current market price and Tk. 11.41 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,920,352,871.00 on the basis of current market price and Tk. 3,216,222,617.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154296",
+      "code": "IFIC1STMF",
+      "name": "IFIC Bank 1st Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:29",
+      "filedAt": "2026-10-26",
+      "summary": "IFIC1STMF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 7.91 per unit on the basis of current market price and Tk. 11.81 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,441,260,315.00 on the basis of current market price and Tk. 2,150,789,489.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154295",
+      "code": "FBFIF",
+      "name": "First Bangladesh Fixed Income Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:28",
+      "filedAt": "2026-10-26",
+      "summary": "FBFIF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 5.93 per unit on the basis of current market price and Tk. 11.28 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 4,601,732,759.00 on the basis of current market price and Tk. 8,752,292,405.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154294",
+      "code": "EXIM1STMF",
+      "name": "EXIM Bank 1st Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:27",
+      "filedAt": "2026-10-26",
+      "summary": "EXIM1STMF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 7.42 per unit on the basis of current market price and Tk. 11.68 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,063,273,148.00 on the basis of current market price and Tk. 1,673,124,554.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154293",
+      "code": "EBLNRBMF",
+      "name": "EBL NRB Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:26",
+      "filedAt": "2026-10-26",
+      "summary": "EBLNRBMF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 5.82 per unit on the basis of current market price and Tk. 11.33 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,305,907,462.00 on the basis of current market price and Tk. 2,540,772,427.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154292",
+      "code": "EBL1STMF",
+      "name": "EBL First Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:26",
+      "filedAt": "2026-10-26",
+      "summary": "EBL1STMF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 6.62 per unit on the basis of current market price and Tk. 11.61 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 958,022,301.00 on the basis of current market price and Tk. 1,679,873,394.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154291",
+      "code": "ABB1STMF",
+      "name": "AB Bank 1st Mutual fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:25",
+      "filedAt": "2026-10-26",
+      "summary": "ABB1STMF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 6.82 per unit on the basis of current market price and Tk. 11.70 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,630,465,563.00 on the basis of current market price and Tk. 2,796,646,857.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154290",
+      "code": "1JANATAMF",
+      "name": "First Janata Bank Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:25",
+      "filedAt": "2026-10-26",
+      "summary": "1JANATAMF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 6.17 per unit on the basis of current market price and Tk. 11.52 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,787,437,262.00 on the basis of current market price and Tk. 3,339,413,970.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154285",
+      "code": "CAPMIBBLMF",
+      "name": "CAPM IBBL Islamic Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:23",
+      "filedAt": "2026-10-26",
+      "summary": "CAPMIBBLMF: Daily NAV",
+      "body": "On the close of operation on 25-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 7.87 per unit on the basis of current market price and Tk. 11.35 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 526,146,421.97 on the basis of current market price and Tk. 758,658,903.23 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154284",
+      "code": "CAPITECGBF",
+      "name": "Capitec Grameen Bank Growth Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:20",
+      "filedAt": "2026-10-26",
+      "summary": "CAPITECGBF: Daily NAV",
+      "body": "On the close of operation on 25-Nov-2026, the Fund has reported Net Asset Value (NAV) of Tk. 9.36 per unit on the basis of current market price and Tk. 10.38 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,457,580,837.48 on the basis of current market price and Tk. 1,615,702,459.50 on the basis of cost price after considering all assets and liabilities of the Fund.",
+      "category": "NAV_DISCLOSURE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154300",
+      "code": "GREENDELT",
+      "name": "Green Delta Insurance PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "11:17",
+      "filedAt": "2026-10-26",
+      "summary": "GREENDELT: Buy Declaration of a Sponsor",
+      "body": "Mr. Azam J Chowdhury, a Sponsor of the company, has expressed his intention to buy 2,027,967 shares of the company at the prevailing market price in the Block Market through Dhaka Stock Exchange PLC. (DSE) within October 29, 2026.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154275",
+      "code": "ICBAMCL2ND",
+      "name": "ICB AMCL Second Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:44",
+      "filedAt": "2026-10-26",
+      "summary": "ICBAMCL2ND: Trustee Committee Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Trustee of the Fund has informed that a meeting of the Trustee Committee will be held on October 28, 2026 at 3:30 pm to consider, among others, un-audited financial statements of the Fund for the First Quarter (Q1) period ended on September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154276",
+      "code": "IFILISLMF1",
+      "name": "IFIL Islamic Mutual Fund-1",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:44",
+      "filedAt": "2026-10-26",
+      "summary": "IFILISLMF1: Trustee Committee Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Trustee of the Fund has informed that a meeting of the Trustee Committee will be held on October 28, 2026 at 3:30 pm to consider, among others, un-audited financial statements of the Fund for the First Quarter (Q1) period ended on September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154277",
+      "code": "ICBEPMF1S1",
+      "name": "ICB Employees Provident MF 1: Scheme 1",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:43",
+      "filedAt": "2026-10-26",
+      "summary": "ICBEPMF1S1: Trustee Committee Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Trustee of the Fund has informed that a meeting of the Trustee Committee will be held on October 28, 2026 at 3:30 pm to consider, among others, un-audited financial statements of the Fund for the First Quarter (Q1) period ended on September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154278",
+      "code": "PRIME1ICBA",
+      "name": "Prime Bank 1st ICB AMCL Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:42",
+      "filedAt": "2026-10-26",
+      "summary": "PRIME1ICBA: Trustee Committee Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Trustee of the Fund has informed that a meeting of the Trustee Committee will be held on October 28, 2026 at 3:30 pm to consider, among others, un-audited financial statements of the Fund for the First Quarter (Q1) period ended on September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154279",
+      "code": "PF1STMF",
+      "name": "Phoenix Finance 1st Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:42",
+      "filedAt": "2026-10-26",
+      "summary": "PF1STMF: Trustee Committee Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Trustee of the Fund has informed that a meeting of the Trustee Committee will be held on October 28, 2026 at 3:30 pm to consider, among others, un-audited financial statements of the Fund for the First Quarter (Q1) period ended on September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154280",
+      "code": "ICB3RDNRB",
+      "name": "ICB AMCL Third NRB Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:41",
+      "filedAt": "2026-10-26",
+      "summary": "ICB3RDNRB: Trustee Committee Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Trustee of the Fund has informed that a meeting of the Trustee Committee will be held on October 28, 2026 at 3:30 pm to consider, among others, un-audited financial statements of the Fund for the First Quarter (Q1) period ended on September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154281",
+      "code": "ICBSONALI1",
+      "name": "ICB AMCL Sonali Bank Limited 1st Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:40",
+      "filedAt": "2026-10-26",
+      "summary": "ICBSONALI1: Trustee Committee Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Trustee of the Fund has informed that a meeting of the Trustee Committee will be held on October 28, 2026 at 3:30 pm to consider, among others, un-audited financial statements of the Fund for the First Quarter (Q1) period ended on September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154282",
+      "code": "ICBAGRANI1",
+      "name": "ICB AMCL First Agrani Bank Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:38",
+      "filedAt": "2026-10-26",
+      "summary": "ICBAGRANI1: Trustee Committee Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Trustee of the Fund has informed that a meeting of the Trustee Committee will be held on October 28, 2026 at 3:30 pm to consider, among others, un-audited financial statements of the Fund for the First Quarter (Q1) period ended on September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154272",
+      "code": "UNIONINS",
+      "name": "Union Insurance PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:32",
+      "filedAt": "2026-10-26",
+      "summary": "UNIONINS: Board Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 28, 2026 at 2:30 PM to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154265",
+      "code": "SOUTHEASTB",
+      "name": "Southeast Bank PLC",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:30",
+      "filedAt": "2026-10-26",
+      "summary": "SOUTHEASTB: Reschedule of Board Meeting under LR 16(1)",
+      "body": "The Company has further informed that due to unavoidable circumstances, the meeting of the Board of Directors of the Company as per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, will be held on October 29, 2026 at 2:30 pm instead of October 26, 2026 to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 29, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154271",
+      "code": "ICICL",
+      "name": "Islami Commercial Insurance PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:30",
+      "filedAt": "2026-10-26",
+      "summary": "ICICL: Board Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 28, 2026 at 3:30 PM to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154283",
+      "code": "1STPRIMFMF",
+      "name": "Prime Finance First Mutual Fund",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:29",
+      "filedAt": "2026-10-26",
+      "summary": "1STPRIMFMF: Trustee Committee Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Trustee of Fund has informed that a meeting of the Trustee Committee will be held on October 28, 2026 at 3:30 PM to consider, among others, un-audited financial statements of the Fund for the Third Quarter (Q3) period ended September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154274",
+      "code": "SANDHANINS",
+      "name": "Sandhani Life Insurance Company Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:28",
+      "filedAt": "2026-10-26",
+      "summary": "SANDHANINS: Board Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 31, 2026 at 3:00 PM to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 31, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154270",
+      "code": "PHOENIXFIN",
+      "name": "Phoenix Finance and Investments Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:27",
+      "filedAt": "2026-10-26",
+      "summary": "PHOENIXFIN: Board Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 28, 2026 at 3:00 PM to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 28, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154273",
+      "code": "NORTHRNINS",
+      "name": "Northern Islami Insurance PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:27",
+      "filedAt": "2026-10-26",
+      "summary": "NORTHRNINS: Board Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 29, 2026 at 3:00 PM to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 29, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154269",
+      "code": "IFIC",
+      "name": "IFIC Bank PLC",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "10:26",
+      "filedAt": "2026-10-26",
+      "summary": "IFIC: Board Meeting schedule under LR 16(1)",
+      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 29, 2026 at 4:00 PM to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
+      "category": "BOARD_MEETING",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "MEDIUM",
+      "metrics": {
+        "event_date": "october 29, 2026"
+      },
+      "risk_warnings": [
+        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
+      ]
+    },
+    {
+      "id": "psi-34154268",
+      "code": "NITOLINS",
+      "name": "Nitol Insurance PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:57",
+      "filedAt": "2026-10-26",
+      "summary": "NITOLINS: Regarding Proposed Sale of Office Space",
+      "body": "(Cont. News of NITOLINS): Proposed/Indicative Sale Price: 8.50 Crore, Purchaser: G K Network, Current Status: Sale agreement, Expected Completion: January 2027. The Company confirms that the transaction remains subject to other applicable conditions, and there can be no assurance that the proposed transaction will be completed on the terms currently under consideration. (end)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154267",
+      "code": "NITOLINS",
+      "name": "Nitol Insurance PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:57",
+      "filedAt": "2026-10-26",
+      "summary": "NITOLINS: Regarding Proposed Sale of Office Space",
+      "body": "The company has informed that it is currently proceeding with the proposed sale of its office premises located at Yunusco City Centre, 10th Floor, GEC More, Chittagong, comprising 9452 square feet. The key information currently available is as follows: Nature of Transaction: Proposed sale of office space/premises, Property Location: Chittagong, Approximate Area: 9452 sq. ft., (cont.)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154264",
+      "code": "GPHISPAT",
+      "name": "GPH Ispat Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:54",
+      "filedAt": "2026-10-26",
+      "summary": "GPHISPAT: Adjournment of the Proposed Rights Share Issue.",
+      "body": "(Cont. News of GPHISPAT): Subsequently, the Board's decision was placed before the shareholders of the Company at its 20th Annual General Meeting held on 25 October 2026. Upon due consideration, the proposed Rights Share Issue was deferred for the time being. The matter will be reconsidered, and an appropriate decision will be taken in due course. (end)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154263",
+      "code": "GPHISPAT",
+      "name": "GPH Ispat Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:54",
+      "filedAt": "2026-10-26",
+      "summary": "GPHISPAT: Adjournment of the Proposed Rights Share Issue.",
+      "body": "The company has informed that, the Company's previously announced proposal for the issuance of Rights Shares was discussed and reviewed at the Board of Directors meeting held on 24 October 2026. Upon due consideration of the prevailing capital market conditions and the interests of the Company and its general shareholders, the Board of Directors decided to keep the proposed Rights Share Issue on hold for the time being. (cont.)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154266",
+      "code": "KPCL",
+      "name": "Khulna Power Company Limited",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:53",
+      "filedAt": "2026-10-26",
+      "summary": "KPCL: Declaration of Dividend by Associate Company",
+      "body": "The company has informed that the Board of Directors of United Payra Power Ltd. (UPPL), a 35% associate company of Khulna Power Company Ltd. (KPCL), in its meeting held on 25th October 2026 has declared Cash Dividend of Tk. 2.00 per share of Tk. 10 each, amounted to Tk. 231,770,000.00 (entitlement of KPCL) based on the audited financial statements for the year ended 30th June 2026 of UPPL.",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "BULLISH",
+      "sentiment_score": 50,
+      "impact_level": "HIGH",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154262",
+      "code": "MIRACLEIND",
+      "name": "Miracle Industries Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:51",
+      "filedAt": "2026-10-26",
+      "summary": "MIRACLEIND: Q1 Financials",
+      "body": "(Q1 Un-audited): EPS was Tk. 0.51 for July-September 2026 as against Tk. (0.77) for July-September 2025. NOCFPS was Tk. 0.11 for July-September 2026 as against Tk. (0.47) for July-September 2025. NAV per share was Tk. 20.53 as on September 30, 2026 and Tk. 10.55 as on September 30, 2025.",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "september 30, 2026",
+        "navps": 20.53
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154260",
+      "code": "MIRACLEIND",
+      "name": "Miracle Industries Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:51",
+      "filedAt": "2026-10-26",
+      "summary": "MIRACLEIND: Board Approves Financial Statements and Incorporates Valuers' Report",
+      "body": "(Cont. News of MIRACLEIND): 2. The Company incorporated the Valuers' Report, revaluing its lands as of 30 June 2026 by Mridha & Associates Ltd, Dhaka, a recognized valuer by Bangladesh Bank, measuring around 277.45 decimals, resulting in further revaluation surplus at Tk. 41,61,75,000 on that date. (end)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154259",
+      "code": "MIRACLEIND",
+      "name": "Miracle Industries Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:51",
+      "filedAt": "2026-10-26",
+      "summary": "MIRACLEIND: Board Approves Financial Statements and Incorporates Valuers' Report",
+      "body": "The company has informed that, the following decisions, inter-alia, were made in the Meeting of the Board of Directors of Miracle Industries Limited (MIL) held on 25 October 2026: 1. The Audited Financial Statements of MIL for the year ended 30 June 2026 together with the Valuers', Auditors' and Directors' Reports thereon were considered and approved by the Board of Directors of MIL. (cont.)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154258",
+      "code": "MIRACLEIND",
+      "name": "Miracle Industries Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:49",
+      "filedAt": "2026-10-26",
+      "summary": "MIRACLEIND: Price Limit Open",
+      "body": "There will be no price limit on the trading of the shares of the Company today (26.10.2026) following its corporate declaration.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154257",
+      "code": "MIRACLEIND",
+      "name": "Miracle Industries Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:49",
+      "filedAt": "2026-10-26",
+      "summary": "MIRACLEIND: Dividend Declaration",
+      "body": "The Board of Directors has recommended No Dividend for the year ended June 30, 2026. Date of AGM: 24.12.2026, AGM Venue/Mode: AGM will be held at the Factory Premises. Record Date: 15.11.2026. The Company has also reported EPS of Tk. (3.12), NAV per share of Tk. 20.02 and NOCFPS of Tk. 0.49 for the year ended June 30, 2026 as against EPS of Tk. (2.30), NAV per share of Tk. 11.32 and NOCFPS of Tk. (0.52) for the year ended June 30, 2025.",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "record_date": "15.11.2026"
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154261",
+      "code": "MIDASFIN",
+      "name": "MIDAS Financing PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:47",
+      "filedAt": "2026-10-26",
+      "summary": "MIDASFIN: Q3 Financials",
+      "body": "(Q3 Un-audited): Consolidated EPS was Tk. (0.06) for July-September 2026 as against Tk. (1.46) for July-September 2025; Consolidated EPS was Tk. (6.27) for January-September 2026 as against Tk. (4.72) for January-September 2025. Consolidated NOCFPS was Tk. (2.63) for January-September 2026 as against Tk. 3.38 for January-September 2025. Consolidated NAV per share was Tk. (24.93) as on September 30, 2026 and Tk. (18.66) as on December 31, 2025.",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "september 30, 2026"
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154256",
+      "code": "NITOLINS",
+      "name": "Nitol Insurance PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:42",
+      "filedAt": "2026-10-26",
+      "summary": "NITOLINS: Q3 Financials",
+      "body": "(Q3 Un-audited): EPS was Tk. 0.57 for July-September 2026 as against Tk. 0.34 (restated) for July-September 2025; EPS was Tk. 1.36 for January-September 2026 as against Tk. 1.01 (restated) for January-September 2025. NOCFPS was Tk. 0.61 for January-September 2026 as against Tk. 0.56 (restated) for January-September 2025. NAV per share was Tk. 31.66 as on September 30, 2026 and Tk. 30.38 (restated) as on September 30, 2025.",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "september 30, 2026",
+        "navps": 31.66
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154253",
+      "code": "SONALILIFE",
+      "name": "Sonali Life Insurance PLC",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:34",
+      "filedAt": "2026-10-26",
+      "summary": "SONALILIFE: Q3 Financials",
+      "body": "(Continuation news of SONALILIFE): was BDT 296.91 million as against excess of total income over total expenses including claims (surplus) of BDT 911.61 million in the corresponding previous period of 2025. Accordingly, Balance of Life Insurance Fund was BDT 9,256.38 million as on September 30, 2026 as against BDT 8,963.83 million as on September 30, 2025 resulting a net increase of BDT 292.56 million. NOCFPS was BDT (4.79) for January-September 2026 as against BDT 7.95 for January-September 2025. (end)",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {
+        "event_date": "september 30, 2026"
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154251",
+      "code": "SONALILIFE",
+      "name": "Sonali Life Insurance PLC",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:34",
+      "filedAt": "2026-10-26",
+      "summary": "SONALILIFE: Q3 Financials",
+      "body": "(Q3 Un-audited): As per life revenue account of the company for July to September, 2026, excess of total expenses including claims over total income (deficit) was BDT 40.01 million as against excess of total income over total expenses including claims (surplus) of BDT 185.84 million in the corresponding previous period of 2025. Whereas as per life revenue account of the company for January to September, 2026, excess of total income over total expenses including claims (surplus) (cont.)",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "HIGH",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154255",
+      "code": "SQUARETEXT",
+      "name": "Square Textiles PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:29",
+      "filedAt": "2026-10-26",
+      "summary": "SQUARETEXT: Price Limit Open",
+      "body": "There will be no price limit on the trading of the shares of the Company today (26.10.2026) following its corporate declaration.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154254",
+      "code": "SQUARETEXT",
+      "name": "Square Textiles PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:28",
+      "filedAt": "2026-10-26",
+      "summary": "SQUARETEXT: Dividend Declaration",
+      "body": "(Cont. news of SQUARETEXT): The company also informed that the Board of Directors of the company has approved Tk. 60.00 (sixty) crore for BMRE, Capital Machineries and lands for future expansion. (end)",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "BULLISH",
+      "sentiment_score": 50,
+      "impact_level": "HIGH",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154252",
+      "code": "SQUARETEXT",
+      "name": "Square Textiles PLC.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "09:28",
+      "filedAt": "2026-10-26",
+      "summary": "SQUARETEXT: Dividend Declaration",
+      "body": "The Board of Directors has recommended 32% Cash Dividend for the year ended June 30, 2026. Date of AGM: 15.12.2026, Time: 11:00 AM, Venue: Virtual Platform. Record Date: 16.11.2026. The Company has also reported Consolidated EPS of Tk. 4.50, Consolidated NAV per share of Tk. 57.16 and Consolidated NOCFPS of Tk. 8.71 for the year ended June 30, 2026 as against Tk. 7.24, Tk. 55.86 and Tk. 5.25 respectively for the year ended June 30, 2025. (cont.)",
+      "category": "DIVIDEND_EARNINGS",
+      "sentiment": "BULLISH",
+      "sentiment_score": 90,
+      "impact_level": "HIGH",
+      "metrics": {
+        "record_date": "16.11.2026",
+        "cash_dividend_pct": 32.0
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154250",
+      "code": "CNATEX",
+      "name": "C & A Textiles Limited",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:36",
+      "filedAt": "2026-10-26",
+      "summary": "CNATEX: Inspection to the factory premises of C & A Textiles Limited",
+      "body": "A team of DSE visited the factory premises of C & A Textiles Limited on October 04, 2026 and found the operation/production closed.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {
+        "event_date": "october 04, 2026"
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154249",
+      "code": "EXCH",
+      "name": "EXCH",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:35",
+      "filedAt": "2026-10-26",
+      "summary": "DSE NEWS: Message for the claimants of Moshihor Securities Limited",
+      "body": "(Continuation of DSE News): Please collect your cheque as per the schedule communicated to you. If you are unable to collect your cheque on the scheduled date, the next collection date and time will be communicated through a subsequent SMS. For details and required forms, please visit: [https://www.dsebd.org/downloads]. (end)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154248",
+      "code": "EXCH",
+      "name": "EXCH",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:35",
+      "filedAt": "2026-10-26",
+      "summary": "DSE NEWS: Message for the claimants of Moshihor Securities Limited",
+      "body": "Honorable claimants of Moshihor Securities Ltd., DSE will start disbursing cheques from the Investors' Protection Fund (IPF) against your verified claims against Moshihor Securities Ltd. from September 28, 2026 at 3:00 PM. The date, time, venue, and other relevant information will be communicated to you shortly via SMS. (cont.)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154247",
+      "code": "AFCAGRO",
+      "name": "AFC Agro Biotech Ltd.",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:30",
+      "filedAt": "2026-10-26",
+      "summary": "AFCAGRO: Inspection of the factory premises of AFC Agro Biotech Ltd.",
+      "body": "A team of DSE visited the factory premises of AFC Agro Biotech Limited on July 09, 2026 and found the operation/production closed.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {
+        "event_date": "july 09, 2026"
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154246",
+      "code": "ACTIVEFINE",
+      "name": "Active Fine Chemicals Limited",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:30",
+      "filedAt": "2026-10-26",
+      "summary": "ACTIVEFINE: Inspection of the factory premises of Active Fine Chemicals Limited",
+      "body": "A team of DSE visited the factory premises of Active Fine Chemicals Limited on June 25, 2026 and found the operation/production closed.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {
+        "event_date": "june 25, 2026"
+      },
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154244",
+      "code": "EXCH",
+      "name": "EXCH",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:29",
+      "filedAt": "2026-10-26",
+      "summary": "DSE NEWS: Regarding Lodging Investor Complaints through CCAM",
+      "body": "The Investors are requested to lodge their complaints against the TREC Holder Companies and the issuer of listed securities (if any) of DSE through Customer Complaint Address Module (CCAM) (link: https://www.cdbl.com.bd/complaints.sec.gov.bd/) for addressing their complaints virtually.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154243",
+      "code": "EXCH",
+      "name": "EXCH",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:25",
+      "filedAt": "2026-10-26",
+      "summary": "DSE NEWS: Awareness message",
+      "body": "DSE NEWS: All Stock Dealers, Stock Brokers and Authorized Representatives are asked to strictly follow the code of conduct as enumerated in the Second Schedule to the Securities and Exchange Commission (Stock Dealer, Stock Broker and Authorized Representative) Rules, 2000.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154242",
+      "code": "EXCH",
+      "name": "EXCH",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:25",
+      "filedAt": "2026-10-26",
+      "summary": "DSE NEWS: Awareness Message for Investors",
+      "body": "(Continuation of DSE News): If anyone spreads information based on rumor, using patent of DSE, he/she will be held liable under Copyright Act, 2000 and it shall be treated as punishable offence under Section-17 of the Securities and Exchange Ordinance, 1969. (end)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154241",
+      "code": "EXCH",
+      "name": "EXCH",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:25",
+      "filedAt": "2026-10-26",
+      "summary": "DSE NEWS: Awareness Message for Investors",
+      "body": "DSE does not publish market data through any social media pages. INVESTORS should not rely on any information from an unauthorized source such as Facebook, WhatsApp, Viber, Linkedin etc. (cont.)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154240",
+      "code": "REGL",
+      "name": "REGL",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:25",
+      "filedAt": "2026-10-26",
+      "summary": "BSEC NEWS: Awareness Message for Investors",
+      "body": "(Continuation of BSEC News - Awareness Message for Investors) 3. Do not pay any heed to rumors at the time of trading shares; it may cause loss to you. Even spreading rumor is legally prohibited. (Ref.: SEC letter no. SEC/SRMIC/2010/726 dated November 23, 2010). (end)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154239",
+      "code": "REGL",
+      "name": "REGL",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:25",
+      "filedAt": "2026-10-26",
+      "summary": "BSEC NEWS: Awareness Message for Investors",
+      "body": "Investors are requested to consider the following facts at the time of making investment decision in the Capital Market: 1. Without acquiring proper knowledge, information and experience regarding different aspects and matters of Capital Market, one should not invest in the Capital Market. 2. The gain or loss, whichever comes from the investment, it belongs to you. So, well - thought of investment decision based on knowledge and fundamentals of the securities may be real assistance to you. (cont.)",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34154245",
+      "code": "EXCH",
+      "name": "EXCH",
+      "sector": "",
+      "date": "26 Oct 2026",
+      "time": "08:25",
+      "filedAt": "2026-10-26",
+      "summary": "DSE NEWS: Greetings Message",
+      "body": "Honorable Investors, Good morning! Please make your investment decision based on Company fundamentals, technical analysis, price level and disclosed information. Avoid rumor-based speculations.",
+      "category": "GENERAL_NOTICE",
+      "sentiment": "NEUTRAL",
+      "sentiment_score": 0,
+      "impact_level": "LOW",
+      "metrics": {},
+      "risk_warnings": []
+    },
+    {
+      "id": "psi-34119945",
       "code": "EXCH",
       "name": "EXCH",
       "sector": "",
@@ -19,7 +1918,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110264",
+      "id": "psi-34119940",
       "code": "BRB",
       "name": "BRB",
       "sector": "",
@@ -36,7 +1935,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110263",
+      "id": "psi-34119939",
       "code": "EPS",
       "name": "EPS",
       "sector": "",
@@ -53,7 +1952,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110267",
+      "id": "psi-34119943",
       "code": "JANATAINS",
       "name": "Janata Insurance PLC",
       "sector": "",
@@ -74,7 +1973,7 @@
       ]
     },
     {
-      "id": "psi-34110268",
+      "id": "psi-34119944",
       "code": "MPETROLEUM",
       "name": "Meghna Petroleum PLC.",
       "sector": "",
@@ -95,7 +1994,7 @@
       ]
     },
     {
-      "id": "psi-34110265",
+      "id": "psi-34119941",
       "code": "MEGHNALIFE",
       "name": "Meghna Life Insurance PLC",
       "sector": "",
@@ -116,7 +2015,7 @@
       ]
     },
     {
-      "id": "psi-34110266",
+      "id": "psi-34119942",
       "code": "NATLIFEINS",
       "name": "National Life Insurance PLC",
       "sector": "",
@@ -137,7 +2036,7 @@
       ]
     },
     {
-      "id": "psi-34110262",
+      "id": "psi-34119938",
       "code": "PEOPLESINS",
       "name": "Peoples Insurance PLC.",
       "sector": "",
@@ -158,7 +2057,7 @@
       ]
     },
     {
-      "id": "psi-34110261",
+      "id": "psi-34119937",
       "code": "TRUSTB1MF",
       "name": "Trust Bank 1st Mutual Fund",
       "sector": "",
@@ -175,7 +2074,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110260",
+      "id": "psi-34119936",
       "code": "POPULAR1MF",
       "name": "Popular Life First Mutual Fund",
       "sector": "",
@@ -192,7 +2091,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110259",
+      "id": "psi-34119935",
       "code": "PHPMF1",
       "name": "PHP First Mutual Fund",
       "sector": "",
@@ -209,7 +2108,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110258",
+      "id": "psi-34119934",
       "code": "IFIC1STMF",
       "name": "IFIC Bank 1st Mutual Fund",
       "sector": "",
@@ -226,7 +2125,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110257",
+      "id": "psi-34119933",
       "code": "FBFIF",
       "name": "First Bangladesh Fixed Income Fund",
       "sector": "",
@@ -243,7 +2142,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110256",
+      "id": "psi-34119932",
       "code": "EXIM1STMF",
       "name": "EXIM Bank 1st Mutual Fund",
       "sector": "",
@@ -260,7 +2159,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110255",
+      "id": "psi-34119931",
       "code": "EBLNRBMF",
       "name": "EBL NRB Mutual Fund",
       "sector": "",
@@ -277,7 +2176,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110254",
+      "id": "psi-34119930",
       "code": "EBL1STMF",
       "name": "EBL First Mutual Fund",
       "sector": "",
@@ -294,7 +2193,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110253",
+      "id": "psi-34119929",
       "code": "ABB1STMF",
       "name": "AB Bank 1st Mutual fund",
       "sector": "",
@@ -311,7 +2210,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110252",
+      "id": "psi-34119928",
       "code": "1JANATAMF",
       "name": "First Janata Bank Mutual Fund",
       "sector": "",
@@ -328,7 +2227,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110246",
+      "id": "psi-34119922",
       "code": "FIRSTFIN",
       "name": "First Finance Limited",
       "sector": "",
@@ -349,7 +2248,7 @@
       ]
     },
     {
-      "id": "psi-34110251",
+      "id": "psi-34119927",
       "code": "AL-HAJTEX",
       "name": "Al-Haj Textile Mills Limited",
       "sector": "",
@@ -370,7 +2269,7 @@
       ]
     },
     {
-      "id": "psi-34110247",
+      "id": "psi-34119923",
       "code": "KARNAPHULI",
       "name": "Karnaphuli Insurance PLC",
       "sector": "",
@@ -391,7 +2290,7 @@
       ]
     },
     {
-      "id": "psi-34110248",
+      "id": "psi-34119924",
       "code": "CRYSTALINS",
       "name": "Crystal Insurance Company Limited",
       "sector": "",
@@ -412,7 +2311,7 @@
       ]
     },
     {
-      "id": "psi-34110250",
+      "id": "psi-34119926",
       "code": "GHCL",
       "name": "Global Heavy Chemicals Limited",
       "sector": "",
@@ -433,7 +2332,7 @@
       ]
     },
     {
-      "id": "psi-34110249",
+      "id": "psi-34119925",
       "code": "DOREENPWR",
       "name": "Doreen Power Generations and Systems Limited",
       "sector": "",
@@ -450,7 +2349,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110217",
+      "id": "psi-34119893",
       "code": "REPUBLIC",
       "name": "Republic Insurance PLC.",
       "sector": "",
@@ -471,7 +2370,7 @@
       ]
     },
     {
-      "id": "psi-34110220",
+      "id": "psi-34119896",
       "code": "RELIANCINS",
       "name": "Reliance Insurance PLC.",
       "sector": "",
@@ -492,7 +2391,7 @@
       ]
     },
     {
-      "id": "psi-34110201",
+      "id": "psi-34119877",
       "code": "RECKITTBEN",
       "name": "Reckitt Benckiser (Bangladesh) PLC",
       "sector": "",
@@ -513,7 +2412,7 @@
       ]
     },
     {
-      "id": "psi-34110240",
+      "id": "psi-34119916",
       "code": "ISLAMIINS",
       "name": "Islami Insurance Bangladesh Limited",
       "sector": "",
@@ -534,7 +2433,7 @@
       ]
     },
     {
-      "id": "psi-34110226",
+      "id": "psi-34119902",
       "code": "ICBEPMF1S1",
       "name": "ICB Employees Provident MF 1: Scheme 1",
       "sector": "",
@@ -553,7 +2452,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110242",
+      "id": "psi-34119918",
       "code": "USMANIAGL",
       "name": "Usmania Glass Sheet Factory Limited",
       "sector": "",
@@ -574,7 +2473,7 @@
       ]
     },
     {
-      "id": "psi-34110223",
+      "id": "psi-34119899",
       "code": "ICBAMCL2ND",
       "name": "ICB AMCL Second Mutual Fund",
       "sector": "",
@@ -593,7 +2492,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110241",
+      "id": "psi-34119917",
       "code": "USMANIAGL",
       "name": "Usmania Glass Sheet Factory Limited",
       "sector": "",
@@ -614,7 +2513,7 @@
       ]
     },
     {
-      "id": "psi-34110221",
+      "id": "psi-34119897",
       "code": "1STPRIMFMF",
       "name": "Prime Finance First Mutual Fund",
       "sector": "",
@@ -633,7 +2532,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110243",
+      "id": "psi-34119919",
       "code": "TRUSTBANK",
       "name": "Trust Bank PLC.",
       "sector": "",
@@ -654,7 +2553,7 @@
       ]
     },
     {
-      "id": "psi-34110236",
+      "id": "psi-34119912",
       "code": "GLDNJMF",
       "name": "ICB AMCL CMSF Golden Jubilee Mutual Fund",
       "sector": "",
@@ -673,7 +2572,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110244",
+      "id": "psi-34119920",
       "code": "PRIMEINSUR",
       "name": "Prime Islami Insurance PLC",
       "sector": "",
@@ -694,7 +2593,7 @@
       ]
     },
     {
-      "id": "psi-34110235",
+      "id": "psi-34119911",
       "code": "ICBAGRANI1",
       "name": "ICB AMCL First Agrani Bank Mutual Fund",
       "sector": "",
@@ -713,7 +2612,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110233",
+      "id": "psi-34119909",
       "code": "ICBSONALI1",
       "name": "ICB AMCL Sonali Bank Limited 1st Mutual Fund",
       "sector": "",
@@ -732,7 +2631,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110245",
+      "id": "psi-34119921",
       "code": "KOHINOOR",
       "name": "Kohinoor Chemical Company (Bangladesh) PLC.",
       "sector": "",
@@ -753,7 +2652,7 @@
       ]
     },
     {
-      "id": "psi-34110232",
+      "id": "psi-34119908",
       "code": "IFILISLMF1",
       "name": "IFIL Islamic Mutual Fund-1",
       "sector": "",
@@ -772,7 +2671,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110230",
+      "id": "psi-34119906",
       "code": "PF1STMF",
       "name": "Phoenix Finance 1st Mutual Fund",
       "sector": "",
@@ -791,7 +2690,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110222",
+      "id": "psi-34119898",
       "code": "ISLAMICFIN",
       "name": "Islamic Finance & Investment PLC.",
       "sector": "",
@@ -812,7 +2711,7 @@
       ]
     },
     {
-      "id": "psi-34110229",
+      "id": "psi-34119905",
       "code": "ICB3RDNRB",
       "name": "ICB AMCL Third NRB Mutual Fund",
       "sector": "",
@@ -831,7 +2730,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110224",
+      "id": "psi-34119900",
       "code": "TB20Y1031",
       "name": "20Y BGTB 26/10/2031",
       "sector": "",
@@ -852,7 +2751,7 @@
       ]
     },
     {
-      "id": "psi-34110227",
+      "id": "psi-34119903",
       "code": "TB20Y0430",
       "name": "20Y BGTB 28/04/2030",
       "sector": "",
@@ -874,7 +2773,7 @@
       ]
     },
     {
-      "id": "psi-34110228",
+      "id": "psi-34119904",
       "code": "PRIME1ICBA",
       "name": "Prime Bank 1st ICB AMCL Mutual Fund",
       "sector": "",
@@ -893,7 +2792,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110225",
+      "id": "psi-34119901",
       "code": "TB20Y1029",
       "name": "20Y BGTB 28/10/2029",
       "sector": "",
@@ -915,7 +2814,7 @@
       ]
     },
     {
-      "id": "psi-34110234",
+      "id": "psi-34119910",
       "code": "UNITEDFIN",
       "name": "United Finance PLC.",
       "sector": "",
@@ -936,7 +2835,7 @@
       ]
     },
     {
-      "id": "psi-34110237",
+      "id": "psi-34119913",
       "code": "CAPITECGBF",
       "name": "Capitec Grameen Bank Growth Fund",
       "sector": "",
@@ -953,7 +2852,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110219",
+      "id": "psi-34119895",
       "code": "IBNSINA",
       "name": "The IBN SINA  Pharmaceutical Industry PLC",
       "sector": "",
@@ -974,7 +2873,7 @@
       ]
     },
     {
-      "id": "psi-34110231",
+      "id": "psi-34119907",
       "code": "CAPMIBBLMF",
       "name": "CAPM IBBL Islamic Mutual Fund",
       "sector": "",
@@ -991,7 +2890,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110218",
+      "id": "psi-34119894",
       "code": "ENVOYTEX",
       "name": "Envoy Textiles Limited",
       "sector": "",
@@ -1012,7 +2911,7 @@
       ]
     },
     {
-      "id": "psi-34110239",
+      "id": "psi-34119915",
       "code": "SEMLFBSLGF",
       "name": "SEML FBLSL Growth Fund",
       "sector": "",
@@ -1029,7 +2928,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110238",
+      "id": "psi-34119914",
       "code": "SEMLIBBLSF",
       "name": "SEML IBBL Shariah Fund",
       "sector": "",
@@ -1046,7 +2945,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110216",
+      "id": "psi-34119892",
       "code": "RELIANCE1",
       "name": "Reliance One the first scheme of Reliance Insurance Mutual Fund",
       "sector": "",
@@ -1063,7 +2962,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110215",
+      "id": "psi-34119891",
       "code": "GRAMEENS2",
       "name": "Grameen One : Scheme Two",
       "sector": "",
@@ -1080,7 +2979,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110209",
+      "id": "psi-34119885",
       "code": "HEIDELBCEM",
       "name": "Heidelberg Materials Bangladesh PLC.",
       "sector": "",
@@ -1101,7 +3000,7 @@
       ]
     },
     {
-      "id": "psi-34110214",
+      "id": "psi-34119890",
       "code": "PREMIERBAN",
       "name": "The Premier Bank PLC.",
       "sector": "",
@@ -1122,7 +3021,7 @@
       ]
     },
     {
-      "id": "psi-34110208",
+      "id": "psi-34119884",
       "code": "WATACHEM",
       "name": "Wata Chemicals Limited",
       "sector": "",
@@ -1143,7 +3042,7 @@
       ]
     },
     {
-      "id": "psi-34110207",
+      "id": "psi-34119883",
       "code": "MEGHNACEM",
       "name": "Meghna Cement Mills PLC.",
       "sector": "",
@@ -1164,7 +3063,7 @@
       ]
     },
     {
-      "id": "psi-34110206",
+      "id": "psi-34119882",
       "code": "RAHIMAFOOD",
       "name": "Rahima Food Corporation Limited",
       "sector": "",
@@ -1185,7 +3084,7 @@
       ]
     },
     {
-      "id": "psi-34110213",
+      "id": "psi-34119889",
       "code": "ASIAPACINS",
       "name": "Asia Pacific General Insurance PLC",
       "sector": "",
@@ -1206,7 +3105,7 @@
       ]
     },
     {
-      "id": "psi-34110205",
+      "id": "psi-34119881",
       "code": "ALLTEX",
       "name": "Alltex Industries Ltd.",
       "sector": "",
@@ -1227,7 +3126,7 @@
       ]
     },
     {
-      "id": "psi-34110212",
+      "id": "psi-34119888",
       "code": "PRAGATIINS",
       "name": "Pragati Insurance PLC.",
       "sector": "",
@@ -1248,7 +3147,7 @@
       ]
     },
     {
-      "id": "psi-34110202",
+      "id": "psi-34119878",
       "code": "ALARABANK",
       "name": "Al-Arafah Islami Bank PLC.",
       "sector": "",
@@ -1269,7 +3168,7 @@
       ]
     },
     {
-      "id": "psi-34110211",
+      "id": "psi-34119887",
       "code": "UNIONCAP",
       "name": "Union Capital Limited",
       "sector": "",
@@ -1290,7 +3189,7 @@
       ]
     },
     {
-      "id": "psi-34110210",
+      "id": "psi-34119886",
       "code": "ROBI",
       "name": "Robi Axiata PLC.",
       "sector": "",
@@ -1311,7 +3210,7 @@
       ]
     },
     {
-      "id": "psi-34110200",
+      "id": "psi-34119876",
       "code": "DUTCHBANGL",
       "name": "Dutch-Bangla Bank PLC.",
       "sector": "",
@@ -1332,7 +3231,7 @@
       ]
     },
     {
-      "id": "psi-34110199",
+      "id": "psi-34119875",
       "code": "BATBC",
       "name": "British American Tobacco Bangladesh Company Limited",
       "sector": "",
@@ -1353,7 +3252,7 @@
       ]
     },
     {
-      "id": "psi-34110194",
+      "id": "psi-34119870",
       "code": "AFTABAUTO",
       "name": "Aftab Automobiles Limited",
       "sector": "",
@@ -1374,7 +3273,7 @@
       ]
     },
     {
-      "id": "psi-34110193",
+      "id": "psi-34119869",
       "code": "BPML",
       "name": "Bashundhara Paper Mills Limited",
       "sector": "",
@@ -1395,7 +3294,7 @@
       ]
     },
     {
-      "id": "psi-34110186",
+      "id": "psi-34119862",
       "code": "LHB",
       "name": "LafargeHolcim Bangladesh PLC.",
       "sector": "",
@@ -1412,7 +3311,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110185",
+      "id": "psi-34119861",
       "code": "LHB",
       "name": "LafargeHolcim Bangladesh PLC.",
       "sector": "",
@@ -1429,7 +3328,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110192",
+      "id": "psi-34119868",
       "code": "BBS",
       "name": "Bangladesh Building Systems PLC.",
       "sector": "",
@@ -1450,7 +3349,7 @@
       ]
     },
     {
-      "id": "psi-34110191",
+      "id": "psi-34119867",
       "code": "BBSCABLES",
       "name": "BBS Cables PLC.",
       "sector": "",
@@ -1471,7 +3370,7 @@
       ]
     },
     {
-      "id": "psi-34110204",
+      "id": "psi-34119880",
       "code": "SONARBAINS",
       "name": "Sonar Bangla Insurance Ltd.",
       "sector": "",
@@ -1492,7 +3391,7 @@
       ]
     },
     {
-      "id": "psi-34110189",
+      "id": "psi-34119865",
       "code": "STYLECRAFT",
       "name": "Stylecraft Limited",
       "sector": "",
@@ -1513,7 +3412,7 @@
       ]
     },
     {
-      "id": "psi-34110203",
+      "id": "psi-34119879",
       "code": "BXPHARMA",
       "name": "Beximco Pharmaceuticals PLC.",
       "sector": "",
@@ -1534,7 +3433,7 @@
       ]
     },
     {
-      "id": "psi-34110188",
+      "id": "psi-34119864",
       "code": "IBP",
       "name": "Indo-Bangla Pharmaceuticals Limited",
       "sector": "",
@@ -1555,7 +3454,7 @@
       ]
     },
     {
-      "id": "psi-34110197",
+      "id": "psi-34119873",
       "code": "SPCERAMICS",
       "name": "Shinepukur Ceramics PLC.",
       "sector": "",
@@ -1574,7 +3473,7 @@
       ]
     },
     {
-      "id": "psi-34110161",
+      "id": "psi-34119837",
       "code": "UNIQUEHRL",
       "name": "Unique Hotel & Resorts PLC",
       "sector": "",
@@ -1595,7 +3494,7 @@
       ]
     },
     {
-      "id": "psi-34110187",
+      "id": "psi-34119863",
       "code": "EIL",
       "name": "Express Insurance Limited",
       "sector": "",
@@ -1616,7 +3515,7 @@
       ]
     },
     {
-      "id": "psi-34110190",
+      "id": "psi-34119866",
       "code": "SUMITPOWER",
       "name": "Summit Power Limited",
       "sector": "",
@@ -1637,7 +3536,7 @@
       ]
     },
     {
-      "id": "psi-34110196",
+      "id": "psi-34119872",
       "code": "SPCERAMICS",
       "name": "Shinepukur Ceramics PLC.",
       "sector": "",
@@ -1658,7 +3557,7 @@
       ]
     },
     {
-      "id": "psi-34110198",
+      "id": "psi-34119874",
       "code": "MARICO",
       "name": "Marico Bangladesh Limited",
       "sector": "",
@@ -1679,7 +3578,7 @@
       ]
     },
     {
-      "id": "psi-34110195",
+      "id": "psi-34119871",
       "code": "NAVANACNG",
       "name": "Navana CNG Limited",
       "sector": "",
@@ -1700,7 +3599,7 @@
       ]
     },
     {
-      "id": "psi-34110184",
+      "id": "psi-34119860",
       "code": "LHB",
       "name": "LafargeHolcim Bangladesh PLC.",
       "sector": "",
@@ -1717,7 +3616,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110183",
+      "id": "psi-34119859",
       "code": "SEMLIBBLSF",
       "name": "SEML IBBL Shariah Fund",
       "sector": "",
@@ -1734,7 +3633,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110182",
+      "id": "psi-34119858",
       "code": "SEMLIBBLSF",
       "name": "SEML IBBL Shariah Fund",
       "sector": "",
@@ -1751,7 +3650,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110181",
+      "id": "psi-34119857",
       "code": "SONALILIFE",
       "name": "Sonali Life Insurance PLC",
       "sector": "",
@@ -1772,7 +3671,7 @@
       ]
     },
     {
-      "id": "psi-34110174",
+      "id": "psi-34119850",
       "code": "OIMEX",
       "name": "Oimex Electrode Limited",
       "sector": "",
@@ -1793,7 +3692,7 @@
       ]
     },
     {
-      "id": "psi-34110178",
+      "id": "psi-34119854",
       "code": "PIONEERINS",
       "name": "Pioneer Insurance PLC",
       "sector": "",
@@ -1810,7 +3709,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110177",
+      "id": "psi-34119853",
       "code": "PIONEERINS",
       "name": "Pioneer Insurance PLC",
       "sector": "",
@@ -1830,7 +3729,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110180",
+      "id": "psi-34119856",
       "code": "BGIC",
       "name": "Bangladesh General Insurance Company PLC.",
       "sector": "",
@@ -1850,7 +3749,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110176",
+      "id": "psi-34119852",
       "code": "LHB",
       "name": "LafargeHolcim Bangladesh PLC.",
       "sector": "",
@@ -1867,7 +3766,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110175",
+      "id": "psi-34119851",
       "code": "LHB",
       "name": "LafargeHolcim Bangladesh PLC.",
       "sector": "",
@@ -1887,7 +3786,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110172",
+      "id": "psi-34119848",
       "code": "LHB",
       "name": "LafargeHolcim Bangladesh PLC.",
       "sector": "",
@@ -1904,7 +3803,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110171",
+      "id": "psi-34119847",
       "code": "LHB",
       "name": "LafargeHolcim Bangladesh PLC.",
       "sector": "",
@@ -1923,7 +3822,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110179",
+      "id": "psi-34119855",
       "code": "UPGDCL",
       "name": "United Power Generation & Distribution Company Ltd.",
       "sector": "",
@@ -1940,7 +3839,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110169",
+      "id": "psi-34119845",
       "code": "CVOPRL",
       "name": "CVO Petrochemical Refinery PLC.",
       "sector": "",
@@ -1957,7 +3856,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110167",
+      "id": "psi-34119843",
       "code": "CVOPRL",
       "name": "CVO Petrochemical Refinery PLC.",
       "sector": "",
@@ -1976,7 +3875,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110173",
+      "id": "psi-34119849",
       "code": "PHENIXINS",
       "name": "Phoenix Insurance PLC.",
       "sector": "",
@@ -1993,7 +3892,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110170",
+      "id": "psi-34119846",
       "code": "PHENIXINS",
       "name": "Phoenix Insurance PLC.",
       "sector": "",
@@ -2013,7 +3912,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110165",
+      "id": "psi-34119841",
       "code": "SAMORITA",
       "name": "Samorita Hospital Limited",
       "sector": "",
@@ -2033,7 +3932,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110168",
+      "id": "psi-34119844",
       "code": "SAMORITA",
       "name": "Samorita Hospital Limited",
       "sector": "",
@@ -2050,7 +3949,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110166",
+      "id": "psi-34119842",
       "code": "SAMORITA",
       "name": "Samorita Hospital Limited",
       "sector": "",
@@ -2070,7 +3969,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110164",
+      "id": "psi-34119840",
       "code": "CNATEX",
       "name": "C & A Textiles Limited",
       "sector": "",
@@ -2089,7 +3988,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110163",
+      "id": "psi-34119839",
       "code": "EXCH",
       "name": "EXCH",
       "sector": "",
@@ -2106,7 +4005,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110162",
+      "id": "psi-34119838",
       "code": "EXCH",
       "name": "EXCH",
       "sector": "",
@@ -2123,7 +4022,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110160",
+      "id": "psi-34119836",
       "code": "AFCAGRO",
       "name": "AFC Agro Biotech Ltd.",
       "sector": "",
@@ -2142,7 +4041,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110159",
+      "id": "psi-34119835",
       "code": "ACTIVEFINE",
       "name": "Active Fine Chemicals Limited",
       "sector": "",
@@ -2161,7 +4060,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110157",
+      "id": "psi-34119833",
       "code": "EXCH",
       "name": "EXCH",
       "sector": "",
@@ -2178,7 +4077,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110156",
+      "id": "psi-34119832",
       "code": "EXCH",
       "name": "EXCH",
       "sector": "",
@@ -2195,7 +4094,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110155",
+      "id": "psi-34119831",
       "code": "EXCH",
       "name": "EXCH",
       "sector": "",
@@ -2212,7 +4111,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110154",
+      "id": "psi-34119830",
       "code": "EXCH",
       "name": "EXCH",
       "sector": "",
@@ -2229,7 +4128,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110153",
+      "id": "psi-34119829",
       "code": "REGL",
       "name": "REGL",
       "sector": "",
@@ -2246,7 +4145,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110152",
+      "id": "psi-34119828",
       "code": "REGL",
       "name": "REGL",
       "sector": "",
@@ -2263,7 +4162,7 @@
       "risk_warnings": []
     },
     {
-      "id": "psi-34110158",
+      "id": "psi-34119834",
       "code": "EXCH",
       "name": "EXCH",
       "sector": "",
@@ -7726,1905 +9625,6 @@
       "metrics": {},
       "risk_warnings": [
         "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33919639",
-      "code": "MHSML",
-      "name": "Mozaffar Hossain Spinning Mills Ltd.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:43",
-      "filedAt": "2026-10-17",
-      "summary": "MHSML: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 26, 2026 at 3:30 PM to consider, among others, annual audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 26, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919623",
-      "code": "TB20Y1028",
-      "name": "20Y BGTB 29/10/2028",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:43",
-      "filedAt": "2026-10-17",
-      "summary": "TB20Y1028: Record date for entitlement of coupon payment",
-      "body": "Record Date for entitlement of coupon payment of 20Y BGTB 29/10/2028 Government Securities is 28.10.2026.",
-      "category": "RECORD_DATE_AGM",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": [
-        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33919620",
-      "code": "AL-HAJTEX",
-      "name": "Al-Haj Textile Mills Limited",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:28",
-      "filedAt": "2026-10-17",
-      "summary": "AL-HAJTEX: Dividend Disbursement",
-      "body": "The Company has informed that it has disbursed the Cash Dividend for the year ended June 30, 2025 to the respective shareholders.",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "BULLISH",
-      "sentiment_score": 50,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919615",
-      "code": "GLDNJMF",
-      "name": "ICB AMCL CMSF Golden Jubilee Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:17",
-      "filedAt": "2026-10-17",
-      "summary": "GLDNJMF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 10.25 per unit on the basis of current market price and Tk. 11.50 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,024,662,812.54 on the basis of current market price and Tk. 1,149,923,626.82 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919614",
-      "code": "ICBAGRANI1",
-      "name": "ICB AMCL First Agrani Bank Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:17",
-      "filedAt": "2026-10-17",
-      "summary": "ICBAGRANI1: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 9.59 per unit on the basis of current market price and Tk. 12.16 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 941,138,079.14 on the basis of current market price and Tk. 1,193,999,210.68 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919613",
-      "code": "ICBSONALI1",
-      "name": "ICB AMCL Sonali Bank Limited 1st Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:16",
-      "filedAt": "2026-10-17",
-      "summary": "ICBSONALI1: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.74 per unit on the basis of current market price and Tk. 12.50 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 874,320,209.38 on the basis of current market price and Tk. 1,249,511,092.50 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919612",
-      "code": "IFILISLMF1",
-      "name": "IFIL Islamic Mutual Fund-1",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:15",
-      "filedAt": "2026-10-17",
-      "summary": "IFILISLMF1: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 7.25 per unit on the basis of current market price and Tk. 11.23 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 725,284,273.28 on the basis of current market price and Tk. 1,123,134,351.53 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919611",
-      "code": "PF1STMF",
-      "name": "Phoenix Finance 1st Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:14",
-      "filedAt": "2026-10-17",
-      "summary": "PF1STMF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.43 per unit on the basis of current market price and Tk. 12.18 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 505,545,543.66 on the basis of current market price and Tk. 731,023,860.70 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919610",
-      "code": "ICB3RDNRB",
-      "name": "ICB AMCL Third NRB Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:13",
-      "filedAt": "2026-10-17",
-      "summary": "ICB3RDNRB: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.28 per unit on the basis of current market price and Tk. 12.22 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 828,396,625.01 on the basis of current market price and Tk. 1,221,533,374.09 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919609",
-      "code": "PRIME1ICBA",
-      "name": "Prime Bank 1st ICB AMCL Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:13",
-      "filedAt": "2026-10-17",
-      "summary": "PRIME1ICBA: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.32 per unit on the basis of current market price and Tk. 12.71 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 832,420,447.82 on the basis of current market price and Tk. 1,271,216,368.64 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919608",
-      "code": "ICBEPMF1S1",
-      "name": "ICB Employees Provident MF 1: Scheme 1",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:11",
-      "filedAt": "2026-10-17",
-      "summary": "ICBEPMF1S1: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.17 per unit on the basis of current market price and Tk. 12.13 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 612,687,860.01 on the basis of current market price and Tk. 909,628,948.23 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919607",
-      "code": "ICBAMCL2ND",
-      "name": "ICB AMCL Second Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:10",
-      "filedAt": "2026-10-17",
-      "summary": "ICBAMCL2ND: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 9.09 per unit on the basis of current market price and Tk. 13.01 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 454,749,743.05 on the basis of current market price and Tk. 650,744,242.31 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919606",
-      "code": "1STPRIMFMF",
-      "name": "Prime Finance First Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:09",
-      "filedAt": "2026-10-17",
-      "summary": "1STPRIMFMF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 8.95 per unit on the basis of current market price and Tk. 14.99 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 179,040,524.01 on the basis of current market price and Tk. 299,893,967.80 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919605",
-      "code": "DSHGARME",
-      "name": "Desh Garments Ltd.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:09",
-      "filedAt": "2026-10-17",
-      "summary": "DSHGARME: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 28, 2026 at 3:00 PM to consider, among others, annual audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 28, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919600",
-      "code": "RDFOOD",
-      "name": "Rangpur Dairy & Food Products Ltd.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:04",
-      "filedAt": "2026-10-17",
-      "summary": "RDFOOD: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 28, 2026 at 4:30 PM to consider, among others, annual audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 28, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919601",
-      "code": "IFADAUTOS",
-      "name": "IFAD Autos PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "12:03",
-      "filedAt": "2026-10-17",
-      "summary": "IFADAUTOS: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 27, 2026 at 3:00 PM to consider, among others, annual audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 27, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919589",
-      "code": "CAPITECGBF",
-      "name": "Capitec Grameen Bank Growth Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:58",
-      "filedAt": "2026-10-17",
-      "summary": "CAPITECGBF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 9.45 per unit on the basis of current market price and Tk. 10.37 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,471,023,250.70 on the basis of current market price and Tk. 1,614,437,642.41 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919588",
-      "code": "GP",
-      "name": "Grameenphone Ltd.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:56",
-      "filedAt": "2026-10-17",
-      "summary": "GP: Conference on quarterly financial statements",
-      "body": "The Company has informed that they will organize a conference on its 3rd quarter 2026 Financial results on October 27, 2026 at 01:00 PM via live webcast facility with the web link of https://gpworld.co/Earnings-Call-Q3-2026. Research analysts or investors can participate in the upcoming online question & answer session following the Q3'26 results announcement. To participate, please send your name and email address to investor.relations@grameenphone.com",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {
-        "event_date": "october 27, 2026"
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919586",
-      "code": "GP",
-      "name": "Grameenphone Ltd.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:54",
-      "filedAt": "2026-10-17",
-      "summary": "GP: Board Meeting schedule under LR 16(1)",
-      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 26, 2026 at 3:30 pm to consider, among others, Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 26, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919585",
-      "code": "SIPLC",
-      "name": "Sena Insurance PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:51",
-      "filedAt": "2026-10-17",
-      "summary": "SIPLC: Board Meeting schedule under LR 16(1)",
-      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 26, 2026 at 2:45 pm to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 26, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919604",
-      "code": "BSCPLC",
-      "name": "Bangladesh Submarine Cables PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:48",
-      "filedAt": "2026-10-17",
-      "summary": "BSCPLC: Update of Information",
-      "body": "(Cont. News of BSCPLC): The company additionally requested the Brokerage houses to provide with their Bank name & Account number, Routing number, etc., within the stipulated time to enable the disbursement of cash dividend to their respective accounts. The e-mail should contain the required information in Excel file. (end)",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "BULLISH",
-      "sentiment_score": 50,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919603",
-      "code": "BSCPLC",
-      "name": "Bangladesh Submarine Cables PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:48",
-      "filedAt": "2026-10-17",
-      "summary": "BSCPLC: Update of Information",
-      "body": "(Cont. News of BSCPLC): of their margin account holders (if any) who hold BSCPLCs' shares, as on the 'Record Date' along with the name, phone number and e-mail address of the contact person in this connection, to the Company Secretariat of BSCPLC & e-mail the same at div@bseplc.gov.bd on or before 30 November 2026. (cont.2)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919602",
-      "code": "BSCPLC",
-      "name": "Bangladesh Submarine Cables PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:48",
-      "filedAt": "2026-10-17",
-      "summary": "BSCPLC: Update of Information",
-      "body": "The company has requested the Shareholders to update their BO Account information regarding addresses, Email Address, Bank Account Information, Cell Number and 12 digits e-TIN (if required), Tax Exemption status (if applicable) through their respective Depository Participants (DP) before the Record Date. The company has also requested all Stock Brokerage Houses to provide with a statement with the details (Shareholders' name, BO ID number, client-wise shareholding position, applicable Tax Rate) (cont.1)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919599",
-      "code": "TRUSTB1MF",
-      "name": "Trust Bank 1st Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:37",
-      "filedAt": "2026-10-17",
-      "summary": "TRUSTB1MF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 6.59 per unit on the basis of current market price and Tk. 11.52 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 2,000,378,941.00 on the basis of current market price and Tk. 3,496,614,479.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919598",
-      "code": "POPULAR1MF",
-      "name": "Popular Life First Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:36",
-      "filedAt": "2026-10-17",
-      "summary": "POPULAR1MF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 7.16 per unit on the basis of current market price and Tk. 11.54 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 2,140,083,488.00 on the basis of current market price and Tk. 3,450,981,307.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919597",
-      "code": "PHPMF1",
-      "name": "PHP First Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:36",
-      "filedAt": "2026-10-17",
-      "summary": "PHPMF1: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 6.82 per unit on the basis of current market price and Tk. 11.41 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,921,195,942.00 on the basis of current market price and Tk. 3,216,423,464.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919596",
-      "code": "IFIC1STMF",
-      "name": "IFIC Bank 1st Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:35",
-      "filedAt": "2026-10-17",
-      "summary": "IFIC1STMF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 7.87 per unit on the basis of current market price and Tk. 11.81 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,433,784,760.00 on the basis of current market price and Tk. 2,150,861,062.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919595",
-      "code": "FBFIF",
-      "name": "First Bangladesh Fixed Income Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:34",
-      "filedAt": "2026-10-17",
-      "summary": "FBFIF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 5.95 per unit on the basis of current market price and Tk. 11.28 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 4,615,137,027.00 on the basis of current market price and Tk. 8,753,354,733.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919594",
-      "code": "EXIM1STMF",
-      "name": "EXIM Bank 1st Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:34",
-      "filedAt": "2026-10-17",
-      "summary": "EXIM1STMF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 7.39 per unit on the basis of current market price and Tk. 11.68 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,058,607,924.00 on the basis of current market price and Tk. 1,673,258,262.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919593",
-      "code": "EBLNRBMF",
-      "name": "EBL NRB Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:33",
-      "filedAt": "2026-10-17",
-      "summary": "EBLNRBMF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 5.82 per unit on the basis of current market price and Tk. 11.33 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,305,743,755.00 on the basis of current market price and Tk. 2,540,131,151.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919592",
-      "code": "EBL1STMF",
-      "name": "EBL First Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:32",
-      "filedAt": "2026-10-17",
-      "summary": "EBL1STMF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 6.61 per unit on the basis of current market price and Tk. 11.61 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 956,707,206.00 on the basis of current market price and Tk. 1,679,975,879.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919591",
-      "code": "ABB1STMF",
-      "name": "AB Bank 1st Mutual fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:32",
-      "filedAt": "2026-10-17",
-      "summary": "ABB1STMF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 6.81 per unit on the basis of current market price and Tk. 11.70 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,629,285,066.00 on the basis of current market price and Tk. 2,797,013,340.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919590",
-      "code": "1JANATAMF",
-      "name": "First Janata Bank Mutual Fund",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:31",
-      "filedAt": "2026-10-17",
-      "summary": "1JANATAMF: Daily NAV",
-      "body": "On the close of operation on 15-Oct-2026, the Fund has reported Net Asset Value (NAV) of Tk. 6.19 per unit on the basis of current market price and Tk. 11.52 per unit on the basis of cost price against face value of Tk. 10.00 whereas total Net Assets of the Fund stood at Tk. 1,795,085,333.00 on the basis of current market price and Tk. 3,339,639,013.00 on the basis of cost price after considering all assets and liabilities of the Fund.",
-      "category": "NAV_DISCLOSURE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919587",
-      "code": "NCCBANK",
-      "name": "National Credit and Commerce Bank PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "11:13",
-      "filedAt": "2026-10-17",
-      "summary": "NCCBANK: Sale Declaration of a Sponsor",
-      "body": "Mr. M. A. Quasem, a Sponsor of the company, has expressed his intention to sell 200,000 shares out of his total holding of 4,900,000 shares of the Company at the prevailing market price in the Public & Block Market through Dhaka Stock Exchange PLC. within October 29, 2026.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919584",
-      "code": "DELTALIFE",
-      "name": "Delta Life Insurance Company Ltd.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:54",
-      "filedAt": "2026-10-17",
-      "summary": "DELTALIFE: Q3 Financials",
-      "body": "(Continuation news of DELTALIFE): (Surplus) was BDT 1,925.97 million as against excess of total income over total expenses including claims (Surplus) of BDT 1,882.45 million in the corresponding previous period 2025. Accordingly, Balance of Life Insurance Fund was BDT 42,987.01 million as on September 30, 2026 as against BDT 41,017.80 million as on September 30, 2025 resulting a net increase of BDT 1,969.21 million. (end)",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {
-        "event_date": "september 30, 2026"
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919583",
-      "code": "DELTALIFE",
-      "name": "Delta Life Insurance Company Ltd.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:54",
-      "filedAt": "2026-10-17",
-      "summary": "DELTALIFE: Q3 Financials",
-      "body": "(Q3 Un-audited): As per consolidated life revenue account of the company for July to September 2026, excess of total income over total expenses including claims (Surplus) was BDT 78.67 million as against excess of total expenses including claims over total income (Surplus) of BDT 467.05 million in the corresponding previous period 2025. Whereas as per consolidated life revenue account of the company for January to September 2026, excess of total income over total expenses including claims (cont.)",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919582",
-      "code": "BEACONPHAR",
-      "name": "Beacon Pharmaceuticals PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:38",
-      "filedAt": "2026-10-17",
-      "summary": "BEACONPHAR: Update of Information",
-      "body": "The company has requested the Shareholders to update their respective BO account with 12 digits e-TIN number, BO account, address, mobile number, e-mail address etc. through their respective DPs before the Record Date.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919581",
-      "code": "RAKCERAMIC",
-      "name": "RAK Ceramics (Bangladesh) Limited",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:24",
-      "filedAt": "2026-10-17",
-      "summary": "RAKCERAMIC: Tiles Production Line-4 Resumption and Line-3 Temporary Shutdown",
-      "body": "(Cont. News of RAKCERAMIC): from 14th October 2026. During the temporary shutdown period, the other two production lines in Tiles Plant (Production Line-1 and Production Line-4) will continue its production. We will announce the resumption of operations of Tiles Production Line -2 and Production Line-3 as soon as sufficient gas pressure is restored.\" (end)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919580",
-      "code": "RAKCERAMIC",
-      "name": "RAK Ceramics (Bangladesh) Limited",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:24",
-      "filedAt": "2026-10-17",
-      "summary": "RAKCERAMIC: Tiles Production Line-4 Resumption and Line-3 Temporary Shutdown",
-      "body": "(Cont. News of RAKCERAMIC): During the maintenance period the other two production lines in Tiles Plant (Production Line-1 and Production Line-3) will continue its production. This is to inform you that the Company announce the resumption of operation of Tiles Production Line-4. We also inform you that out of four (4) production lines in Tiles Plant of RAK Ceramics (Bangladesh) Limited, due to low gas pressure, operation of tiles Production Line-3 remain temporarily shut down  (cont.2)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919579",
-      "code": "RAKCERAMIC",
-      "name": "RAK Ceramics (Bangladesh) Limited",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:24",
-      "filedAt": "2026-10-17",
-      "summary": "RAKCERAMIC: Tiles Production Line-4 Resumption and Line-3 Temporary Shutdown",
-      "body": "The company has informed the following, \"Further to our letter no RAK/CS/Share/129/2026 dated August 25, 2026, where we intimated that out of four (4) production lines in Tiles Plant of RAK Ceramics (Bangladesh) Limited, the machineries of tiles Production Line-2 and Line-4 will remain under maintenance from 25th   August 2026 for 01 month (approximately). (cont.1)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919569",
-      "code": "BDCOM",
-      "name": "BDCOM Online Ltd.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:12",
-      "filedAt": "2026-10-17",
-      "summary": "BDCOM: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 27, 2026 at 3:00 PM to consider, among others, annual audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 27, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919568",
-      "code": "SHASHADNIM",
-      "name": "Shasha Denims PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:09",
-      "filedAt": "2026-10-17",
-      "summary": "SHASHADNIM: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 27, 2026 at 5:00 PM to consider, among others, annual audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 27, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919573",
-      "code": "SOUTHEASTB",
-      "name": "Southeast Bank PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:06",
-      "filedAt": "2026-10-17",
-      "summary": "SOUTHEASTB: Board Meeting schedule under LR 16(1)",
-      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 25, 2026 at 2:30 pm to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 25, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919572",
-      "code": "CITYBANK",
-      "name": "City Bank PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:05",
-      "filedAt": "2026-10-17",
-      "summary": "CITYBANK: Board Meeting schedule under LR 16(1)",
-      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 29, 2026 at 3:00 pm to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 29, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919571",
-      "code": "EBL",
-      "name": "Eastern Bank PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:03",
-      "filedAt": "2026-10-17",
-      "summary": "EBL: Board Meeting schedule under LR 16(1)",
-      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 28, 2026 at 2:30 pm to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 28, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919570",
-      "code": "SBACBANK",
-      "name": "SBAC Bank PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "10:01",
-      "filedAt": "2026-10-17",
-      "summary": "SBACBANK: Board Meeting schedule under LR 16(1)",
-      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 29, 2026 at 2:30 pm to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 29, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33919576",
-      "code": "PTL",
-      "name": "Paramount Textile PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:59",
-      "filedAt": "2026-10-17",
-      "summary": "PTL: Regarding valuation report of Property, Plant and Equipment (PP&E)",
-      "body": "(Cont. News of PTL): Please noted that, as per IAS 12, deferred tax effect on Revaluation surplus will be given at the time of financial year closing.\" (end)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919575",
-      "code": "PTL",
-      "name": "Paramount Textile PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:59",
-      "filedAt": "2026-10-17",
-      "summary": "PTL: Regarding valuation report of Property, Plant and Equipment (PP&E)",
-      "body": "(Cont. News of PTL): following International Valuation Standards (IVS) and BSEC Notification No. SEC/CMRRC-D-2009-193/150/Admin dated 17th August 2013. The summary of the Valuation is as follows: The aggregate fair value of the Property, Plant and Equipment, Land &  Buildings of Paramount Textile PLC as at 30 June 2026 is BDT 18,277,161,275 compared with the aggregate written-down value of BDT 8,877,923,857 resulting in a net increase in value of BDT 9,399,237,418. (cont.2)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919574",
-      "code": "PTL",
-      "name": "Paramount Textile PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:59",
-      "filedAt": "2026-10-17",
-      "summary": "PTL: Regarding valuation report of Property, Plant and Equipment (PP&E)",
-      "body": "Refer to their earlier news disseminated by DSE on 01.10.2026 regarding appointment of independent asset valuer to carry out revaluation of PP&E, the company has further informed, among others, the following: \"The Board of Directors of the company be and were hereby decided to approve the Valuation Report of the Property, Plant and Equipment (PP&E) including land and buildings as at 30 June 2026 which conducted by MABS & J Partners, Chartered Accountants (cont.1)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {
-        "event_date": "01.10.2026"
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919578",
-      "code": "BEACONPHAR",
-      "name": "Beacon Pharmaceuticals PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:58",
-      "filedAt": "2026-10-17",
-      "summary": "BEACONPHAR: Regarding new investment in oncology production facility 2",
-      "body": "(Cont. News of BEACONPHAR): The Company will strengthen its R&D capabilities to enhance the regulatory readiness of its own drugs for SRA markets. Through rigorous research, product optimization and compliance with international quality standards, the Company will prepare its products for stringent regulatory assessment and approval. (end)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919577",
-      "code": "BEACONPHAR",
-      "name": "Beacon Pharmaceuticals PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:58",
-      "filedAt": "2026-10-17",
-      "summary": "BEACONPHAR: Regarding new investment in oncology production facility 2",
-      "body": "The company hereby informs its shareholders and stakeholders that the Company will make an investment of BDT 250 crore in oncology production facility 2. Upon completion, annual production capacity will increase by 37.97 crore tablets, 21.10 crore capsules, 2.53 crore blisters and 2 crore vials injectable. The investment is expected to have a positive impact on the Company's revenue. (cont.)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "BULLISH",
-      "sentiment_score": 50,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919562",
-      "code": "SALVO",
-      "name": "Salvo Organic Industries PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:55",
-      "filedAt": "2026-10-17",
-      "summary": "SALVO: Price Limit Open",
-      "body": "There will be no price limit on the trading of the shares of the Company today (17.10.2026) following its corporate declaration.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919560",
-      "code": "SALVO",
-      "name": "Salvo Organic Industries PLC.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:55",
-      "filedAt": "2026-10-17",
-      "summary": "SALVO: Dividend Declaration",
-      "body": "The Board of Directors has recommended 2.50% Cash Dividend for the year ended June 30, 2026. Date of AGM: 26.12.2026, Time: 10:30 AM, Venue: Hybrid System at Institution of Diploma Engineers Bangladesh, IDEB Bhaban, 160/A, Kakrail VIP Road, Dhaka-1000. Record Date: 16.11.2026. The Company has also reported EPS of Tk. 0.75, NAV per share of Tk. 17.02 and NOCFPS of Tk. 5.65 for the year ended June 30, 2026 as against Tk. 0.58, Tk. 16.57 and Tk. 5.68 respectively for the year ended June 30, 2025.",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "BULLISH",
-      "sentiment_score": 50,
-      "impact_level": "HIGH",
-      "metrics": {
-        "record_date": "16.11.2026",
-        "cash_dividend_pct": 2.5
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919567",
-      "code": "BEACONPHAR",
-      "name": "Beacon Pharmaceuticals PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:52",
-      "filedAt": "2026-10-17",
-      "summary": "BEACONPHAR: Price Limit Open",
-      "body": "There will be no price limit on the trading of the shares of the Company today (17.10.2026) following its corporate declaration.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919566",
-      "code": "BEACONPHAR",
-      "name": "Beacon Pharmaceuticals PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:52",
-      "filedAt": "2026-10-17",
-      "summary": "BEACONPHAR: Dividend Declaration",
-      "body": "(Cont. News of BEACONPHAR): Net asset value (NAV) per share rose 24.14% to BDT 35.83 from BDT 28.86, as retained earnings strengthened shareholders' equity. Net operating cash flow per share (NOCFPS) increased 39.76% to BDT 9.68 from BDT 6.93, on higher receipts from customers and others. (end)",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "BULLISH",
-      "sentiment_score": 50,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919565",
-      "code": "BEACONPHAR",
-      "name": "Beacon Pharmaceuticals PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:51",
-      "filedAt": "2026-10-17",
-      "summary": "BEACONPHAR: Dividend Declaration",
-      "body": "(Cont. News of BEACONPHAR): EPS, NAV & NOCFPS: For the year ended 30 June 2026, the audited financial statements of Beacon Pharmaceuticals PLC show earnings per share (EPS) more than doubling to BDT 8.41 from BDT 4.10 (+105.19%), driven mainly by 30.96% higher sales. (cont.2)",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919564",
-      "code": "BEACONPHAR",
-      "name": "Beacon Pharmaceuticals PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:51",
-      "filedAt": "2026-10-17",
-      "summary": "BEACONPHAR: Dividend Declaration",
-      "body": "The Board of Directors has recommended 11% Cash Dividend for the year ended June 30, 2026. Date of AGM: 13.12.2026, Time: 11:00 AM, Venue: Digital Platform subject to approval from BSEC. Record Date: 10.11.2026. The Company has also reported EPS of Tk. 8.41, NAV per share of Tk. 35.83 and NOCFPS of Tk. 9.68 for the year ended June 30, 2026 as against Tk. 4.10, Tk. 28.86 and Tk. 6.93 respectively for the year ended June 30, 2025. (cont.1)",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "BULLISH",
-      "sentiment_score": 90,
-      "impact_level": "HIGH",
-      "metrics": {
-        "record_date": "10.11.2026",
-        "cash_dividend_pct": 11.0
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919559",
-      "code": "BSCPLC",
-      "name": "Bangladesh Submarine Cables PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:46",
-      "filedAt": "2026-10-17",
-      "summary": "BSCPLC: Price Limit Open",
-      "body": "There will be no price limit on the trading of the shares of the Company today (17.10.2026) following its corporate declaration.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919558",
-      "code": "BSCPLC",
-      "name": "Bangladesh Submarine Cables PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:46",
-      "filedAt": "2026-10-17",
-      "summary": "BSCPLC: Dividend Declaration",
-      "body": "(Cont. News of BSCPLC): The Company has also reported Basic EPS of Tk. 15.14, Diluted EPS of Tk. 13.61, NAV per share of Tk. 102.39 and NOCFPS of Tk. 15.05 for the year ended June 30, 2026 as against Tk. 11.01, Tk. 9.93, Tk. 90.99 and Tk. 13.75 respectively for the year ended June 30, 2025. (end)",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919557",
-      "code": "BSCPLC",
-      "name": "Bangladesh Submarine Cables PLC",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:46",
-      "filedAt": "2026-10-17",
-      "summary": "BSCPLC: Dividend Declaration",
-      "body": "The Board of Directors has recommended 47.50% Cash Dividend for the year ended June 30, 2026. Date of AGM: 20.12.2026, Time: 12:00 PM, Venue/Mode: Virtual meeting through Digital Platform (https://bsccl.com.bd/agm). Record Date: 17.11.2026. (cont.)",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "BULLISH",
-      "sentiment_score": 90,
-      "impact_level": "HIGH",
-      "metrics": {
-        "record_date": "17.11.2026",
-        "cash_dividend_pct": 47.5
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919563",
-      "code": "LINDEBD",
-      "name": "Linde Bangladesh Limited",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:39",
-      "filedAt": "2026-10-17",
-      "summary": "LINDEBD: Q3 Financials",
-      "body": "(Cont. News of LINDEBD): Reasons for deviation: EPS lower due to COGS impact driven by power and energy price hike, and higher distribution costs. NOCFPS Increased due to higher debtors' collection. NAVPS Due to profit earned during the period partially offset by dividend payout. (end)",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "BULLISH",
-      "sentiment_score": 50,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919561",
-      "code": "LINDEBD",
-      "name": "Linde Bangladesh Limited",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "09:39",
-      "filedAt": "2026-10-17",
-      "summary": "LINDEBD: Q3 Financials",
-      "body": "(Q3 Un-audited): Basic and Diluted EPS was Tk. 5.23 for July-September 2026 as against Tk. 6.48 for July-September 2025; Basic and Diluted EPS was Tk. 17.78 for January-September 2026 as against Tk. 18.80 for January-September 2025. NOCFPS was Tk. 11.67 for January-September 2026 as against Tk. 8.25 for January-September 2025. NAV per share was Tk. 218.08 as on September 30, 2026 and Tk. 210.31 as on December 31, 2025. (cont.)",
-      "category": "DIVIDEND_EARNINGS",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {
-        "event_date": "september 30, 2026",
-        "navps": 218.08
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919556",
-      "code": "CNATEX",
-      "name": "C & A Textiles Limited",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:36",
-      "filedAt": "2026-10-17",
-      "summary": "CNATEX: Inspection to the factory premises of C & A Textiles Limited",
-      "body": "A team of DSE visited the factory premises of C & A Textiles Limited on October 04, 2026 and found the operation/production closed.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {
-        "event_date": "october 04, 2026"
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919555",
-      "code": "EXCH",
-      "name": "EXCH",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:35",
-      "filedAt": "2026-10-17",
-      "summary": "DSE NEWS: Message for the claimants of Moshihor Securities Limited",
-      "body": "(Continuation of DSE News): Please collect your cheque as per the schedule communicated to you. If you are unable to collect your cheque on the scheduled date, the next collection date and time will be communicated through a subsequent SMS. For details and required forms, please visit: [https://www.dsebd.org/downloads]. (end)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919554",
-      "code": "EXCH",
-      "name": "EXCH",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:35",
-      "filedAt": "2026-10-17",
-      "summary": "DSE NEWS: Message for the claimants of Moshihor Securities Limited",
-      "body": "Honorable claimants of Moshihor Securities Ltd., DSE will start disbursing cheques from the Investors' Protection Fund (IPF) against your verified claims against Moshihor Securities Ltd. from September 28, 2026 at 3:00 PM. The date, time, venue, and other relevant information will be communicated to you shortly via SMS. (cont.)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919553",
-      "code": "AFCAGRO",
-      "name": "AFC Agro Biotech Ltd.",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:30",
-      "filedAt": "2026-10-17",
-      "summary": "AFCAGRO: Inspection of the factory premises of AFC Agro Biotech Ltd.",
-      "body": "A team of DSE visited the factory premises of AFC Agro Biotech Limited on July 09, 2026 and found the operation/production closed.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {
-        "event_date": "july 09, 2026"
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919552",
-      "code": "ACTIVEFINE",
-      "name": "Active Fine Chemicals Limited",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:30",
-      "filedAt": "2026-10-17",
-      "summary": "ACTIVEFINE: Inspection of the factory premises of Active Fine Chemicals Limited",
-      "body": "A team of DSE visited the factory premises of Active Fine Chemicals Limited on June 25, 2026 and found the operation/production closed.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {
-        "event_date": "june 25, 2026"
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919550",
-      "code": "EXCH",
-      "name": "EXCH",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:29",
-      "filedAt": "2026-10-17",
-      "summary": "DSE NEWS: Regarding Lodging Investor Complaints through CCAM",
-      "body": "The Investors are requested to lodge their complaints against the TREC Holder Companies and the issuer of listed securities (if any) of DSE through Customer Complaint Address Module (CCAM) (link: https://www.cdbl.com.bd/complaints.sec.gov.bd/) for addressing their complaints virtually.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919549",
-      "code": "EXCH",
-      "name": "EXCH",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:25",
-      "filedAt": "2026-10-17",
-      "summary": "DSE NEWS: Awareness message",
-      "body": "DSE NEWS: All Stock Dealers, Stock Brokers and Authorized Representatives are asked to strictly follow the code of conduct as enumerated in the Second Schedule to the Securities and Exchange Commission (Stock Dealer, Stock Broker and Authorized Representative) Rules, 2000.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919548",
-      "code": "EXCH",
-      "name": "EXCH",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:25",
-      "filedAt": "2026-10-17",
-      "summary": "DSE NEWS: Awareness Message for Investors",
-      "body": "(Continuation of DSE News): If anyone spreads information based on rumor, using patent of DSE, he/she will be held liable under Copyright Act, 2000 and it shall be treated as punishable offence under Section-17 of the Securities and Exchange Ordinance, 1969. (end)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919547",
-      "code": "EXCH",
-      "name": "EXCH",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:25",
-      "filedAt": "2026-10-17",
-      "summary": "DSE NEWS: Awareness Message for Investors",
-      "body": "DSE does not publish market data through any social media pages. INVESTORS should not rely on any information from an unauthorized source such as Facebook, WhatsApp, Viber, Linkedin etc. (cont.)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919546",
-      "code": "REGL",
-      "name": "REGL",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:25",
-      "filedAt": "2026-10-17",
-      "summary": "BSEC NEWS: Awareness Message for Investors",
-      "body": "(Continuation of BSEC News - Awareness Message for Investors) 3. Do not pay any heed to rumors at the time of trading shares; it may cause loss to you. Even spreading rumor is legally prohibited. (Ref.: SEC letter no. SEC/SRMIC/2010/726 dated November 23, 2010). (end)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919545",
-      "code": "REGL",
-      "name": "REGL",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:25",
-      "filedAt": "2026-10-17",
-      "summary": "BSEC NEWS: Awareness Message for Investors",
-      "body": "Investors are requested to consider the following facts at the time of making investment decision in the Capital Market: 1. Without acquiring proper knowledge, information and experience regarding different aspects and matters of Capital Market, one should not invest in the Capital Market. 2. The gain or loss, whichever comes from the investment, it belongs to you. So, well - thought of investment decision based on knowledge and fundamentals of the securities may be real assistance to you. (cont.)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33919551",
-      "code": "EXCH",
-      "name": "EXCH",
-      "sector": "",
-      "date": "17 Oct 2026",
-      "time": "08:25",
-      "filedAt": "2026-10-17",
-      "summary": "DSE NEWS: Greetings Message",
-      "body": "Honorable Investors, Good morning! Please make your investment decision based on Company fundamentals, technical analysis, price level and disclosed information. Avoid rumor-based speculations.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33863991",
-      "code": "EXCH",
-      "name": "EXCH",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "14:36",
-      "filedAt": "2026-10-15",
-      "summary": "DSE NEWS: Daily Turnover of Main Board",
-      "body": "Today's (15.10.2026) Total Trades: 162,437; Volume: 162,107,049 and Turnover: Tk. 4,996.90 million.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33863987",
-      "code": "OIMEX",
-      "name": "Oimex Electrode Limited",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "14:32",
-      "filedAt": "2026-10-15",
-      "summary": "OIMEX: Postponement of Board Meeting schedule under LR 19(1)",
-      "body": "The Company has further informed that due to unavoidable circumstances, the meeting scheduled to be held on October 15, 2026 at 6:30 PM as per LR 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, to consider, among others, audited financial statements for the year ended June 30, 2026 has been postponed. New date and time of the meeting will be notified later.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 15, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863990",
-      "code": "HWAWELLTEX",
-      "name": "Hwa Well Textiles (BD) PLC.",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "14:32",
-      "filedAt": "2026-10-15",
-      "summary": "HWAWELLTEX: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 26, 2026 at 5:00 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 26, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863989",
-      "code": "EMERALDOIL",
-      "name": "Emerald Oil Industries Ltd.",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "14:30",
-      "filedAt": "2026-10-15",
-      "summary": "EMERALDOIL: Regarding production status of the company",
-      "body": "(Cont. News of EMERALDOIL): Further, we would like to inform you that the Rice Bran the main raw material are available in market from the month of November, because of it is seasonal raw material. Due to insufficient of raw material (Rice Bran), we are not starting our commercial operation in of peak season...\" (end)",
-      "category": "PSI_MATERIAL",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33863988",
-      "code": "EMERALDOIL",
-      "name": "Emerald Oil Industries Ltd.",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "14:29",
-      "filedAt": "2026-10-15",
-      "summary": "EMERALDOIL: Regarding production status of the company",
-      "body": "(Cont. News of EMERALDOIL): However, recent electricity shortages in rural areas and the resulting shortfall in the national grid have delayed the Company's receipt of the required electricity connection from the Bangladesh Power Development Board (BPDB). Moreover, to facilitate the electricity connection, the Company has installed solar panels valued at approximately Tk.80 lakh and deposited approximately Tk. 50 lakh toward the connection costs specified by BPDB. (cont.2)",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33863986",
-      "code": "EMERALDOIL",
-      "name": "Emerald Oil Industries Ltd.",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "14:29",
-      "filedAt": "2026-10-15",
-      "summary": "EMERALDOIL: Regarding production status of the company",
-      "body": "Refer to their earlier news disseminated by DSE on 30.07.2026 regarding clarification on proposed resumption of production & Others, the company has further updated its production status, stating among others, the following: \"...In our earlier letter, we stated that we expected to commence commercial operations by 30 September 2026. (cont.1)",
-      "category": "PSI_MATERIAL",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {
-        "event_date": "30.07.2026"
-      },
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33863983",
-      "code": "UBR",
-      "name": "UBR",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "14:25",
-      "filedAt": "2026-10-15",
-      "summary": "DSE NEWS: Withdrawal of Authorized Representative",
-      "body": "Withdrawal of Authorized Representative: UCB Stock Brokerage Limited (DSE TREC No. 181) has withdrawn one of its Authorized Representatives, Mr. Jahirul Islam.",
-      "category": "GENERAL_NOTICE",
-      "sentiment": "BEARISH",
-      "sentiment_score": -50,
-      "impact_level": "LOW",
-      "metrics": {},
-      "risk_warnings": []
-    },
-    {
-      "id": "psi-33863982",
-      "code": "MONNOFABR",
-      "name": "Monno Fabrics Limited",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "14:19",
-      "filedAt": "2026-10-15",
-      "summary": "MONNOFABR: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 26, 2026 at 4:00 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 26, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863984",
-      "code": "CITYGENINS",
-      "name": "City Insurance PLC.",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "13:57",
-      "filedAt": "2026-10-15",
-      "summary": "CITYGENINS: Board Meeting schedule under LR 16(1)",
-      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 26, 2026 at 4:00 pm to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 26, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863979",
-      "code": "MEGCONMILK",
-      "name": "Meghna Condensed Milk Industries Ltd.",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "13:52",
-      "filedAt": "2026-10-15",
-      "summary": "MEGCONMILK: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 29, 2026 at 2:35 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 29, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863985",
-      "code": "MONNOAGML",
-      "name": "Monno Agro & General Machinery Limited",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "13:51",
-      "filedAt": "2026-10-15",
-      "summary": "MONNOAGML: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 28, 2026 at 4:00 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 28, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863978",
-      "code": "MEGHNAPET",
-      "name": "Meghna Pet Industries Ltd.",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "13:50",
-      "filedAt": "2026-10-15",
-      "summary": "MEGHNAPET: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 29, 2026 at 3:00 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 29, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863980",
-      "code": "SHEPHERD",
-      "name": "Shepherd Industries PLC",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "13:48",
-      "filedAt": "2026-10-15",
-      "summary": "SHEPHERD: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 28, 2026 at 5:00 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 28, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863981",
-      "code": "MONNOCERA",
-      "name": "Monno Ceramic Industries Ltd.",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "13:38",
-      "filedAt": "2026-10-15",
-      "summary": "MONNOCERA: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 28, 2026 at 5:30 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 28, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863968",
-      "code": "TB10Y0434",
-      "name": "10Y BGTB 17/04/2034",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:48",
-      "filedAt": "2026-10-15",
-      "summary": "TB10Y0434: Resumption after Record Date",
-      "body": "Trading of 10Y BGTB 17/04/2034 Government Securities will resume on 17.10.2026.",
-      "category": "RECORD_DATE_AGM",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {
-        "event_date": "17.10.2026"
-      },
-      "risk_warnings": [
-        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33863967",
-      "code": "TB10Y0429",
-      "name": "10Y BGTB 17/04/2029",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:47",
-      "filedAt": "2026-10-15",
-      "summary": "TB10Y0429: Resumption after Record Date",
-      "body": "Trading of 10Y BGTB 17/04/2029 Government Securities will resume on 17.10.2026.",
-      "category": "RECORD_DATE_AGM",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {
-        "event_date": "17.10.2026"
-      },
-      "risk_warnings": [
-        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33863966",
-      "code": "TB15Y0428",
-      "name": "15Y BGTB 17/04/2028",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:47",
-      "filedAt": "2026-10-15",
-      "summary": "TB15Y0428: Resumption after Record Date",
-      "body": "Trading of 15Y BGTB 17/04/2028 Government Securities will resume on 17.10.2026.",
-      "category": "RECORD_DATE_AGM",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {
-        "event_date": "17.10.2026"
-      },
-      "risk_warnings": [
-        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33863965",
-      "code": "TB15Y1027",
-      "name": "15Y BGTB 17/10/2027",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:47",
-      "filedAt": "2026-10-15",
-      "summary": "TB15Y1027: Resumption after Record Date",
-      "body": "Trading of 15Y BGTB 17/10/2027 Government Securities will resume on 17.10.2026.",
-      "category": "RECORD_DATE_AGM",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {
-        "event_date": "17.10.2026"
-      },
-      "risk_warnings": [
-        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33863964",
-      "code": "TB5Y0430",
-      "name": "05Y BGTB 16/04/2030",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:46",
-      "filedAt": "2026-10-15",
-      "summary": "TB5Y0430: Resumption after Record Date",
-      "body": "Trading of 05Y BGTB 16/04/2030 Government Securities will resume on 17.10.2026.",
-      "category": "RECORD_DATE_AGM",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {
-        "event_date": "17.10.2026"
-      },
-      "risk_warnings": [
-        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33863970",
-      "code": "TB10Y1031",
-      "name": "10Y BGTB 19/10/2031",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:46",
-      "filedAt": "2026-10-15",
-      "summary": "TB10Y1031: Suspension for Record Date",
-      "body": "Trading of 10Y BGTB 19/10/2031 Government Securities will remain suspended on record date i.e., 18.10.2026 and day before the record date i.e., 17.10.2026. Trading of the Government Securities will resume on 19.10.2026.",
-      "category": "RECORD_DATE_AGM",
-      "sentiment": "BEARISH",
-      "sentiment_score": -50,
-      "impact_level": "HIGH",
-      "metrics": {
-        "event_date": "19.10.2026",
-        "record_date": "i.e., 18.10.2026"
-      },
-      "risk_warnings": [
-        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33863969",
-      "code": "TB15Y1026",
-      "name": "TB15Y1026",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:45",
-      "filedAt": "2026-10-15",
-      "summary": "TB15Y1026: Suspension for Record Date",
-      "body": "Trading of 15Y BGTB 19/10/2026 Government Securities will remain suspended on record date i.e., 18.10.2026 and day before the record date i.e., 17.10.2026. The Government Securities will be delisted effective from 19.10.2026 due to completion of maturity.",
-      "category": "RECORD_DATE_AGM",
-      "sentiment": "BEARISH",
-      "sentiment_score": -50,
-      "impact_level": "HIGH",
-      "metrics": {
-        "record_date": "i.e., 18.10.2026"
-      },
-      "risk_warnings": [
-        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33863972",
-      "code": "SONALIANSH",
-      "name": "Sonali Aansh Industries Limited",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:44",
-      "filedAt": "2026-10-15",
-      "summary": "SONALIANSH: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 29, 2026 at 2:30 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 29, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863963",
-      "code": "TB20Y0430",
-      "name": "20Y BGTB 28/04/2030",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:44",
-      "filedAt": "2026-10-15",
-      "summary": "TB20Y0430: Record date for entitlement of coupon payment",
-      "body": "Record Date for entitlement of coupon payment of 20Y BGTB 28/04/2030 Government Securities is 27.10.2026.",
-      "category": "RECORD_DATE_AGM",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": [
-        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33863961",
-      "code": "TB20Y1029",
-      "name": "20Y BGTB 28/10/2029",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:43",
-      "filedAt": "2026-10-15",
-      "summary": "TB20Y1029: Record date for entitlement of coupon payment",
-      "body": "Record Date for entitlement of coupon payment of 20Y BGTB 28/10/2029 Government Securities is 27.10.2026.",
-      "category": "RECORD_DATE_AGM",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "HIGH",
-      "metrics": {},
-      "risk_warnings": [
-        "Record Date / AGM Notice: Share trading may shift to spot market before record date."
-      ]
-    },
-    {
-      "id": "psi-33863973",
-      "code": "NITOLINS",
-      "name": "Nitol Insurance PLC.",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:43",
-      "filedAt": "2026-10-15",
-      "summary": "NITOLINS: Board Meeting schedule under LR 16(1)",
-      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 25, 2026 at 4:00 pm to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 25, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863974",
-      "code": "EGEN",
-      "name": "eGeneration PLC.",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:42",
-      "filedAt": "2026-10-15",
-      "summary": "EGEN: Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 28, 2026 at 4:00 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 28, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863975",
-      "code": "SINGERBD",
-      "name": "Singer Bangladesh Limited",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:40",
-      "filedAt": "2026-10-15",
-      "summary": "SINGERBD: Board Meeting schedule under LR 16(1)",
-      "body": "As per Regulation 16(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 26, 2026 at 3:00 pm to consider, among others, Un-Audited Financial Statements for the Third Quarter (Q3) period ended September 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 26, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
-      ]
-    },
-    {
-      "id": "psi-33863976",
-      "code": "AMCL(PRAN)",
-      "name": "Agricultural Marketing Company Ltd. (Pran)",
-      "sector": "",
-      "date": "15 Oct 2026",
-      "time": "12:39",
-      "filedAt": "2026-10-15",
-      "summary": "AMCL(PRAN): Board Meeting schedule under LR 19(1)",
-      "body": "As per Regulation 19(1) of the Dhaka Stock Exchange (Listing) Regulations, 2015, the Company has informed that a meeting of the Board of Directors will be held on October 26, 2026 at 3:00 PM to consider, among others, audited financial statements of the Company for the year ended June 30, 2026.",
-      "category": "BOARD_MEETING",
-      "sentiment": "NEUTRAL",
-      "sentiment_score": 0,
-      "impact_level": "MEDIUM",
-      "metrics": {
-        "event_date": "october 26, 2026"
-      },
-      "risk_warnings": [
-        "Board meeting scheduled: Expect binary earnings/dividend volatility. Plan stops accordingly."
       ]
     }
   ]

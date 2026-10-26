@@ -56,4 +56,7 @@ supabase/.temp/
 run_local.sh
 run_local_frontend.sh
 LOCAL_TEST.md
-frontend/
+# frontend/dist is tracked for fast cloud deploy without node OOM
+!frontend/
+!frontend/dist/
+!frontend/dist/**
