@@ -16,6 +16,49 @@ The repository currently contains:
 - historical coverage and ingestion monitoring
 - lightweight Render wake endpoint for external cron
 
+
+## 🤖 Autonomous Multi-Agent Trading System (`/agents`)
+
+The repository includes a comprehensive 11-agent autonomous intelligence and day-trading pipeline specifically engineered for the Dhaka Stock Exchange (DSE), accessible via the **"Analysis with Agent"** workspace (`/agents`):
+
+| # | Agent Name | ID | Core Capability & DSE Integration |
+|---|------------|----|-----------------------------------|
+| 1 | **DSE Chart Setup Scanner** | `trader-scanner` | Scans 400+ DSE securities for 20D breakouts, bull flags, MA20 reclaims, and oversold bounces. |
+| 2 | **Tactical Entry Planner** | `trader-entry` | Computes optimal limit order zones, pullback entry tiers, and breakout confirmation thresholds. |
+| 3 | **Dynamic Exit & Target Agent** | `trader-exit` | Formulates 1:2 and 1:3 multi-tranche take-profit targets with ATR-based trailing stops. |
+| 4 | **TimeMachine Replay Agent** | `trader-timemachine` | Runs Monte Carlo simulations and historical backtests across multiple DSE market regimes. |
+| 5 | **Capital Risk & Exposure Guard** | `trader-risk` | Enforces single-stock portfolio allocation caps, circuit breaker guards, and sector concentration limits. |
+| 6 | **Position Sizing & Budget Agent** | `trader-budget` | Calculates exact share purchase quantities using 4-way sizing constraints and Kelly criterion. |
+| 7 | **Instant Alert & Notification Agent** | `trader-alerts` | Real-time BST market clock (10:00-14:20), Bangladesh holidays, and instant Telegram / Webhook dispatch. |
+| 8 | **DSE Paper Trading Execution Broker** | `trader-broker` | High-fidelity virtual execution engine with ৳500K balance, 0.4% DSE brokerage fee, and bracket orders. |
+| 9 | **Corporate Disclosures & News Agent** | `trader-news` | Connects directly to DSE Live News API (`dsebd.org/api/live/news`) for PSI, dividends, EPS growth, and board meetings. |
+| 10 | **Financial Valuation & Analyst Agent** | `trader-analyst` | Computes Sector Median P/E discounts, P/B ratios, and Benjamin Graham Intrinsic Fair Values. |
+| 11 | **Sponsor & Smart Money Flow Agent** | `trader-pelosi` | Tracks Sponsor/Director buy/sell filings (Form 1 & 2), monthly institutional ownership, and tight public floats. |
+
+### Running the Multi-Agent System:
+
+```bash
+# 1. Run full 31-point system code-side audit:
+python scripts/system_audit.py
+
+# 2. Launch FastAPI Backend + Agent Engine:
+.venv\Scripts\uvicorn.exe src.dse_collector.web:app --host 127.0.0.1 --port 8000 --reload
+
+# 3. Launch React Dashboard:
+pnpm --filter @workspace/dse-market-dashboard run dev
+```
+
+Visit **`http://localhost:5173/agents`** or **`http://127.0.0.1:8000/agents`** to interact with the multi-agent trading terminal.
+
+### Telegram Live Signal Setup:
+
+Add your Telegram credentials to your `.env` file to receive live breakout and price target alerts:
+
+```env
+TELEGRAM_BOT_TOKEN="your_bot_token_from_botfather"
+TELEGRAM_CHAT_ID="your_chat_id_from_userinfobot"
+```
+
 ## Data flow
 
 ```text
