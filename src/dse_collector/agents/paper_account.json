@@ -1,17 +1,37 @@
 {
   "starting_cash": 500000.0,
-  "cash_balance": 436697.8,
+  "cash_balance": 35476.1,
   "commission_rate": 0.004,
   "positions": {
     "BNICL": {
       "symbol": "BNICL",
       "quantity": 500,
       "average_buy_price": 126.1,
-      "current_ltp": 126.1,
+      "current_ltp": 44.2,
       "stop_loss": 119.8,
       "take_profit": 138.7,
       "opened_at": "2026-10-27 01:17:35",
       "notes": "Agent 1 Breakout 20D Signal"
+    },
+    "ORIONPHARM": {
+      "symbol": "ORIONPHARM",
+      "quantity": 6824,
+      "average_buy_price": 29.3,
+      "current_ltp": 48.3,
+      "stop_loss": 27.84,
+      "take_profit": 32.23,
+      "opened_at": "2026-10-27 03:03:16",
+      "notes": "Auto-Pilot Breakout Signal"
+    },
+    "BNIPLC": {
+      "symbol": "BNIPLC",
+      "quantity": 1200,
+      "average_buy_price": 166.4,
+      "current_ltp": 116.1,
+      "stop_loss": 158.08,
+      "take_profit": 183.04,
+      "opened_at": "2026-10-27 03:03:16",
+      "notes": "Auto-Pilot Breakout Signal"
     }
   },
   "pending_orders": [],
@@ -30,9 +50,69 @@
       "stop_loss": 119.8,
       "take_profit": 138.7,
       "notes": "Agent 1 Breakout 20D Signal"
+    },
+    {
+      "order_id": "ORD-1793048596860",
+      "symbol": "ORIONPHARM",
+      "side": "BUY",
+      "order_type": "LIMIT",
+      "quantity": 3412,
+      "price": 29.3,
+      "order_value": 99971.6,
+      "commission": 399.89,
+      "status": "FILLED",
+      "executed_at": "2026-10-27 03:03:16",
+      "stop_loss": 27.84,
+      "take_profit": 32.23,
+      "notes": "Auto-Pilot Breakout Signal"
+    },
+    {
+      "order_id": "ORD-1793048596869",
+      "symbol": "BNIPLC",
+      "side": "BUY",
+      "order_type": "LIMIT",
+      "quantity": 600,
+      "price": 166.4,
+      "order_value": 99840.0,
+      "commission": 399.36,
+      "status": "FILLED",
+      "executed_at": "2026-10-27 03:03:16",
+      "stop_loss": 158.08,
+      "take_profit": 183.04,
+      "notes": "Auto-Pilot Breakout Signal"
+    },
+    {
+      "order_id": "ORD-1793048605691",
+      "symbol": "ORIONPHARM",
+      "side": "BUY",
+      "order_type": "LIMIT",
+      "quantity": 3412,
+      "price": 29.3,
+      "order_value": 99971.6,
+      "commission": 399.89,
+      "status": "FILLED",
+      "executed_at": "2026-10-27 03:03:25",
+      "stop_loss": 27.84,
+      "take_profit": 32.23,
+      "notes": "Auto-Pilot Breakout Signal"
+    },
+    {
+      "order_id": "ORD-1793048605698",
+      "symbol": "BNIPLC",
+      "side": "BUY",
+      "order_type": "LIMIT",
+      "quantity": 600,
+      "price": 166.4,
+      "order_value": 99840.0,
+      "commission": 399.36,
+      "status": "FILLED",
+      "executed_at": "2026-10-27 03:03:25",
+      "stop_loss": 158.08,
+      "take_profit": 183.04,
+      "notes": "Auto-Pilot Breakout Signal"
     }
   ],
   "closed_trades": [],
-  "total_commission_paid": 252.2,
-  "updated_at": "2026-10-27 01:17:35"
+  "total_commission_paid": 1850.7,
+  "updated_at": "2026-10-27 03:03:52"
 }

@@ -38,6 +38,8 @@ import {
   ShieldAlert,
   Plus,
   X,
+  RefreshCw,
+  Zap,
 } from 'lucide-react';
 import { Sidebar } from '@/components/sidebar';
 import {
@@ -140,20 +142,76 @@ export default function AdvancedChartPage() {
     }
   });
 
-  // Portfolio Management
-  const [portfolio, setPortfolio] = useState<PortfolioPosition[]>(() => {
-    try {
-      const saved = localStorage.getItem('dse_user_portfolio');
-      return saved
-        ? JSON.parse(saved)
-        : [
-            { id: 'pos_1', symbol: 'GP', buyPrice: 238.5, quantity: 200, buyDate: '2026-09-01' },
-            { id: 'pos_2', symbol: 'BATBC', buyPrice: 225.0, quantity: 100, buyDate: '2026-09-10' },
-          ];
-    } catch {
-      return [];
-    }
+  // Paper Broker Portfolio Management (Direct Agent 8 & Auto-Pilot Sync)
+  const [paperAccount, setPaperAccount] = useState<{
+    starting_cash: number;
+    cash_balance: number;
+    stock_holdings_value: number;
+    total_account_equity: number;
+    total_unrealized_pnl: number;
+    total_realized_pnl: number;
+    net_pnl: number;
+  }>({
+    starting_cash: 500000,
+    cash_balance: 500000,
+    stock_holdings_value: 0,
+    total_account_equity: 500000,
+    total_unrealized_pnl: 0,
+    total_realized_pnl: 0,
+    net_pnl: 0,
   });
+
+  const [paperPositions, setPaperPositions] = useState<Array<{
+    symbol: string;
+    quantity: number;
+    average_buy_price: number;
+    cost_basis: number;
+    current_ltp: number;
+    market_value: number;
+    unrealized_pnl: number;
+    unrealized_pnl_pct: number;
+    stop_loss?: number;
+    take_profit?: number;
+    opened_at?: string;
+  }>>([]);
+
+  const [paperLoading, setPaperLoading] = useState<boolean>(false);
+  const [runningAutopilot, setRunningAutopilot] = useState<boolean>(false);
+
+  const fetchPaperBroker = useCallback(() => {
+    setPaperLoading(true);
+    fetch('/api/agents/broker/account')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data && data.status === 'success' && data.account) {
+          setPaperAccount(data.account);
+          setPaperPositions(data.positions || []);
+        }
+      })
+      .catch((e) => console.error('Error fetching paper broker:', e))
+      .finally(() => setPaperLoading(false));
+  }, []);
+
+  const triggerAutopilot = async () => {
+    setRunningAutopilot(true);
+    try {
+      const res = await fetch('/api/agents/broker/autopilot/run', { method: 'POST' });
+      const data = await res.json();
+      if (data && data.status === 'success') {
+        fetchPaperBroker();
+      }
+    } catch (e) {
+      console.error('Error running autopilot:', e);
+    } finally {
+      setRunningAutopilot(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPaperBroker();
+    const iv = setInterval(fetchPaperBroker, 15000);
+    return () => clearInterval(iv);
+  }, [fetchPaperBroker]);
 
   // Add stock form state
   const [showAddForm, setShowAddForm] = useState<boolean>(false);
@@ -250,36 +308,67 @@ export default function AdvancedChartPage() {
     });
   };
 
-  // Persist Portfolio
-  const savePortfolio = (updated: PortfolioPosition[]) => {
-    setPortfolio(updated);
-    try {
-      localStorage.setItem('dse_user_portfolio', JSON.stringify(updated));
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const handleAddPosition = (e: React.FormEvent) => {
+  // Direct Paper Broker Execution Handlers
+  const handleAddPosition = async (e: React.FormEvent) => {
     e.preventDefault();
     const price = parseFloat(newBuyPrice);
     const qty = parseInt(newQuantity, 10);
     if (!newSymbol || isNaN(price) || isNaN(qty) || qty <= 0) return;
 
-    const newPos: PortfolioPosition = {
-      id: `pos_${Date.now()}`,
-      symbol: newSymbol.toUpperCase(),
-      buyPrice: price,
-      quantity: qty,
-      buyDate: new Date().toISOString().slice(0, 10),
-    };
+    const sl = parseFloat((price * 0.95).toFixed(1));
+    const tp = parseFloat((price * 1.10).toFixed(1));
 
-    savePortfolio([newPos, ...portfolio]);
-    setShowAddForm(false);
+    try {
+      const res = await fetch('/api/agents/broker/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          symbol: newSymbol.toUpperCase(),
+          side: 'BUY',
+          quantity: qty,
+          price,
+          order_type: 'LIMIT',
+          stop_loss: sl,
+          take_profit: tp,
+          notes: 'Manual Paper Buy from Advanced Chart',
+        }),
+      });
+      const data = await res.json();
+      if (data.status === 'success') {
+        fetchPaperBroker();
+        setShowAddForm(false);
+      } else {
+        alert(data.message || 'Failed to place paper order');
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const handleDeletePosition = (id: string) => {
-    savePortfolio(portfolio.filter((p) => p.id !== id));
+  const handleClosePosition = async (sym: string, qty: number, ltp: number) => {
+    if (!confirm(`Are you sure you want to sell ${sym} (${qty} shares @ ৳${ltp.toFixed(1)})?`)) return;
+    try {
+      const res = await fetch('/api/agents/broker/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          symbol: sym,
+          side: 'SELL',
+          quantity: qty,
+          price: ltp,
+          order_type: 'MARKET',
+          notes: 'Manual Paper Exit from Advanced Chart',
+        }),
+      });
+      const data = await res.json();
+      if (data.status === 'success') {
+        fetchPaperBroker();
+      } else {
+        alert(data.message || 'Failed to close position');
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const toggleAccordion = (key: string) => {
@@ -680,17 +769,9 @@ export default function AdvancedChartPage() {
 
   // Portfolio Totals Calculation
   const portfolioSummary = useMemo(() => {
-    let totalInvested = 0;
-    let currentValue = 0;
-
-    for (const item of portfolio) {
-      const stock = stocks.find((s) => s.symbol === item.symbol);
-      const currentPrice = stock?.ltp ?? item.buyPrice;
-      totalInvested += item.buyPrice * item.quantity;
-      currentValue += currentPrice * item.quantity;
-    }
-
-    const totalPL = currentValue - totalInvested;
+    const totalInvested = paperAccount.stock_holdings_value;
+    const currentValue = paperAccount.stock_holdings_value + paperAccount.total_unrealized_pnl;
+    const totalPL = paperAccount.total_unrealized_pnl;
     const totalPLPct = totalInvested > 0 ? (totalPL / totalInvested) * 100 : 0;
 
     return {
@@ -698,8 +779,10 @@ export default function AdvancedChartPage() {
       currentValue,
       totalPL,
       totalPLPct,
+      cashBalance: paperAccount.cash_balance,
+      totalEquity: paperAccount.total_account_equity,
     };
-  }, [portfolio, stocks]);
+  }, [paperAccount]);
 
   const filterList = (list: StockSummary[]) => {
     if (!stockSearch.trim()) return list;
@@ -1138,43 +1221,60 @@ export default function AdvancedChartPage() {
 
                 {/* Panel Content based on Active Right Dock Tab */}
                 <div className="flex-1 overflow-y-auto overflow-x-hidden">
-                  {/* TAB 4: PORTFOLIO - FULL FUNCTIONAL WITH ADD, TRACK & P/L */}
+                  {/* TAB 4: PAPER BROKER PORTFOLIO (AGENT 8 & AUTO-PILOT DIRECT SYNC) */}
                   {activeRightTab === 'portfolio' && (
                     <div className="p-3">
                       {/* Portfolio Header & Overall Summary Card */}
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-1.5 text-xs font-bold text-white uppercase tracking-wider">
-                          <Briefcase size={14} className="text-[#00b0ff]" />
-                          <span>My Portfolio ({portfolio.length})</span>
+                          <Briefcase size={14} className="text-amber-400" />
+                          <span>Paper Portfolio ({paperPositions.length})</span>
+                          <span className="size-2 rounded-full bg-emerald-400 animate-pulse ml-0.5" title="Auto-Pilot Active & Synced" />
                         </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setNewSymbol(selectedSymbol);
-                            const st = stocks.find((s) => s.symbol === selectedSymbol);
-                            if (st?.ltp) setNewBuyPrice(st.ltp.toString());
-                            setShowAddForm((v) => !v);
-                          }}
-                          className="flex items-center gap-1 rounded bg-[#00b0ff]/20 px-2 py-1 text-[11px] font-bold text-[#00b0ff] hover:bg-[#00b0ff]/30 transition"
-                        >
-                          <Plus size={12} />
-                          <span>Add Stock</span>
-                        </button>
+                        <div className="flex items-center gap-1">
+                          <button
+                            type="button"
+                            onClick={triggerAutopilot}
+                            disabled={runningAutopilot}
+                            title="Run Auto-Pilot Breakout Scan & Auto-Trade"
+                            className="flex items-center gap-1 rounded bg-amber-500/20 px-2 py-1 text-[11px] font-bold text-amber-300 hover:bg-amber-500/30 transition disabled:opacity-50"
+                          >
+                            <Zap size={11} className={runningAutopilot ? 'animate-spin' : 'text-amber-400'} />
+                            <span>{runningAutopilot ? 'Scanning...' : 'Auto-Pilot'}</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setNewSymbol(selectedSymbol);
+                              const st = stocks.find((s) => s.symbol === selectedSymbol);
+                              if (st?.ltp) setNewBuyPrice(st.ltp.toString());
+                              setShowAddForm((v) => !v);
+                            }}
+                            className="flex items-center gap-1 rounded bg-[#00b0ff]/20 px-2 py-1 text-[11px] font-bold text-[#00b0ff] hover:bg-[#00b0ff]/30 transition"
+                          >
+                            <Plus size={11} />
+                            <span>Add</span>
+                          </button>
+                        </div>
                       </div>
 
                       {/* Total P/L Summary Card */}
-                      <div className="rounded bg-[#1a1f2c] p-2.5 border border-slate-800 font-mono text-xs mb-3">
+                      <div className="rounded bg-[#1a1f2c] p-2.5 border border-slate-800 font-mono text-xs mb-3 space-y-1.5">
                         <div className="flex justify-between items-center text-slate-400 text-[11px]">
-                          <span>Total Invested</span>
-                          <span className="text-white font-bold">৳{portfolioSummary.totalInvested.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</span>
+                          <span>Account Equity</span>
+                          <strong className="text-amber-300 font-bold">৳{portfolioSummary.totalEquity.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</strong>
                         </div>
-                        <div className="flex justify-between items-center text-slate-400 text-[11px] mt-1">
-                          <span>Current Value</span>
-                          <span className="text-white font-bold">৳{portfolioSummary.currentValue.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</span>
+                        <div className="flex justify-between items-center text-slate-400 text-[11px]">
+                          <span>Available Cash</span>
+                          <span className="text-white">৳{portfolioSummary.cashBalance.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</span>
+                        </div>
+                        <div className="flex justify-between items-center text-slate-400 text-[11px]">
+                          <span>Stock Holdings</span>
+                          <span className="text-white">৳{portfolioSummary.totalInvested.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</span>
                         </div>
                         <div className="border-t border-slate-800/80 my-1.5" />
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-300 font-bold text-[11px]">Total Profit / Loss</span>
+                          <span className="text-slate-300 font-bold text-[11px]">Unrealized P&L</span>
                           <span
                             className={`font-bold ${
                               portfolioSummary.totalPL >= 0 ? 'text-[#089981]' : 'text-[#f23645]'
@@ -1193,7 +1293,7 @@ export default function AdvancedChartPage() {
                           className="rounded bg-[#151922] p-2.5 border border-[#00b0ff]/40 mb-3 text-xs font-mono"
                         >
                           <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-white text-[11px]">Buy New Stock</span>
+                            <span className="font-bold text-white text-[11px]">Buy Paper Order</span>
                             <button
                               type="button"
                               onClick={() => setShowAddForm(false)}
@@ -1210,8 +1310,8 @@ export default function AdvancedChartPage() {
                                 type="text"
                                 value={newSymbol}
                                 onChange={(e) => setNewSymbol(e.target.value.toUpperCase())}
-                                placeholder="e.g. GP, BATBC"
-                                className="w-full rounded bg-[#0c0d10] px-2 py-1 text-white border border-slate-700 uppercase"
+                                placeholder="e.g. GP, BATBC, BNICL"
+                                className="w-full rounded bg-[#0c0d10] px-2 py-1 text-white border border-slate-700 uppercase text-xs"
                                 required
                               />
                             </div>
@@ -1224,7 +1324,7 @@ export default function AdvancedChartPage() {
                                   step="0.1"
                                   value={newBuyPrice}
                                   onChange={(e) => setNewBuyPrice(e.target.value)}
-                                  className="w-full rounded bg-[#0c0d10] px-2 py-1 text-white border border-slate-700"
+                                  className="w-full rounded bg-[#0c0d10] px-2 py-1 text-white border border-slate-700 text-xs"
                                   required
                                 />
                               </div>
@@ -1234,7 +1334,7 @@ export default function AdvancedChartPage() {
                                   type="number"
                                   value={newQuantity}
                                   onChange={(e) => setNewQuantity(e.target.value)}
-                                  className="w-full rounded bg-[#0c0d10] px-2 py-1 text-white border border-slate-700"
+                                  className="w-full rounded bg-[#0c0d10] px-2 py-1 text-white border border-slate-700 text-xs"
                                   required
                                 />
                               </div>
@@ -1242,9 +1342,9 @@ export default function AdvancedChartPage() {
 
                             <button
                               type="submit"
-                              className="w-full mt-2 rounded bg-[#00b0ff] py-1.5 text-xs font-bold text-black hover:bg-[#0095da] transition"
+                              className="w-full mt-2 rounded bg-amber-400 py-1.5 text-xs font-bold text-black hover:bg-amber-300 transition"
                             >
-                              Save to Portfolio
+                              Execute Paper Buy
                             </button>
                           </div>
                         </form>
@@ -1252,56 +1352,64 @@ export default function AdvancedChartPage() {
 
                       {/* Portfolio Holdings List */}
                       <div className="space-y-2">
-                        {portfolio.length === 0 ? (
+                        {paperPositions.length === 0 ? (
                           <div className="p-6 text-center text-xs text-slate-500 font-mono">
                             <Briefcase size={26} className="mx-auto mb-2 text-slate-600" />
-                            <p>No stocks in portfolio yet.</p>
-                            <p className="text-[10px] text-slate-600 mt-1">Click "+ Add Stock" to start tracking your investments.</p>
+                            <p>No open positions in Paper Portfolio.</p>
+                            <p className="text-[10px] text-slate-600 mt-1">Auto-Pilot executes automatically on breakout triggers, or click "+ Add" above.</p>
                           </div>
                         ) : (
-                          portfolio.map((pos) => {
-                            const stock = stocks.find((s) => s.symbol === pos.symbol);
-                            const ltp = stock?.ltp ?? pos.buyPrice;
-                            const invested = pos.buyPrice * pos.quantity;
-                            const currentVal = ltp * pos.quantity;
-                            const pl = currentVal - invested;
-                            const plPct = (pl / invested) * 100;
+                          paperPositions.map((pos) => {
+                            const invested = pos.average_buy_price * pos.quantity;
+                            const pl = pos.unrealized_pnl;
+                            const plPct = pos.unrealized_pnl_pct;
                             const isPositive = pl >= 0;
 
                             return (
                               <div
-                                key={pos.id}
+                                key={pos.symbol}
                                 onClick={() => setSelectedSymbol(pos.symbol)}
-                                className="rounded bg-[#1a1f2c] p-2.5 border border-slate-800/80 hover:border-slate-700 cursor-pointer font-mono text-xs transition"
+                                className={`rounded bg-[#1a1f2c] p-2.5 border transition cursor-pointer font-mono text-xs ${
+                                  selectedSymbol === pos.symbol ? 'border-amber-400/80 bg-[#1f2533]' : 'border-slate-800/80 hover:border-slate-700'
+                                }`}
                               >
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-1.5">
                                     <span className="font-bold text-sm text-white">{pos.symbol}</span>
                                     <span className="text-[10px] text-slate-400">({pos.quantity} shares)</span>
+                                    <span className="rounded bg-emerald-500/20 text-emerald-400 px-1 py-0.2 text-[8px]">AUTO / PAPER</span>
                                   </div>
                                   <button
                                     type="button"
                                     onClick={(e) => {
                                       e.stopPropagation();
-                                      handleDeletePosition(pos.id);
+                                      handleClosePosition(pos.symbol, pos.quantity, pos.current_ltp);
                                     }}
-                                    title="Delete holding"
-                                    className="text-slate-600 hover:text-rose-400 p-0.5"
+                                    title="Close / Sell Position"
+                                    className="text-slate-500 hover:text-rose-400 p-0.5 text-[10px] flex items-center gap-0.5 rounded bg-rose-500/10 px-1.5 py-0.5"
                                   >
-                                    <Trash2 size={13} />
+                                    <Trash2 size={11} />
+                                    <span>Sell</span>
                                   </button>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-1 text-[11px] mt-1.5 text-slate-400">
                                   <div>
                                     <span>Buy: </span>
-                                    <strong className="text-slate-300">৳{pos.buyPrice.toFixed(1)}</strong>
+                                    <strong className="text-slate-300">৳{pos.average_buy_price.toFixed(1)}</strong>
                                   </div>
                                   <div className="text-right">
                                     <span>LTP: </span>
-                                    <strong className="text-white">৳{ltp.toFixed(1)}</strong>
+                                    <strong className="text-white">৳{pos.current_ltp.toFixed(1)}</strong>
                                   </div>
                                 </div>
+
+                                {(pos.stop_loss || pos.take_profit) && (
+                                  <div className="grid grid-cols-2 gap-1 text-[10px] mt-1 text-slate-500 border-t border-slate-800/40 pt-1">
+                                    <div>SL: <span className="text-rose-400">৳{pos.stop_loss?.toFixed(1) ?? '-'}</span></div>
+                                    <div className="text-right">TP: <span className="text-emerald-400">৳{pos.take_profit?.toFixed(1) ?? '-'}</span></div>
+                                  </div>
+                                )}
 
                                 <div className="flex items-center justify-between text-[11px] mt-1.5 pt-1.5 border-t border-slate-800/60">
                                   <span className="text-slate-400">Gain / Loss:</span>

@@ -32,6 +32,7 @@ from .agents import (
     send_webhook_alert,
     size_position,
     close_paper_position,
+    evaluate_autopilot_paper_trades,
     get_account_summary,
     load_paper_account,
     place_paper_order,
@@ -75,14 +76,15 @@ async def _historical_scheduler_loop() -> None:
             result = await asyncio.to_thread(run_historical_batch, "scheduler")
             logger.info("Historical scheduler result: %s", result)
 
-            # Automated live market quote collection and Telegram alert evaluation
+            # Automated live market quote collection, Telegram alert & Auto-Pilot Paper Trading
             try:
                 await asyncio.to_thread(collect_once, "scheduler", False)
                 tg_token = os.getenv("TELEGRAM_BOT_TOKEN")
                 tg_chat = os.getenv("TELEGRAM_CHAT_ID")
                 webhook_url = os.getenv("WEBHOOK_ALERT_URL")
+                storage = SupabaseStorage(settings.supabase_url, settings.supabase_service_role_key)
+
                 if tg_token and tg_chat:
-                    storage = SupabaseStorage(settings.supabase_url, settings.supabase_service_role_key)
                     alert_eval = await asyncio.to_thread(
                         check_and_evaluate_alerts,
                         storage,
@@ -92,6 +94,16 @@ async def _historical_scheduler_loop() -> None:
                     )
                     if alert_eval.get("fired_alerts_count", 0) > 0:
                         logger.info("Dispatched %s alerts to Telegram", alert_eval["fired_alerts_count"])
+
+                # Auto-Pilot Paper Trading: Evaluate triggers and execute paper trades
+                auto_eval = await asyncio.to_thread(
+                    evaluate_autopilot_paper_trades,
+                    storage,
+                    tg_token,
+                    tg_chat,
+                )
+                if auto_eval.get("executed_count", 0) > 0 or auto_eval.get("closed_triggers_count", 0) > 0:
+                    logger.info("Auto-Pilot executed %s buys, %s exits", auto_eval.get("executed_count"), auto_eval.get("closed_triggers_count"))
             except Exception as inner_exc:
                 logger.debug("Automated alert check cycle note: %s", inner_exc)
         except asyncio.CancelledError:
@@ -557,6 +569,20 @@ def test_webhook_dispatch(
 
 
 
+
+
+@app.post("/api/agents/broker/autopilot/run")
+def trigger_autopilot_execution() -> dict:
+    """Evaluates real-time market signals and executes auto-pilot paper trades."""
+    try:
+        settings = Settings.from_env()
+        storage = SupabaseStorage(settings.supabase_url, settings.supabase_service_role_key)
+        tg_token = os.getenv("TELEGRAM_BOT_TOKEN")
+        tg_chat = os.getenv("TELEGRAM_CHAT_ID")
+        return evaluate_autopilot_paper_trades(storage, tg_token, tg_chat)
+    except Exception as exc:
+        logger.exception("Agent 8 Auto-Pilot run failed")
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 
 @app.get("/api/agents/broker/account")

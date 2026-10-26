@@ -18,6 +18,7 @@ from .alerts import (
 )
 from .broker import (
     close_paper_position,
+    evaluate_autopilot_paper_trades,
     get_account_summary,
     load_paper_account,
     place_paper_order,

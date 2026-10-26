@@ -376,3 +376,153 @@ def close_paper_position(
         order_type="MARKET",
         notes=f"Closed via {reason}",
     )
+
+
+def evaluate_autopilot_paper_trades(
+    storage: SupabaseStorage,
+    telegram_bot_token: str | None = None,
+    telegram_chat_id: str | None = None,
+    max_open_positions: int = 5,
+    max_allocation_per_trade: float = 100000.0,
+) -> dict[str, Any]:
+    """
+    Evaluates market signals and automatically executes paper BUY / SELL orders:
+    1. Syncs existing positions against live prices and auto-exits on Stop Loss or Take Profit.
+    2. Identifies top Triggered Breakout candidates from Agent 1 & Agent 2.
+    3. Sizes orders (max 20% equity cap, max ৳100K) and executes paper BUY tickets.
+    4. Dispatches instant Telegram notifications for fills, SL hits, and TP targets.
+    """
+    from .scanner import run_scanner
+    from .entry import evaluate_all_candidates
+    from .alerts import send_telegram_alert
+
+    state = load_paper_account()
+    positions = state.get("positions", {})
+    executed_trades: list[dict[str, Any]] = []
+    closed_triggers: list[dict[str, Any]] = []
+
+    # 1. Sync live market prices & trigger SL / TP bracket exits
+    symbols_to_close = []
+    for sym, pos in list(positions.items()):
+        bars = storage.daily_history_for_symbol(sym, limit=1)
+        if not bars:
+            continue
+        ltp = float(bars[-1].get("close", 0.0) or bars[-1].get("ltp", 0.0))
+        if ltp > 0:
+            pos["current_ltp"] = ltp
+
+        stop_loss = pos.get("stop_loss")
+        take_profit = pos.get("take_profit")
+        avg_price = float(pos.get("average_buy_price", ltp))
+        qty = int(pos.get("quantity", 0))
+
+        if stop_loss and ltp <= float(stop_loss):
+            symbols_to_close.append((sym, float(stop_loss), "STOP_LOSS_TRIGGERED", (float(stop_loss) - avg_price) * qty))
+        elif take_profit and ltp >= float(take_profit):
+            symbols_to_close.append((sym, float(take_profit), "TAKE_PROFIT_TRIGGERED", (float(take_profit) - avg_price) * qty))
+
+    for sym, exit_p, reason, pnl in symbols_to_close:
+        res = close_paper_position(state, sym, exit_price=exit_p, reason=reason)
+        if res.get("status") == "success":
+            closed_triggers.append({"symbol": sym, "price": exit_p, "reason": reason, "pnl": pnl})
+            if telegram_bot_token and telegram_chat_id:
+                emoji = "🎯" if "TAKE_PROFIT" in reason else "🛑"
+                title = "TAKE-PROFIT TARGET ACHIEVED" if "TAKE_PROFIT" in reason else "STOP-LOSS HIT (RISK PROTECTED)"
+                msg = (
+                    f"{emoji} <b>[AUTO-PILOT EXIT] {title}</b>\n\n"
+                    f"• Symbol: <b>{sym}</b>\n"
+                    f"• Exit Price: <b>৳{exit_p:,.2f}</b>\n"
+                    f"• Realized P&L: <b>৳{pnl:+,.2f}</b>\n"
+                    f"• Reason: <code>{reason}</code>\n"
+                    f"• Capital preserved & returned to available cash."
+                )
+                try:
+                    send_telegram_alert(telegram_bot_token, telegram_chat_id, msg)
+                except Exception as tg_err:
+                    logger.debug("Failed sending Telegram SL/TP alert: %s", tg_err)
+
+    save_paper_account(state)
+
+    # 2. Check capacity for new entries
+    current_open_count = len(state.get("positions", {}))
+    cash = float(state.get("cash_balance", 0.0))
+    slots_available = max_open_positions - current_open_count
+
+    if slots_available > 0 and cash >= 15000.0:
+        scan_res = run_scanner(storage)
+        cands = scan_res.get("candidates", [])
+        if cands:
+            eval_res = evaluate_all_candidates(storage, cands[:15])
+            entries = eval_res.get("entries", [])
+            for e in entries:
+                if slots_available <= 0 or cash < 15000.0:
+                    break
+                sym = e.get("symbol")
+                if not sym or sym in state.get("positions", {}):
+                    continue
+
+                status_badge = e.get("status_badge", "")
+                if status_badge != "Triggered Breakout":
+                    continue
+
+                ltp = float(e.get("ltp") or 0.0)
+                if ltp <= 0:
+                    continue
+
+                # Position sizing: max 20% of account or available cash
+                trade_budget = min(max_allocation_per_trade, cash * 0.85)
+                qty = int(trade_budget // ltp)
+                if qty <= 0:
+                    continue
+
+                sl = round(ltp * 0.95, 2)  # -5.0% Stop Loss
+                tp = round(ltp * 1.10, 2)  # +10.0% Take Profit
+
+                order_res = place_paper_order(
+                    symbol=sym,
+                    side="BUY",
+                    quantity=qty,
+                    price=ltp,
+                    order_type="LIMIT",
+                    stop_loss=sl,
+                    take_profit=tp,
+                    notes="Auto-Pilot Breakout Signal",
+                )
+
+                if order_res.get("status") == "success":
+                    executed_trades.append({
+                        "symbol": sym,
+                        "quantity": qty,
+                        "price": ltp,
+                        "stop_loss": sl,
+                        "take_profit": tp,
+                    })
+                    slots_available -= 1
+                    cash = float(order_res.get("remaining_cash", cash - (qty * ltp)))
+
+                    if telegram_bot_token and telegram_chat_id:
+                        total_val = round(qty * ltp, 2)
+                        msg = (
+                            f"🤖 <b>[AUTO-PILOT PAPER BUY EXECUTED]</b>\n\n"
+                            f"• Stock: <b>{sym}</b>\n"
+                            f"• Action: <b>BUY (Automated)</b>\n"
+                            f"• Quantity: <b>{qty:,} shares</b> @ <b>৳{ltp:,.2f}</b>\n"
+                            f"• Total Cost: <b>৳{total_val:,.2f}</b>\n"
+                            f"• Stop-Loss (SL): <b>৳{sl:,.2f} (-5.0%)</b>\n"
+                            f"• Take-Profit (TP): <b>৳{tp:,.2f} (+10.0%)</b>\n"
+                            f"• Strategy: <b>20-Day Breakout + Volume Surge</b>\n\n"
+                            f"<i>Synced with Paper Portfolio on Dashboard & Chart.</i>"
+                        )
+                        try:
+                            send_telegram_alert(telegram_bot_token, telegram_chat_id, msg)
+                        except Exception as tg_err:
+                            logger.debug("Failed sending Telegram buy alert: %s", tg_err)
+
+    return {
+        "status": "success",
+        "executed_count": len(executed_trades),
+        "executed_trades": executed_trades,
+        "closed_triggers_count": len(closed_triggers),
+        "closed_triggers": closed_triggers,
+        "account_summary": get_account_summary(state),
+    }
