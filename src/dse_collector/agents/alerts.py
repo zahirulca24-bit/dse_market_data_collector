@@ -108,6 +108,7 @@ def get_dse_clock(custom_dt: datetime.datetime | None = None) -> dict[str, Any]:
 
     return {
         "status": state,
+        "state": state,
         "status_text": status_text,
         "is_trading_day": is_trading_day,
         "current_time_bst": now.strftime("%Y-%m-%d %H:%M:%S BST"),

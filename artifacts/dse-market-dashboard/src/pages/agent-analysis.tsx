@@ -425,6 +425,12 @@ interface AlertsEvaluationResult {
 interface PaperPosition {
   symbol: string;
   quantity: number;
+  matured_quantity?: number;
+  receivable_quantity?: number;
+  settlement_status?: string;
+  settlement_date?: string;
+  is_matured?: boolean;
+  days_until_mature?: number;
   average_buy_price: number;
   cost_basis: number;
   current_ltp: number;
@@ -3412,11 +3418,20 @@ export default function AgentAnalysisPage() {
                             className="rounded-lg bg-[#0d131a] p-3.5 border border-[#1e2734] hover:border-slate-700 transition"
                           >
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#1b2430]">
-                              <div className="flex items-center gap-3">
+                              <div className="flex items-center gap-3 flex-wrap">
                                 <span className="font-mono text-base font-bold text-white">{pos.symbol}</span>
                                 <span className="rounded bg-slate-800 text-slate-300 px-2 py-0.5 text-[10px] font-mono">
                                   {pos.quantity} Shares ({pos.portfolio_pct}% Portfolio)
                                 </span>
+                                {pos.settlement_status === 'MATURED' ? (
+                                  <span className="rounded bg-emerald-950/80 text-emerald-300 border border-emerald-800 px-2 py-0.5 text-[10px] font-mono font-bold">
+                                    ✓ MATURED (Sellable)
+                                  </span>
+                                ) : (
+                                  <span className="rounded bg-amber-950/80 text-amber-300 border border-amber-800 px-2 py-0.5 text-[10px] font-mono font-bold">
+                                    🔒 T+2 LOCKED (Matures: {pos.settlement_date || 'T+2'})
+                                  </span>
+                                )}
                                 {pos.stop_loss && (
                                   <span className="text-[10px] font-mono text-rose-400 bg-rose-950/60 border border-rose-900/60 px-1.5 py-0.5 rounded">
                                     SL: ৳{pos.stop_loss}
@@ -3439,10 +3454,15 @@ export default function AgentAnalysisPage() {
 
                                 <button
                                   onClick={() => handleClosePosition(pos.symbol, pos.current_ltp)}
-                                  disabled={closingPositionSym === pos.symbol}
-                                  className="rounded bg-rose-950 hover:bg-rose-900 text-rose-300 border border-rose-800 px-3 py-1 text-xs font-semibold transition"
+                                  disabled={closingPositionSym === pos.symbol || pos.settlement_status === 'T+2 LOCKED'}
+                                  title={pos.settlement_status === 'T+2 LOCKED' ? `DSE Rule: Under T+2 settlement lock until ${pos.settlement_date}. Unmatured shares cannot be sold.` : 'Sell Position'}
+                                  className={`rounded px-3 py-1 text-xs font-semibold transition border ${
+                                    pos.settlement_status === 'T+2 LOCKED'
+                                      ? 'bg-slate-800/80 text-slate-500 border-slate-700 cursor-not-allowed'
+                                      : 'bg-rose-950 hover:bg-rose-900 text-rose-300 border-rose-800'
+                                  }`}
                                 >
-                                  {closingPositionSym === pos.symbol ? 'Closing...' : 'Close (Sell)'}
+                                  {closingPositionSym === pos.symbol ? 'Closing...' : pos.settlement_status === 'T+2 LOCKED' ? 'T+2 Locked' : 'Close (Sell)'}
                                 </button>
                               </div>
                             </div>

@@ -102,15 +102,17 @@ async def _historical_scheduler_loop() -> None:
                     if alert_eval.get("fired_alerts_count", 0) > 0:
                         logger.info("Dispatched %s alerts to Telegram", alert_eval["fired_alerts_count"])
 
-                # Auto-Pilot Paper Trading: Evaluate triggers and execute paper trades
-                auto_eval = await asyncio.to_thread(
-                    evaluate_autopilot_paper_trades,
-                    storage,
-                    tg_token,
-                    tg_chat,
-                )
-                if auto_eval.get("executed_count", 0) > 0 or auto_eval.get("closed_triggers_count", 0) > 0:
-                    logger.info("Auto-Pilot executed %s buys, %s exits", auto_eval.get("executed_count"), auto_eval.get("closed_triggers_count"))
+                # Auto-Pilot Paper Trading: Only operates during live DSE market hours (10:00 - 14:20 BST, Sun-Thu)!
+                clock = get_dse_clock()
+                if clock.get("state") == "OPEN":
+                    auto_eval = await asyncio.to_thread(
+                        evaluate_autopilot_paper_trades,
+                        storage,
+                        tg_token,
+                        tg_chat,
+                    )
+                    if auto_eval.get("executed_count", 0) > 0 or auto_eval.get("closed_triggers_count", 0) > 0:
+                        logger.info("Auto-Pilot executed %s buys, %s exits", auto_eval.get("executed_count"), auto_eval.get("closed_triggers_count"))
             except Exception as inner_exc:
                 logger.debug("Automated alert check cycle note: %s", inner_exc)
         except asyncio.CancelledError:
@@ -580,13 +582,13 @@ def test_webhook_dispatch(
 
 @app.post("/api/agents/broker/autopilot/run")
 def trigger_autopilot_execution() -> dict:
-    """Evaluates real-time market signals and executes auto-pilot paper trades."""
+    """Evaluates real-time market signals and executes auto-pilot paper trades (Manual user trigger allows force=True, but strictly obeys T+2 settlement)."""
     try:
         settings = Settings.from_env()
         storage = SupabaseStorage(settings.supabase_url, settings.supabase_service_role_key)
         tg_token = os.getenv("TELEGRAM_BOT_TOKEN")
         tg_chat = os.getenv("TELEGRAM_CHAT_ID")
-        return evaluate_autopilot_paper_trades(storage, tg_token, tg_chat)
+        return evaluate_autopilot_paper_trades(storage, tg_token, tg_chat, force=True)
     except Exception as exc:
         logger.exception("Agent 8 Auto-Pilot run failed")
         raise HTTPException(status_code=500, detail=str(exc)) from exc

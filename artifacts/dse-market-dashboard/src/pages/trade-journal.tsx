@@ -31,6 +31,8 @@ interface TradeTicket {
   take_profit?: number;
   notes?: string;
   realized_pnl?: number;
+  settlement_cycle?: string;
+  settlement_date?: string;
 }
 
 interface AccountData {
@@ -393,6 +395,7 @@ export default function TradeJournalPage() {
                     <th className="py-3 px-4 text-right">Fee (0.4%)</th>
                     <th className="py-3 px-4 text-center">Stop Loss</th>
                     <th className="py-3 px-4 text-center">Take Profit</th>
+                    <th className="py-3 px-4 text-center">DSE Settlement</th>
                     <th className="py-3 px-4">Strategy & Notes</th>
                     <th className="py-3 px-4 text-center">Status</th>
                   </tr>
@@ -400,14 +403,14 @@ export default function TradeJournalPage() {
                 <tbody className="divide-y divide-slate-800/60">
                   {loading ? (
                     <tr>
-                      <td colSpan={11} className="py-12 text-center text-slate-500 font-mono">
+                      <td colSpan={12} className="py-12 text-center text-slate-500 font-mono">
                         <RefreshCw size={24} className="animate-spin mx-auto mb-2 text-amber-400" />
                         Loading trade journal records...
                       </td>
                     </tr>
                   ) : filteredTickets.length === 0 ? (
                     <tr>
-                      <td colSpan={11} className="py-16 text-center text-slate-500 font-mono">
+                      <td colSpan={12} className="py-16 text-center text-slate-500 font-mono">
                         <Calendar size={32} className="mx-auto mb-2 text-slate-600" />
                         <p className="text-sm font-bold text-slate-300">
                           No trade records found for "{dateFilter === 'today' ? 'Today' : dateFilter}".
@@ -491,6 +494,19 @@ export default function TradeJournalPage() {
                               </span>
                             ) : (
                               <span className="text-slate-600">-</span>
+                            )}
+                          </td>
+
+                          {/* DSE Settlement */}
+                          <td className="py-3 px-4 text-center whitespace-nowrap font-mono text-[11px]">
+                            {isBuy ? (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300 font-bold">
+                                🔒 T+2 {t.settlement_date ? `(${t.settlement_date.slice(5)})` : ''}
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-bold">
+                                ✓ Matured Exit
+                              </span>
                             )}
                           </td>
 
