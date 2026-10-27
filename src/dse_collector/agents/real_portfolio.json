@@ -1,0 +1,25 @@
+{
+  "profile": {
+    "name": "MD ZAHIRUL ISLAM",
+    "investor_code": "10171",
+    "bo_id": "1201630076860712",
+    "broker": "Dhaka Bank Securities Limited",
+    "trec_no": "TREC DSE-193 & CSE-081",
+    "ac_type": "Non Margin",
+    "mobile": "01955956476",
+    "email": "zahirul.artisan@gmail.com",
+    "address": "164, SHADHINOTA SHARONI, UTTAR BADDA, DHAKA"
+  },
+  "balance": {
+    "mature_balance": 0.0,
+    "ledger_balance": 0.0,
+    "receivable_sales": 0.0,
+    "cheque_in_transit": 0.0,
+    "accrued_fees": 0.0,
+    "purchase_power": 0.0,
+    "total_deposit": 0.0,
+    "total_withdrawal": 0.0
+  },
+  "holdings": {},
+  "updated_at": "2026-10-27 22:00:52"
+}

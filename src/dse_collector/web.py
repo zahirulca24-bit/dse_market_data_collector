@@ -33,6 +33,13 @@ from .agents import (
     size_position,
     close_paper_position,
     evaluate_autopilot_paper_trades,
+    get_daily_report_cards,
+    get_daily_statement,
+    dispatch_market_close_daily_report,
+    get_real_portfolio_summary,
+    add_or_update_real_position,
+    delete_real_position,
+    update_real_balance,
     get_account_summary,
     load_paper_account,
     place_paper_order,
@@ -582,6 +589,106 @@ def trigger_autopilot_execution() -> dict:
         return evaluate_autopilot_paper_trades(storage, tg_token, tg_chat)
     except Exception as exc:
         logger.exception("Agent 8 Auto-Pilot run failed")
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+# ----------------------------------------------------
+# DAILY REPORTS & REAL PORTFOLIO ENDPOINTS
+# ----------------------------------------------------
+@app.get("/api/reports/daily-cards")
+def api_daily_report_cards() -> list:
+    """Returns aggregated daily performance report cards (most recent first)."""
+    try:
+        return get_daily_report_cards()
+    except Exception as exc:
+        logger.exception("Daily report cards failed")
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.get("/api/reports/statement/{date_str}")
+def api_daily_statement(date_str: str) -> dict:
+    """Returns itemized trading statement for a specific calendar date."""
+    try:
+        return get_daily_statement(date_str)
+    except Exception as exc:
+        logger.exception("Daily statement failed for %s", date_str)
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.post("/api/reports/daily-dispatch")
+def api_dispatch_daily_report(force: bool = True) -> dict:
+    """Dispatches the daily closing report to Telegram."""
+    try:
+        settings = Settings.from_env()
+        storage = SupabaseStorage(settings.supabase_url, settings.supabase_service_role_key)
+        tg_token = os.getenv("TELEGRAM_BOT_TOKEN")
+        tg_chat = os.getenv("TELEGRAM_CHAT_ID")
+        return dispatch_market_close_daily_report(storage, tg_token, tg_chat, force=force)
+    except Exception as exc:
+        logger.exception("Daily report dispatch failed")
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.get("/api/portfolio/real")
+def api_get_real_portfolio() -> dict:
+    """Returns real broker portfolio statement with live DSE market price synchronization."""
+    try:
+        storage = _storage()
+        return get_real_portfolio_summary(storage=storage)
+    except Exception as exc:
+        logger.exception("Real portfolio summary failed")
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.post("/api/portfolio/real/position")
+def api_add_real_position(
+    symbol: str = Query(...),
+    quantity: int = Query(...),
+    avg_cost: float = Query(...),
+    saleable_quantity: int | None = Query(None),
+    group: str = Query("A"),
+) -> dict:
+    """Adds or updates a real stock holding in the portfolio statement."""
+    try:
+        return add_or_update_real_position(
+            symbol=symbol,
+            quantity=quantity,
+            avg_cost=avg_cost,
+            saleable_quantity=saleable_quantity,
+            group=group,
+        )
+    except Exception as exc:
+        logger.exception("Add real position failed")
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.delete("/api/portfolio/real/position/{symbol}")
+def api_delete_real_position(symbol: str) -> dict:
+    """Removes a real stock holding from the portfolio statement."""
+    try:
+        return delete_real_position(symbol=symbol)
+    except Exception as exc:
+        logger.exception("Delete real position failed for %s", symbol)
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.post("/api/portfolio/real/balance")
+def api_update_real_balance(
+    mature_balance: float | None = Query(None),
+    ledger_balance: float | None = Query(None),
+    purchase_power: float | None = Query(None),
+    receivable_sales: float | None = Query(None),
+) -> dict:
+    """Updates real cash balances for the broker statement."""
+    try:
+        return update_real_balance(
+            mature_balance=mature_balance,
+            ledger_balance=ledger_balance,
+            purchase_power=purchase_power,
+            receivable_sales=receivable_sales,
+        )
+    except Exception as exc:
+        logger.exception("Update real balance failed")
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 

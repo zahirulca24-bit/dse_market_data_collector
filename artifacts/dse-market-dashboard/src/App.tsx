@@ -10,6 +10,8 @@ import IngestionMonitor from '@/pages/ingestion-monitor';
 import SectorMapping from '@/pages/sector-mapping';
 import AdvancedChartPage from '@/pages/advanced-chart';
 import AgentAnalysisPage from '@/pages/agent-analysis';
+import TradeJournalPage from '@/pages/trade-journal';
+import DailyReportsPage from '@/pages/daily-reports';
 import {
   Route,
   Switch,
@@ -28,6 +30,8 @@ function Router() {
          <Route path="/" component={MarketDashboard} />
          <Route path="/chart" component={AdvancedChartPage} />
          <Route path="/agents" component={AgentAnalysisPage} />
+         <Route path="/journal" component={TradeJournalPage} />
+         <Route path="/reports" component={DailyReportsPage} />
          <Route path="/historical" component={HistoricalExplorer} />
          <Route path="/sectors" component={SectorMapping} />
          <Route path="/ingestion" component={IngestionMonitor} />
