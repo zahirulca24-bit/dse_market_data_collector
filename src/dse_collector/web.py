@@ -9,7 +9,7 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Annotated
 
-from fastapi import FastAPI, Header, HTTPException, Query
+from fastapi import FastAPI, Header, HTTPException, Query, Request, Response
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -56,6 +56,8 @@ from .agents import (
     fetch_insider_declarations,
     fetch_shareholding_pattern,
 )
+from .admin_auth import COOKIE_NAME, SESSION_SECONDS, admin_guard_response, allow_login_attempt, clear_login_failures, new_session, record_login_failure, same_origin, valid_session, verify_credentials
+from pydantic import BaseModel
 from .backfill import run_historical_batch
 from .config import Settings
 from .dashboard import daily_history, history, ingestion_status, logs, market_stock, monitoring, overview, tracker
@@ -141,6 +143,57 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="DSE Market Data Collector", version="3.3.1", lifespan=lifespan)
+
+
+
+class AdminLogin(BaseModel):
+    username: str
+    password: str
+
+
+@app.middleware("http")
+async def protect_sensitive_apis(request: Request, call_next):
+    denied = admin_guard_response(request)
+    if denied is not None:
+        return denied
+    return await call_next(request)
+
+
+@app.get("/api/auth/session")
+def admin_session(request: Request) -> dict:
+    return {"authenticated": valid_session(request.cookies.get(COOKIE_NAME))}
+
+
+@app.post("/api/auth/login")
+def admin_login(credentials: AdminLogin, request: Request, response: Response) -> dict:
+    if not same_origin(request):
+        raise HTTPException(status_code=403, detail="Invalid login origin")
+    remote = request.client.host if request.client else "unknown"
+    if not allow_login_attempt(remote):
+        raise HTTPException(status_code=429, detail="Too many failed attempts; retry later")
+    if not verify_credentials(credentials.username, credentials.password):
+        record_login_failure(remote)
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    clear_login_failures(remote)
+    response.set_cookie(
+        COOKIE_NAME,
+        new_session(),
+        max_age=SESSION_SECONDS,
+        httponly=True,
+        secure=request.url.scheme == "https" or request.headers.get("x-forwarded-proto") == "https",
+        samesite="strict",
+        path="/",
+    )
+    response.headers["Cache-Control"] = "no-store"
+    return {"authenticated": True}
+
+
+@app.post("/api/auth/logout")
+def admin_logout(request: Request, response: Response) -> dict:
+    if not same_origin(request):
+        raise HTTPException(status_code=403, detail="Invalid logout origin")
+    response.delete_cookie(COOKIE_NAME, path="/", samesite="strict")
+    return {"authenticated": False}
 
 
 def _authorized(authorization: str | None, settings: Settings) -> bool:
