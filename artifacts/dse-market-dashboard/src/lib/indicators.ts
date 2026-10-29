@@ -343,3 +343,28 @@ export function calculateMACD(
 
   return { macdLine, signalLine, histogram };
 }
+
+
+/**
+ * Volume Moving Average (MA)
+ */
+export function calculateVolumeMA(
+  data: { time: string; value: number }[],
+  period: number = 20
+): IndicatorResult[] {
+  const result: IndicatorResult[] = [];
+  if (data.length < period) return result;
+
+  let sum = 0;
+  for (let i = 0; i < period; i++) {
+    sum += data[i].value;
+  }
+  result.push({ time: data[period - 1].time, value: Math.round(sum / period) });
+
+  for (let i = period; i < data.length; i++) {
+    sum += data[i].value - data[i - period].value;
+    result.push({ time: data[i].time, value: Math.round(sum / period) });
+  }
+
+  return result;
+}

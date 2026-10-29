@@ -44,8 +44,10 @@ import {
 import { Sidebar } from '@/components/sidebar';
 import {
   calculateSMA,
+  calculateEMA,
   calculateRSI,
   calculateMACD,
+  calculateVolumeMA,
   calculateBollingerBands,
   calculateStochasticRSI,
   calculateVWAP,
@@ -86,6 +88,9 @@ interface LegendValues {
   change?: number;
   changePct?: number;
   volume?: number;
+  volMA20?: number;
+  ema20?: number;
+  ema50?: number;
   ma20?: number;
   rsi?: number;
   macd?: number;
@@ -219,14 +224,16 @@ export default function AdvancedChartPage() {
   const [newBuyPrice, setNewBuyPrice] = useState<string>('240');
   const [newQuantity, setNewQuantity] = useState<string>('100');
 
-  // Indicators matching StockNow Clean Look:
-  // Default: MA20 (clean line), RSI (compact ribbon), MACD (compact ribbon). BB and VWAP default OFF so candles are crystal clear!
-  const [showMA20, setShowMA20] = useState<boolean>(true);
+  // 4-Tier Multi-Pane Indicators (Matching TradingView Pro Setup):
+  const [showEMA, setShowEMA] = useState<boolean>(true);
+  const [showVolume, setShowVolume] = useState<boolean>(true);
   const [showRSI, setShowRSI] = useState<boolean>(true);
   const [showMACD, setShowMACD] = useState<boolean>(true);
+  const [showMA20, setShowMA20] = useState<boolean>(false);
   const [showBB, setShowBB] = useState<boolean>(false);
   const [showVWAP, setShowVWAP] = useState<boolean>(false);
   const [showATR, setShowATR] = useState<boolean>(true);
+  const [activeTimeframe, setActiveTimeframe] = useState<string>('1d');
 
   // Drawing tools
   const [activeTool, setActiveTool] = useState<DrawingTool>('cursor');
@@ -243,7 +250,10 @@ export default function AdvancedChartPage() {
 
   // Series refs
   const candleSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null);
+  const ema20SeriesRef = useRef<ISeriesApi<'Line'> | null>(null);
+  const ema50SeriesRef = useRef<ISeriesApi<'Line'> | null>(null);
   const volumeSeriesRef = useRef<ISeriesApi<'Histogram'> | null>(null);
+  const volMASeriesRef = useRef<ISeriesApi<'Line'> | null>(null);
   const ma20SeriesRef = useRef<ISeriesApi<'Line'> | null>(null);
   const bbUpperRef = useRef<ISeriesApi<'Line'> | null>(null);
   const bbMiddleRef = useRef<ISeriesApi<'Line'> | null>(null);
@@ -439,14 +449,17 @@ export default function AdvancedChartPage() {
     };
   }, []);
 
-  // 4. Update Series and Clean StockNow Proportions
+  // 4. Update Series and Multi-Pane Architecture
   useEffect(() => {
     const chart = chartInstanceRef.current;
     if (!chart || historyData.length === 0) return;
 
     try {
       if (candleSeriesRef.current) chart.removeSeries(candleSeriesRef.current);
+      if (ema20SeriesRef.current) chart.removeSeries(ema20SeriesRef.current);
+      if (ema50SeriesRef.current) chart.removeSeries(ema50SeriesRef.current);
       if (volumeSeriesRef.current) chart.removeSeries(volumeSeriesRef.current);
+      if (volMASeriesRef.current) chart.removeSeries(volMASeriesRef.current);
       if (ma20SeriesRef.current) chart.removeSeries(ma20SeriesRef.current);
       if (bbUpperRef.current) chart.removeSeries(bbUpperRef.current);
       if (bbMiddleRef.current) chart.removeSeries(bbMiddleRef.current);
@@ -461,7 +474,10 @@ export default function AdvancedChartPage() {
     }
 
     candleSeriesRef.current = null;
+    ema20SeriesRef.current = null;
+    ema50SeriesRef.current = null;
     volumeSeriesRef.current = null;
+    volMASeriesRef.current = null;
     ma20SeriesRef.current = null;
     bbUpperRef.current = null;
     bbMiddleRef.current = null;
@@ -472,13 +488,14 @@ export default function AdvancedChartPage() {
     signalLineRef.current = null;
     macdHistRef.current = null;
 
-    // Panes setup
-    const mainPane = 0;
+    // Multi-Pane Dynamic Indexing
+    const candlePane = 0;
     let currentPane = 1;
+    const volumePane = showVolume ? currentPane++ : -1;
     const rsiPane = showRSI ? currentPane++ : -1;
     const macdPane = showMACD ? currentPane++ : -1;
 
-    // Candlestick Series (StockNow style: Crisp Pine Green & Red)
+    // 1. Candlestick Series (Main Pane 0)
     const candleSeries = chart.addSeries(
       CandlestickSeries,
       {
@@ -488,7 +505,7 @@ export default function AdvancedChartPage() {
         wickUpColor: '#26a69a',
         wickDownColor: '#ef5350',
       },
-      mainPane
+      candlePane
     );
     candleSeriesRef.current = candleSeries;
 
@@ -500,31 +517,6 @@ export default function AdvancedChartPage() {
       close: d.close ?? 0,
     }));
     candleSeries.setData(candleData);
-
-    // Volume Series on Main Pane (Subtle overlay at bottom)
-    const volumeSeries = chart.addSeries(
-      HistogramSeries,
-      {
-        priceFormat: { type: 'volume' },
-        priceScaleId: 'volume_scale',
-      },
-      mainPane
-    );
-    volumeSeriesRef.current = volumeSeries;
-
-    chart.priceScale('volume_scale').applyOptions({
-      scaleMargins: {
-        top: 0.82,
-        bottom: 0,
-      },
-    });
-
-    const volumeData = historyData.map((d) => ({
-      time: d.time,
-      value: d.volume,
-      color: (d.close ?? 0) >= (d.open ?? 0) ? 'rgba(38, 166, 154, 0.4)' : 'rgba(239, 83, 80, 0.4)',
-    }));
-    volumeSeries.setData(volumeData);
 
     const closeTimePoints = historyData.map((d) => ({
       time: d.time,
@@ -540,75 +532,130 @@ export default function AdvancedChartPage() {
       volume: d.volume,
     }));
 
-    // MA 20 (Clean smooth blue line like StockNow's MA)
+    // EMA 20 & EMA 50 on Main Candlestick Pane
+    let ema20Data: { time: string; value: number }[] = [];
+    let ema50Data: { time: string; value: number }[] = [];
+    if (showEMA) {
+      ema20Data = calculateEMA(closeTimePoints, 20);
+      const ema20Series = chart.addSeries(
+        LineSeries,
+        {
+          color: '#f59e0b', // Amber / Yellow (TradingView style)
+          lineWidth: 2,
+          title: 'EMA 20',
+        },
+        candlePane
+      );
+      ema20Series.setData(ema20Data);
+      ema20SeriesRef.current = ema20Series;
+
+      ema50Data = calculateEMA(closeTimePoints, 50);
+      const ema50Series = chart.addSeries(
+        LineSeries,
+        {
+          color: '#38bdf8', // Blue (TradingView style)
+          lineWidth: 2,
+          title: 'EMA 50',
+        },
+        candlePane
+      );
+      ema50Series.setData(ema50Data);
+      ema50SeriesRef.current = ema50Series;
+    }
+
+    // Support Line on Main Candlestick Pane
+    if (fullCandles.length > 5) {
+      const recentCandles = fullCandles.slice(-25);
+      const supportVal = Math.min(...recentCandles.map((c) => c.low));
+      candleSeries.createPriceLine({
+        price: supportVal,
+        color: '#00e5ff',
+        lineWidth: 1,
+        lineStyle: LineStyle.Solid,
+        axisLabelVisible: true,
+        title: `Support ${supportVal.toFixed(1)}`,
+      });
+    }
+
+    // Optional Overlays on Main Pane
     let ma20Data: { time: string; value: number }[] = [];
     if (showMA20) {
       ma20Data = calculateSMA(closeTimePoints, 20);
       const ma20Series = chart.addSeries(
         LineSeries,
-        {
-          color: '#29b6f6',
-          lineWidth: 2,
-          title: 'MA 20',
-        },
-        mainPane
+        { color: '#29b6f6', lineWidth: 1, title: 'MA 20' },
+        candlePane
       );
       ma20Series.setData(ma20Data);
       ma20SeriesRef.current = ma20Series;
     }
 
-    // Bollinger Bands (optional overlay)
     let bbResult: ReturnType<typeof calculateBollingerBands> | null = null;
     if (showBB) {
       bbResult = calculateBollingerBands(closeTimePoints, 20, 2);
-
-      const upperSeries = chart.addSeries(
-        LineSeries,
-        { color: 'rgba(56, 189, 248, 0.65)', lineWidth: 1, title: 'BB Upper' },
-        mainPane
-      );
+      const upperSeries = chart.addSeries(LineSeries, { color: 'rgba(56, 189, 248, 0.65)', lineWidth: 1, title: 'BB Upper' }, candlePane);
       upperSeries.setData(bbResult.upper);
       bbUpperRef.current = upperSeries;
 
-      const middleSeries = chart.addSeries(
-        LineSeries,
-        { color: 'rgba(148, 163, 184, 0.5)', lineWidth: 1, lineStyle: LineStyle.Dashed, title: 'BB Mid' },
-        mainPane
-      );
+      const middleSeries = chart.addSeries(LineSeries, { color: 'rgba(148, 163, 184, 0.5)', lineWidth: 1, lineStyle: LineStyle.Dashed, title: 'BB Mid' }, candlePane);
       middleSeries.setData(bbResult.middle);
       bbMiddleRef.current = middleSeries;
 
-      const lowerSeries = chart.addSeries(
-        LineSeries,
-        { color: 'rgba(56, 189, 248, 0.65)', lineWidth: 1, title: 'BB Lower' },
-        mainPane
-      );
+      const lowerSeries = chart.addSeries(LineSeries, { color: 'rgba(56, 189, 248, 0.65)', lineWidth: 1, title: 'BB Lower' }, candlePane);
       lowerSeries.setData(bbResult.lower);
       bbLowerRef.current = lowerSeries;
     }
 
-    // VWAP (optional overlay)
     let vwapData: { time: string; value: number }[] = [];
     if (showVWAP) {
       vwapData = calculateVWAP(fullCandles);
-      const vwapSeries = chart.addSeries(
-        LineSeries,
-        { color: '#d946ef', lineWidth: 2, title: 'VWAP' },
-        mainPane
-      );
+      const vwapSeries = chart.addSeries(LineSeries, { color: '#d946ef', lineWidth: 2, title: 'VWAP' }, candlePane);
       vwapSeries.setData(vwapData);
       vwapRef.current = vwapSeries;
     }
 
-    // RSI Pane (Compact Ribbon)
+    // 2. Dedicated Volume Pane (Pane 1)
+    let volMA20Data: { time: string; value: number }[] = [];
+    if (showVolume && volumePane >= 0) {
+      const volumeSeries = chart.addSeries(
+        HistogramSeries,
+        {
+          priceFormat: { type: 'volume' },
+          title: 'Volume',
+        },
+        volumePane
+      );
+      volumeSeriesRef.current = volumeSeries;
+
+      const volumeData = historyData.map((d) => ({
+        time: d.time,
+        value: d.volume,
+        color: (d.close ?? 0) >= (d.open ?? 0) ? 'rgba(38, 166, 154, 0.85)' : 'rgba(239, 83, 80, 0.85)',
+      }));
+      volumeSeries.setData(volumeData);
+
+      volMA20Data = calculateVolumeMA(volumeData, 20);
+      const volMASeries = chart.addSeries(
+        LineSeries,
+        {
+          color: '#f59e0b',
+          lineWidth: 1,
+          title: 'MA 20',
+        },
+        volumePane
+      );
+      volMASeries.setData(volMA20Data);
+      volMASeriesRef.current = volMASeries;
+    }
+
+    // 3. Dedicated RSI Pane (Pane 2)
     let rsiData: { time: string; value: number }[] = [];
     if (showRSI && rsiPane >= 0) {
       rsiData = calculateRSI(closeTimePoints, 14);
-
       const rsiSeries = chart.addSeries(
         LineSeries,
         {
-          color: '#ab47bc',
+          color: '#a855f7', // Purple/Violet
           lineWidth: 2,
           title: 'RSI (14)',
           autoscaleInfoProvider: () => ({ priceRange: { minValue: 0, maxValue: 100 } }),
@@ -618,22 +665,47 @@ export default function AdvancedChartPage() {
       rsiSeries.setData(rsiData);
       rsiSeriesRef.current = rsiSeries;
 
-      rsiSeries.createPriceLine({ price: 70, color: '#f87171', lineWidth: 1, lineStyle: LineStyle.Dotted, axisLabelVisible: true, title: '70' });
-      rsiSeries.createPriceLine({ price: 30, color: '#4ade80', lineWidth: 1, lineStyle: LineStyle.Dotted, axisLabelVisible: true, title: '30' });
+      rsiSeries.createPriceLine({
+        price: 70,
+        color: 'rgba(239, 83, 80, 0.65)',
+        lineWidth: 1,
+        lineStyle: LineStyle.Dotted,
+        axisLabelVisible: true,
+        title: '70',
+      });
+      rsiSeries.createPriceLine({
+        price: 30,
+        color: 'rgba(74, 222, 128, 0.65)',
+        lineWidth: 1,
+        lineStyle: LineStyle.Dotted,
+        axisLabelVisible: true,
+        title: '30',
+      });
     }
 
-    // MACD Pane (Compact Ribbon)
+    // 4. Dedicated MACD Pane (Pane 3)
     let macdResult: ReturnType<typeof calculateMACD> | null = null;
     if (showMACD && macdPane >= 0) {
       macdResult = calculateMACD(closeTimePoints, 12, 26, 9);
 
-      const macdHist = chart.addSeries(HistogramSeries, { title: 'MACD Hist' }, macdPane);
-      macdHist.setData(macdResult.histogram);
+      const macdHist = chart.addSeries(
+        HistogramSeries,
+        {
+          title: 'Hist',
+        },
+        macdPane
+      );
+      const coloredHist = macdResult.histogram.map((h) => ({
+        time: h.time,
+        value: h.value,
+        color: h.value >= 0 ? '#00b0ff' : '#ef5350',
+      }));
+      macdHist.setData(coloredHist);
       macdHistRef.current = macdHist;
 
       const macdSeries = chart.addSeries(
         LineSeries,
-        { color: '#29b6f6', lineWidth: 2, title: 'MACD' },
+        { color: '#38bdf8', lineWidth: 2, title: 'MACD' },
         macdPane
       );
       macdSeries.setData(macdResult.macdLine);
@@ -641,30 +713,38 @@ export default function AdvancedChartPage() {
 
       const signalSeries = chart.addSeries(
         LineSeries,
-        { color: '#ff7043', lineWidth: 1, lineStyle: LineStyle.Solid, title: 'Signal' },
+        { color: '#f97316', lineWidth: 1.5, lineStyle: LineStyle.Solid, title: 'Signal' },
         macdPane
       );
       signalSeries.setData(macdResult.signalLine);
       signalLineRef.current = signalSeries;
     }
 
-    // StockNow Proportional Pane Sizing (Candlesticks get 60%, RSI gets 20%, MACD gets 20%)
+    // Stretch Factors for Multi-Pane Layout
     const panes = chart.panes();
-    if (panes.length === 3) {
-      panes[0].setStretchFactor(0.60); // 60% Candlestick Chart!
-      panes[1].setStretchFactor(0.20); // 20% RSI
-      panes[2].setStretchFactor(0.20); // 20% MACD
-    } else if (panes.length === 2) {
-      panes[0].setStretchFactor(0.76); // 76% Candlestick Chart!
-      panes[1].setStretchFactor(0.24); // 24% Sub-pane
-    } else if (panes.length === 1) {
-      panes[0].setStretchFactor(1.0);  // 100% Full Screen
+    const count = panes.length;
+    if (count === 4) {
+      panes[0].setStretchFactor(0.50); // Candlesticks (50%)
+      panes[1].setStretchFactor(0.16); // Volume (16%)
+      panes[2].setStretchFactor(0.16); // RSI (16%)
+      panes[3].setStretchFactor(0.18); // MACD (18%)
+    } else if (count === 3) {
+      panes[0].setStretchFactor(0.60);
+      panes[1].setStretchFactor(0.20);
+      panes[2].setStretchFactor(0.20);
+    } else if (count === 2) {
+      panes[0].setStretchFactor(0.74);
+      panes[1].setStretchFactor(0.26);
+    } else if (count === 1) {
+      panes[0].setStretchFactor(1.0);
     }
 
-    // ATR calculation
+    // Maps for Real-time Crosshair Sync
     const atrData = calculateATR(fullCandles, 14);
     const atrMap = new Map(atrData.map((d) => [d.time, d]));
-
+    const ema20Map = new Map(ema20Data.map((d) => [d.time, d.value]));
+    const ema50Map = new Map(ema50Data.map((d) => [d.time, d.value]));
+    const volMAMap = new Map(volMA20Data.map((d) => [d.time, d.value]));
     const ma20Map = new Map(ma20Data.map((d) => [d.time, d.value]));
     const bbUpMap = new Map(bbResult?.upper.map((d) => [d.time, d.value]) || []);
     const bbMidMap = new Map(bbResult?.middle.map((d) => [d.time, d.value]) || []);
@@ -691,6 +771,9 @@ export default function AdvancedChartPage() {
         change: ch,
         changePct: chPct,
         volume: lastItem.volume,
+        volMA20: volMAMap.get(lastItem.time),
+        ema20: ema20Map.get(lastItem.time),
+        ema50: ema50Map.get(lastItem.time),
         ma20: ma20Map.get(lastItem.time),
         bbUpper: bbUpMap.get(lastItem.time),
         bbMiddle: bbMidMap.get(lastItem.time),
@@ -725,6 +808,9 @@ export default function AdvancedChartPage() {
           change: ch,
           changePct: chPct,
           volume: vol?.value ?? 0,
+          volMA20: volMAMap.get(timeStr),
+          ema20: ema20Map.get(timeStr),
+          ema50: ema50Map.get(timeStr),
           ma20: ma20Map.get(timeStr),
           bbUpper: bbUpMap.get(timeStr),
           bbMiddle: bbMidMap.get(timeStr),
@@ -741,7 +827,7 @@ export default function AdvancedChartPage() {
     });
 
     chart.timeScale().fitContent();
-  }, [historyData, showMA20, showRSI, showMACD, showBB, showVWAP, showATR]);
+  }, [historyData, showEMA, showVolume, showRSI, showMACD, showMA20, showBB, showVWAP, showATR]);
 
   // Selected Stock Details from live stock universe
   const currentStock = useMemo(() => {
@@ -964,81 +1050,89 @@ export default function AdvancedChartPage() {
             )}
           </div>
 
-          {/* Timeframe & Indicators toolbar */}
+          {/* Timeframe & Multi-Pane Indicator Toolbar (Matching TradingView Screenshot) */}
           <div className="flex items-center gap-2">
-            <div className="flex items-center rounded bg-[#1e222d] p-0.5">
-              {[
-                { label: '1D', m: 0 },
-                { label: '1M', m: 1 },
-                { label: '3M', m: 3 },
-                { label: '6M', m: 6 },
-                { label: '1Y', m: 12 },
-                { label: 'All', m: 0 },
-              ].map(({ label, m }) => (
+            {/* Timeframe Selector Pills */}
+            <div className="flex items-center rounded bg-[#131722] p-0.5 border border-[#1e222d]">
+              {['15m', '1h', '4h', '1d', '1M', 'All'].map((tf) => (
                 <button
-                  key={label}
+                  key={tf}
                   type="button"
-                  onClick={() => handleTimeframe(m)}
-                  className="rounded px-2 py-0.5 text-[11px] font-medium text-slate-300 hover:bg-[#2a2e39] hover:text-white transition"
+                  onClick={() => {
+                    setActiveTimeframe(tf);
+                    const monthsMap: Record<string, number> = { '15m': 1, '1h': 1, '4h': 3, '1d': 0, '1M': 1, 'All': 0 };
+                    handleTimeframe(monthsMap[tf] || 0);
+                  }}
+                  className={`rounded px-2.5 py-0.5 text-[11px] font-mono font-semibold transition ${
+                    activeTimeframe === tf
+                      ? 'bg-[#2a2e39] text-white shadow-xs'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
                 >
-                  {label}
+                  {tf}
                 </button>
               ))}
             </div>
 
             <div className="h-4 w-px bg-slate-800" />
 
-            {/* Clean Indicator Controls */}
+            {/* Indicator Quick Toggles */}
             <div className="flex items-center gap-1 font-mono text-[11px]">
               <button
                 type="button"
-                onClick={() => setShowMA20((v) => !v)}
-                className={`rounded px-2 py-0.5 font-semibold transition ${
-                  showMA20 ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40' : 'text-slate-400 hover:bg-[#1e222d]'
+                onClick={() => setShowEMA((v) => !v)}
+                className={`rounded px-2.5 py-0.5 font-semibold transition border ${
+                  showEMA
+                    ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                    : 'text-slate-400 border-transparent hover:bg-[#1e222d]'
                 }`}
               >
-                MA 20
+                EMA
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowVolume((v) => !v)}
+                className={`rounded px-2.5 py-0.5 font-semibold transition border ${
+                  showVolume
+                    ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                    : 'text-slate-400 border-transparent hover:bg-[#1e222d]'
+                }`}
+              >
+                Volume
               </button>
 
               <button
                 type="button"
                 onClick={() => setShowRSI((v) => !v)}
-                className={`rounded px-2 py-0.5 font-semibold transition ${
-                  showRSI ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40' : 'text-slate-400 hover:bg-[#1e222d]'
+                className={`rounded px-2.5 py-0.5 font-semibold transition border ${
+                  showRSI
+                    ? 'bg-purple-500/20 text-purple-300 border-purple-500/40'
+                    : 'text-slate-400 border-transparent hover:bg-[#1e222d]'
                 }`}
               >
-                RSI 14
+                RSI
               </button>
 
               <button
                 type="button"
                 onClick={() => setShowMACD((v) => !v)}
-                className={`rounded px-2 py-0.5 font-semibold transition ${
-                  showMACD ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'text-slate-400 hover:bg-[#1e222d]'
+                className={`rounded px-2.5 py-0.5 font-semibold transition border ${
+                  showMACD
+                    ? 'bg-sky-500/20 text-sky-300 border-sky-500/40'
+                    : 'text-slate-400 border-transparent hover:bg-[#1e222d]'
                 }`}
               >
                 MACD
               </button>
+            </div>
 
-              <button
-                type="button"
-                onClick={() => setShowBB((v) => !v)}
-                className={`rounded px-2 py-0.5 font-semibold transition ${
-                  showBB ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40' : 'text-slate-400 hover:bg-[#1e222d]'
-                }`}
-              >
-                BB
-              </button>
+            <div className="h-4 w-px bg-slate-800" />
 
-              <button
-                type="button"
-                onClick={() => setShowVWAP((v) => !v)}
-                className={`rounded px-2 py-0.5 font-semibold transition ${
-                  showVWAP ? 'bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/40' : 'text-slate-400 hover:bg-[#1e222d]'
-                }`}
-              >
-                VWAP
-              </button>
+            {/* Live Ticker Indicator Badge */}
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono font-bold">
+              <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              LIVE
             </div>
 
             <div className="h-4 w-px bg-slate-800" />
@@ -1125,53 +1219,66 @@ export default function AdvancedChartPage() {
 
           {/* Center Chart Container (Clean, Proportional StockNow Style) */}
           <div className="relative flex-1 bg-[#0c0d10] overflow-hidden">
-            {/* Real-time Dynamic Legend Header (Like StockNow) */}
-            <div className="absolute top-2 left-3 z-20 pointer-events-none flex flex-col gap-0.5 font-mono text-[11px] leading-tight select-none">
+            {/* TradingView-Style Multi-Pane Synchronized Legend */}
+            <div className="absolute top-2 left-3 z-20 pointer-events-none flex flex-col gap-1 font-mono text-[11px] select-none">
+              {/* Line 1: Symbol, Timeframe, OHLC, Change% */}
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-bold text-white tracking-wide">{selectedSymbol} · 1D</span>
+                <span className="font-bold text-white tracking-wide">
+                  {selectedSymbol} <span className="text-slate-400 font-normal">· {activeTimeframe.toUpperCase()} ·</span>
+                </span>
                 {legend.open !== undefined && (
-                  <div className="flex items-center gap-2 text-slate-300">
-                    <span>O <strong className="text-white">{legend.open}</strong></span>
-                    <span>H <strong className="text-white">{legend.high}</strong></span>
-                    <span>L <strong className="text-white">{legend.low}</strong></span>
-                    <span>C <strong className="text-white">{legend.close}</strong></span>
+                  <div className="flex flex-wrap items-center gap-2 text-slate-300">
+                    <span>O <strong className="text-white">{legend.open.toFixed(2)}</strong></span>
+                    <span>H <strong className="text-white">{legend.high.toFixed(2)}</strong></span>
+                    <span>L <strong className="text-white">{legend.low.toFixed(2)}</strong></span>
+                    <span>C <strong className="text-white">{legend.close.toFixed(2)}</strong></span>
                     <span className={(legend.change ?? 0) >= 0 ? 'text-[#089981] font-bold' : 'text-[#f23645] font-bold'}>
-                      {(legend.change ?? 0) >= 0 ? `+${legend.change}` : legend.change} ({(legend.changePct ?? 0) >= 0 ? `+${legend.changePct}` : legend.changePct}%)
+                      {(legend.change ?? 0) >= 0 ? `+${legend.change.toFixed(2)}` : legend.change?.toFixed(2)} ({(legend.changePct ?? 0) >= 0 ? `+${legend.changePct.toFixed(2)}` : legend.changePct?.toFixed(2)}%)
                     </span>
-                    <span>Vol <strong className="text-white">{(legend.volume ?? 0).toLocaleString()}</strong></span>
                   </div>
                 )}
               </div>
 
-              {/* Indicator Legends */}
-              <div className="flex flex-wrap items-center gap-2.5 text-[10px] mt-0.5">
-                {showMA20 && legend.ma20 !== undefined && (
-                  <span className="text-[#29b6f6] font-semibold">
-                    MA 20: <strong>{legend.ma20}</strong>
+              {/* Line 2: EMA Indicators on Main Pane */}
+              {showEMA && (legend.ema20 !== undefined || legend.ema50 !== undefined) && (
+                <div className="flex items-center gap-3 text-[10px]">
+                  {legend.ema20 !== undefined && (
+                    <span className="text-[#f59e0b] font-medium">
+                      EMA20 <strong className="font-bold text-amber-300">{legend.ema20.toFixed(2)}</strong>
+                    </span>
+                  )}
+                  {legend.ema50 !== undefined && (
+                    <span className="text-[#38bdf8] font-medium">
+                      EMA50 <strong className="font-bold text-sky-300">{legend.ema50.toFixed(2)}</strong>
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Line 3: Sub-Pane Summaries (Volume, RSI, MACD) */}
+              <div className="flex flex-wrap items-center gap-3 text-[10px] text-slate-400">
+                {showVolume && legend.volume !== undefined && (
+                  <span>
+                    Vol <strong className="text-slate-200">{legend.volume.toLocaleString()}</strong>
+                    {legend.volMA20 !== undefined && (
+                      <span className="text-[#f59e0b] ml-1.5">
+                        MA20 <strong className="font-bold">{legend.volMA20.toLocaleString()}</strong>
+                      </span>
+                    )}
                   </span>
                 )}
                 {showRSI && legend.rsi !== undefined && (
-                  <span className="text-[#ab47bc] font-semibold">
-                    RSI 14: <strong>{legend.rsi}</strong>
+                  <span className="text-[#a855f7]">
+                    RSI <strong className="font-bold text-purple-300">{legend.rsi.toFixed(2)}</strong>
                   </span>
                 )}
                 {showMACD && legend.macd !== undefined && (
-                  <span className="flex items-center gap-1 font-semibold">
-                    <span className="text-[#29b6f6]">MACD: {legend.macd}</span>
-                    <span className="text-[#ff7043]">Signal: {legend.signal}</span>
-                    <span className={(legend.hist ?? 0) >= 0 ? 'text-[#089981]' : 'text-[#f23645]'}>
-                      Hist: {legend.hist}
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[#38bdf8]">MACD <strong className="text-sky-300">{legend.macd.toFixed(2)}</strong></span>
+                    <span className="text-[#f97316]">Sig <strong className="text-orange-300">{legend.signal?.toFixed(2)}</strong></span>
+                    <span className={(legend.hist ?? 0) >= 0 ? 'text-[#00b0ff]' : 'text-[#ef5350]'}>
+                      Hist <strong className="font-bold">{legend.hist?.toFixed(2)}</strong>
                     </span>
-                  </span>
-                )}
-                {showBB && legend.bbUpper !== undefined && (
-                  <span className="text-sky-300 font-semibold">
-                    BB: {legend.bbUpper} / {legend.bbLower}
-                  </span>
-                )}
-                {showVWAP && legend.vwap !== undefined && (
-                  <span className="text-fuchsia-400 font-semibold">
-                    VWAP: {legend.vwap}
                   </span>
                 )}
               </div>
