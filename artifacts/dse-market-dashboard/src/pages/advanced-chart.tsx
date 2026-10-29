@@ -425,6 +425,8 @@ export default function AdvancedChartPage() {
       timeScale: {
         borderColor: '#1e222d',
         timeVisible: true,
+        rightOffset: 15,
+        barSpacing: 9,
         fixLeftEdge: false,
         fixRightEdge: false,
       },
@@ -543,6 +545,8 @@ export default function AdvancedChartPage() {
           color: '#f59e0b', // Amber / Yellow (TradingView style)
           lineWidth: 2,
           title: 'EMA 20',
+          lastValueVisible: false,
+          priceLineVisible: false,
         },
         candlePane
       );
@@ -556,6 +560,8 @@ export default function AdvancedChartPage() {
           color: '#38bdf8', // Blue (TradingView style)
           lineWidth: 2,
           title: 'EMA 50',
+          lastValueVisible: false,
+          priceLineVisible: false,
         },
         candlePane
       );
@@ -641,6 +647,8 @@ export default function AdvancedChartPage() {
           color: '#f59e0b',
           lineWidth: 1,
           title: 'MA 20',
+          lastValueVisible: false,
+          priceLineVisible: false,
         },
         volumePane
       );
@@ -692,6 +700,8 @@ export default function AdvancedChartPage() {
         HistogramSeries,
         {
           title: 'Hist',
+          lastValueVisible: false,
+          priceLineVisible: false,
         },
         macdPane
       );
@@ -705,7 +715,13 @@ export default function AdvancedChartPage() {
 
       const macdSeries = chart.addSeries(
         LineSeries,
-        { color: '#38bdf8', lineWidth: 2, title: 'MACD' },
+        {
+          color: '#38bdf8',
+          lineWidth: 2,
+          title: 'MACD',
+          lastValueVisible: false,
+          priceLineVisible: false,
+        },
         macdPane
       );
       macdSeries.setData(macdResult.macdLine);
@@ -713,7 +729,14 @@ export default function AdvancedChartPage() {
 
       const signalSeries = chart.addSeries(
         LineSeries,
-        { color: '#f97316', lineWidth: 1.5, lineStyle: LineStyle.Solid, title: 'Signal' },
+        {
+          color: '#f97316',
+          lineWidth: 1.5,
+          lineStyle: LineStyle.Solid,
+          title: 'Signal',
+          lastValueVisible: false,
+          priceLineVisible: false,
+        },
         macdPane
       );
       signalSeries.setData(macdResult.signalLine);
@@ -826,7 +849,15 @@ export default function AdvancedChartPage() {
       }
     });
 
-    chart.timeScale().fitContent();
+    const totalBars = historyData.length;
+    if (totalBars > 0) {
+      chart.timeScale().setVisibleLogicalRange({
+        from: Math.max(0, totalBars - 90),
+        to: totalBars + 15,
+      });
+    } else {
+      chart.timeScale().fitContent();
+    }
   }, [historyData, showEMA, showVolume, showRSI, showMACD, showMA20, showBB, showVWAP, showATR]);
 
   // Selected Stock Details from live stock universe
@@ -1167,9 +1198,9 @@ export default function AdvancedChartPage() {
 
         {/* Workspace Body */}
         <div ref={chartWrapperRef} className="relative flex flex-1 overflow-hidden bg-[#0c0d10]">
-          {/* Left Drawing Toolbar */}
+          {/* Left Drawing Toolbar - Floating Card (TradingView Style) */}
           {showDrawingToolbar && (
-            <div className="flex w-10 flex-col items-center gap-1.5 border-r border-[#1e222d] bg-[#131722] py-2 text-slate-400 select-none z-20">
+            <div className="absolute left-3 top-24 z-30 flex flex-col items-center gap-1.5 rounded-lg bg-[#131722]/90 backdrop-blur-md border border-[#2a2e39] py-2 px-1 text-slate-400 select-none shadow-2xl">
               {[
                 { id: 'cursor', label: 'Crosshair', icon: MousePointer },
                 { id: 'trendline', label: 'Trendline', icon: Slash },
