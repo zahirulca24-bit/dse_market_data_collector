@@ -122,7 +122,7 @@ export default function AdvancedChartPage() {
   const [stockSearch, setStockSearch] = useState<string>('');
 
   // UI Panels
-  const [showGlobalNav, setShowGlobalNav] = useState<boolean>(false);
+  const [showGlobalNav, setShowGlobalNav] = useState<boolean>(true);
   const [showDrawingToolbar, setShowDrawingToolbar] = useState<boolean>(true);
   const [rightPanelOpen, setRightPanelOpen] = useState<boolean>(true);
   const [activeRightTab, setActiveRightTab] = useState<RightDockTab>('portfolio');

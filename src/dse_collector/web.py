@@ -91,20 +91,20 @@ async def _historical_scheduler_loop() -> None:
                 webhook_url = os.getenv("WEBHOOK_ALERT_URL")
                 storage = SupabaseStorage(settings.supabase_url, settings.supabase_service_role_key)
 
-                if tg_token and tg_chat:
-                    alert_eval = await asyncio.to_thread(
-                        check_and_evaluate_alerts,
-                        storage,
-                        tg_token,
-                        tg_chat,
-                        webhook_url,
-                    )
-                    if alert_eval.get("fired_alerts_count", 0) > 0:
-                        logger.info("Dispatched %s alerts to Telegram", alert_eval["fired_alerts_count"])
-
-                # Auto-Pilot Paper Trading: Only operates during live DSE market hours (10:00 - 14:20 BST, Sun-Thu)!
+                # DSE Market Hours Guard: Alerts and Auto-Pilot only run live during market hours (10:00 - 14:20 BST, Sun-Thu)!
                 clock = get_dse_clock()
                 if clock.get("state") == "OPEN":
+                    if tg_token and tg_chat:
+                        alert_eval = await asyncio.to_thread(
+                            check_and_evaluate_alerts,
+                            storage,
+                            tg_token,
+                            tg_chat,
+                            webhook_url,
+                        )
+                        if alert_eval.get("fired_alerts_count", 0) > 0:
+                            logger.info("Dispatched %s alerts to Telegram", alert_eval["fired_alerts_count"])
+
                     auto_eval = await asyncio.to_thread(
                         evaluate_autopilot_paper_trades,
                         storage,
