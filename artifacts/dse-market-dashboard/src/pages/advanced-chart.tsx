@@ -11,6 +11,9 @@ import {
   LineStyle,
 } from 'lightweight-charts';
 import {
+  Sparkles,
+  Bot,
+  Key,
   Search,
   Heart,
   TrendingUp,
@@ -123,6 +126,75 @@ export default function AdvancedChartPage() {
 
   // UI Panels
   const [showGlobalNav, setShowGlobalNav] = useState<boolean>(true);
+  
+  // Gemini AI Analysis Modal & Key State
+  const [showAiModal, setShowAiModal] = useState<boolean>(false);
+  const [geminiApiKey, setGeminiApiKey] = useState<string>(() => {
+    try {
+      return localStorage.getItem('dse_gemini_api_key') || '';
+    } catch {
+      return '';
+    }
+  });
+  const [aiLoading, setAiLoading] = useState<boolean>(false);
+  const [aiAnalysis, setAiAnalysis] = useState<any>(null);
+  const [aiError, setAiError] = useState<string | null>(null);
+
+  const runAiAnalysis = async (apiKeyOverride?: string) => {
+    setAiLoading(true);
+    setAiError(null);
+    const keyToUse = (apiKeyOverride ?? geminiApiKey).trim();
+
+    try {
+      const payload = {
+        symbol: selectedSymbol,
+        stock_info: currentStock || {},
+        history: historyData.slice(-25),
+        indicators: {
+          ema20: legend.ema20,
+          ema50: legend.ema50,
+          rsi: legend.rsi,
+          macd: legend.macd,
+          signal: legend.signal,
+          hist: legend.hist,
+          support: currentStock?.low || 0,
+        },
+        api_key: keyToUse,
+      };
+
+      const res = await fetch('/api/market/ai-analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      if (data.status === 'success') {
+        setAiAnalysis(data.analysis);
+      } else if (data.status === 'needs_key') {
+        setAiError('Please enter your Gemini API Key below to unlock AI Analysis.');
+      } else {
+        setAiError(data.message || 'AI analysis request failed.');
+      }
+    } catch (err: any) {
+      setAiError(err.message || 'Network error while calling AI Analysis.');
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
+  const handleSaveApiKey = (newKey: string) => {
+    const trimmed = newKey.trim();
+    setGeminiApiKey(trimmed);
+    try {
+      localStorage.setItem('dse_gemini_api_key', trimmed);
+    } catch (e) {
+      console.error(e);
+    }
+    if (trimmed) {
+      runAiAnalysis(trimmed);
+    }
+  };
   const [showDrawingToolbar, setShowDrawingToolbar] = useState<boolean>(true);
   const [rightPanelOpen, setRightPanelOpen] = useState<boolean>(true);
   const [activeRightTab, setActiveRightTab] = useState<RightDockTab>('portfolio');
@@ -1173,6 +1245,24 @@ export default function AdvancedChartPage() {
 
             <div className="h-4 w-px bg-slate-800" />
 
+            {/* AI Analysis Button (Gemini Powered) */}
+            <button
+              type="button"
+              onClick={() => {
+                setShowAiModal(true);
+                if (geminiApiKey && !aiAnalysis) {
+                  runAiAnalysis();
+                }
+              }}
+              title="Run Deep Technical AI Analysis with Google Gemini"
+              className="flex items-center gap-1.5 rounded-md bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-2.5 py-1 text-xs font-bold shadow-md shadow-purple-900/40 border border-purple-400/30 transition transform active:scale-95"
+            >
+              <Sparkles size={13} className="text-amber-300 animate-spin-slow" />
+              <span>AI Analysis</span>
+            </button>
+
+            <div className="h-4 w-px bg-slate-800" />
+
             <button
               type="button"
               onClick={handleTakeScreenshot}
@@ -1325,6 +1415,216 @@ export default function AdvancedChartPage() {
                 <div className="flex items-center gap-2 rounded bg-[#1e222d] border border-slate-700 px-4 py-2 text-xs text-amber-400 shadow-xl">
                   <div className="size-4 animate-spin rounded-full border-2 border-amber-400 border-t-transparent" />
                   <span>Loading {selectedSymbol} historical candles...</span>
+                </div>
+              </div>
+            )}
+
+            {/* Gemini AI Analysis Modal */}
+            {showAiModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in">
+                <div className="w-full max-w-2xl rounded-2xl border border-purple-500/30 bg-[#121622] p-6 shadow-2xl text-slate-200 font-sans relative max-h-[90vh] overflow-y-auto">
+                  {/* Close Button */}
+                  <button
+                    type="button"
+                    onClick={() => setShowAiModal(false)}
+                    className="absolute top-4 right-4 rounded-lg bg-slate-800/80 p-1.5 text-slate-400 hover:bg-slate-700 hover:text-white transition"
+                  >
+                    <X size={16} />
+                  </button>
+
+                  {/* Header */}
+                  <div className="flex items-center gap-3 border-b border-slate-800 pb-4 mb-4">
+                    <div className="grid size-10 place-items-center rounded-xl bg-linear-to-br from-purple-500 to-indigo-600 text-white shadow-lg shadow-purple-900/50">
+                      <Sparkles size={20} />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h2 className="text-lg font-bold text-white tracking-wide">
+                          Gemini 2.5 AI Quantitative Analysis
+                        </h2>
+                        <span className="rounded bg-purple-500/20 px-2 py-0.5 text-[10px] font-mono font-bold text-purple-300 border border-purple-500/40">
+                          {selectedSymbol}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-400">
+                        Multi-Factor Technical Pattern Recognition & Swing Strategy Engine
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* API Key Input Banner if Missing */}
+                  {(!geminiApiKey || aiError?.includes('API Key')) && (
+                    <div className="mb-5 rounded-xl border border-amber-500/30 bg-amber-500/10 p-4">
+                      <div className="flex items-center gap-2 text-amber-300 font-semibold text-xs mb-2">
+                        <Key size={14} />
+                        <span>Gemini API Key Required:</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <input
+                          type="password"
+                          placeholder="Paste your Google Gemini API key (AIzaSy...)"
+                          defaultValue={geminiApiKey}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              handleSaveApiKey((e.target as HTMLInputElement).value);
+                            }
+                          }}
+                          id="gemini-key-input"
+                          className="flex-1 rounded-lg border border-slate-700 bg-[#0d1017] px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:border-purple-500 focus:outline-hidden font-mono"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const inp = document.getElementById('gemini-key-input') as HTMLInputElement;
+                            if (inp) handleSaveApiKey(inp.value);
+                          }}
+                          className="rounded-lg bg-purple-600 hover:bg-purple-500 px-4 py-1.5 text-xs font-bold text-white transition shadow-sm"
+                        >
+                          Save & Run
+                        </button>
+                      </div>
+                      <p className="text-[10px] text-slate-400 mt-2">
+                        Your key is saved locally in your browser and used securely to invoke Gemini 2.5 Flash.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Loading State */}
+                  {aiLoading && (
+                    <div className="py-16 text-center">
+                      <RefreshCw size={36} className="animate-spin text-purple-400 mx-auto mb-3" />
+                      <p className="text-sm font-semibold text-white">
+                        Gemini is analyzing {selectedSymbol} chart structure...
+                      </p>
+                      <p className="text-xs text-slate-400 mt-1 font-mono">
+                        Computing EMA 20/50 cross, RSI momentum, and volume accumulation...
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Error State */}
+                  {!aiLoading && aiError && (
+                    <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 text-xs text-rose-300 mb-4">
+                      <p className="font-bold mb-1">Analysis Note:</p>
+                      <p>{aiError}</p>
+                    </div>
+                  )}
+
+                  {/* Results Display */}
+                  {!aiLoading && aiAnalysis && (
+                    <div className="space-y-4">
+                      {/* Signal Hero Card */}
+                      <div className="rounded-xl bg-linear-to-r from-[#171c2b] to-[#1a1c2e] p-4 border border-purple-500/20">
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                          <div>
+                            <span className="text-[11px] text-slate-400 uppercase tracking-wider block font-mono">
+                              Verdict Signal
+                            </span>
+                            <span
+                              className={`text-xl font-black tracking-wide ${
+                                aiAnalysis.signal?.includes('BUY')
+                                  ? 'text-emerald-400'
+                                  : aiAnalysis.signal?.includes('SELL')
+                                  ? 'text-rose-400'
+                                  : 'text-amber-400'
+                              }`}
+                            >
+                              {aiAnalysis.signal}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-3 font-mono text-xs">
+                            <div className="rounded-lg bg-[#0d1017] px-3 py-1.5 border border-slate-800 text-center">
+                              <span className="text-[10px] text-slate-400 block">Confidence</span>
+                              <span className="font-bold text-purple-300">{aiAnalysis.confidence_pct}%</span>
+                            </div>
+                            <div className="rounded-lg bg-[#0d1017] px-3 py-1.5 border border-slate-800 text-center">
+                              <span className="text-[10px] text-slate-400 block">Risk</span>
+                              <span
+                                className={`font-bold ${
+                                  aiAnalysis.risk_level === 'Low'
+                                    ? 'text-emerald-400'
+                                    : aiAnalysis.risk_level === 'High'
+                                    ? 'text-rose-400'
+                                    : 'text-amber-400'
+                                }`}
+                              >
+                                {aiAnalysis.risk_level}
+                              </span>
+                            </div>
+                            <div className="rounded-lg bg-[#0d1017] px-3 py-1.5 border border-slate-800 text-center">
+                              <span className="text-[10px] text-slate-400 block">Holding</span>
+                              <span className="font-bold text-sky-300">{aiAnalysis.holding_period}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Trade Parameters Grid */}
+                        <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-slate-800 text-xs font-mono">
+                          <div className="rounded bg-[#0d1017]/80 p-2 border border-slate-800/80">
+                            <span className="text-[10px] text-slate-500 block">Entry Zone</span>
+                            <span className="font-bold text-white">{aiAnalysis.entry_range}</span>
+                          </div>
+                          <div className="rounded bg-[#0d1017]/80 p-2 border border-slate-800/80">
+                            <span className="text-[10px] text-emerald-500 block">Target (TP)</span>
+                            <span className="font-bold text-emerald-400">{aiAnalysis.target_price}</span>
+                          </div>
+                          <div className="rounded bg-[#0d1017]/80 p-2 border border-slate-800/80">
+                            <span className="text-[10px] text-rose-500 block">Stop-Loss (SL)</span>
+                            <span className="font-bold text-rose-400">{aiAnalysis.stop_loss}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Bengali Summary */}
+                      <div className="rounded-xl bg-[#141926] p-4 border border-slate-800">
+                        <h4 className="text-xs font-bold text-purple-300 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                          <span>🇧🇩</span> টেকনিক্যাল সিদ্ধান্ত (বাংলায়)
+                        </h4>
+                        <p className="text-sm text-slate-200 leading-relaxed">
+                          {aiAnalysis.summary_bengali}
+                        </p>
+                      </div>
+
+                      {/* Key Observations */}
+                      <div className="rounded-xl bg-[#141926] p-4 border border-slate-800">
+                        <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2 font-mono">
+                          Key Technical Factors
+                        </h4>
+                        <ul className="space-y-1.5 text-xs text-slate-300">
+                          {aiAnalysis.key_observations?.map((obs: string, idx: number) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <span className="text-purple-400 font-bold shrink-0">•</span>
+                              <span>{obs}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Actions */}
+                      <div className="flex items-center justify-between pt-2">
+                        <button
+                          type="button"
+                          onClick={() => runAiAnalysis()}
+                          className="flex items-center gap-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white transition"
+                        >
+                          <RefreshCw size={12} />
+                          <span>Re-Analyze</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const newKey = window.prompt('Update Gemini API Key:', geminiApiKey);
+                            if (newKey !== null) handleSaveApiKey(newKey);
+                          }}
+                          className="text-[11px] text-slate-400 hover:text-purple-300 underline font-mono"
+                        >
+                          Change API Key
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

@@ -595,6 +595,31 @@ def trigger_autopilot_execution() -> dict:
 
 
 # ----------------------------------------------------
+# GEMINI AI STOCK ANALYSIS ENDPOINT
+# ----------------------------------------------------
+@app.post("/api/market/ai-analysis")
+def api_gemini_stock_analysis(payload: dict) -> dict:
+    """Invokes Gemini 2.5 Flash to analyze current stock chart, indicators, and DSE swing setup."""
+    try:
+        from .agents.gemini_analyzer import analyze_stock_with_gemini
+        symbol = payload.get("symbol", "GP")
+        stock_info = payload.get("stock_info", {})
+        history_slice = payload.get("history", [])
+        indicators = payload.get("indicators", {})
+        custom_key = payload.get("api_key")
+        return analyze_stock_with_gemini(
+            symbol=symbol,
+            stock_info=stock_info,
+            history_slice=history_slice,
+            indicators=indicators,
+            custom_api_key=custom_key,
+        )
+    except Exception as exc:
+        logger.exception("AI Analysis endpoint error")
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+# ----------------------------------------------------
 # DAILY REPORTS & REAL PORTFOLIO ENDPOINTS
 # ----------------------------------------------------
 @app.get("/api/reports/daily-cards")
