@@ -400,6 +400,11 @@ export default function AdvancedChartPage() {
       layout: {
         background: { type: ColorType.Solid, color: '#0c0d10' },
         textColor: '#848e9c',
+        panes: {
+          enableResize: true,
+          separatorColor: '#1e222d',
+          separatorHoverColor: '#2a2e39',
+        },
       },
       grid: {
         vertLines: { color: 'rgba(30, 35, 45, 0.45)' },
