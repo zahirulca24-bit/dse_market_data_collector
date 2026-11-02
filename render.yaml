@@ -16,6 +16,12 @@ services:
         sync: false
       - key: CRON_SECRET
         sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_SESSION_SECRET
+        sync: false
       - key: COLLECTOR_INTERVAL_SECONDS
         value: "120"
       - key: ENFORCE_MARKET_WINDOW
