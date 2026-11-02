@@ -1,6 +1,6 @@
 {
   "starting_cash": 500000.0,
-  "cash_balance": 35476.1,
+  "cash_balance": 224413.32,
   "commission_rate": 0.004,
   "positions": {
     "BNICL": {
@@ -21,17 +21,6 @@
       "current_ltp": 48.3,
       "stop_loss": 27.84,
       "take_profit": 32.23,
-      "opened_at": "2026-10-27 03:03:16",
-      "notes": "Auto-Pilot Breakout Signal",
-      "settlement_date": "2026-10-29"
-    },
-    "BNIPLC": {
-      "symbol": "BNIPLC",
-      "quantity": 1200,
-      "average_buy_price": 166.4,
-      "current_ltp": 116.1,
-      "stop_loss": 158.08,
-      "take_profit": 183.04,
       "opened_at": "2026-10-27 03:03:16",
       "notes": "Auto-Pilot Breakout Signal",
       "settlement_date": "2026-10-29"
@@ -113,9 +102,36 @@
       "stop_loss": 158.08,
       "take_profit": 183.04,
       "notes": "Auto-Pilot Breakout Signal"
+    },
+    {
+      "order_id": "ORD-1793626941342",
+      "symbol": "BNIPLC",
+      "side": "SELL",
+      "order_type": "LIMIT",
+      "quantity": 1200,
+      "price": 158.08,
+      "order_value": 189696.0,
+      "commission": 758.78,
+      "realized_pnl": -10742.78,
+      "status": "FILLED",
+      "executed_at": "2026-11-02 19:42:21",
+      "notes": "STOP_LOSS_TRIGGERED: Risk Protected"
     }
   ],
-  "closed_trades": [],
-  "total_commission_paid": 1850.7,
-  "updated_at": "2026-10-30 00:30:23"
+  "closed_trades": [
+    {
+      "symbol": "BNIPLC",
+      "quantity": 1200,
+      "buy_price": 166.4,
+      "sell_price": 158.08,
+      "order_value": 189696.0,
+      "commission": 758.78,
+      "realized_pnl": -10742.78,
+      "realized_pnl_pct": -5.0,
+      "closed_at": "2026-11-02 19:42:21",
+      "reason": "STOP_LOSS_TRIGGERED: Risk Protected"
+    }
+  ],
+  "total_commission_paid": 2609.48,
+  "updated_at": "2026-11-02 19:42:21"
 }
