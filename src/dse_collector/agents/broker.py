@@ -472,13 +472,15 @@ def place_paper_order(
 
 
 def close_paper_position(
-    state: dict[str, Any],
-    symbol: str,
+    state: dict[str, Any] | None = None,
+    symbol: str = "",
     exit_price: float | None = None,
     reason: str = "MANUAL_CLOSE",
 ) -> dict[str, Any]:
     """Closes 100% of an open position at the specified or latest price if matured."""
     sym = symbol.upper().strip()
+    if state is None:
+        state = load_paper_account()
     positions = state.get("positions", {})
     if sym not in positions:
         return {"status": "error", "message": f"No open position found for {sym}."}
@@ -487,7 +489,7 @@ def close_paper_position(
     qty = int(pos["quantity"])
     price = float(exit_price or pos.get("current_ltp") or pos.get("average_buy_price"))
 
-    return place_paper_order(
+    res = place_paper_order(
         symbol=sym,
         side="SELL",
         quantity=qty,
@@ -495,6 +497,9 @@ def close_paper_position(
         order_type="MARKET",
         notes=f"Closed via {reason}",
     )
+    if res.get("status") == "success" and sym in positions:
+        del positions[sym]
+    return res
 
 
 def evaluate_autopilot_paper_trades(
@@ -580,6 +585,7 @@ def evaluate_autopilot_paper_trades(
     for sym, exit_p, reason, pnl in symbols_to_close:
         res = close_paper_position(state, sym, exit_price=exit_p, reason=reason)
         if res.get("status") == "success":
+            state = load_paper_account()  # Reload authoritative state from disk
             closed_triggers.append({"symbol": sym, "price": exit_p, "reason": reason, "pnl": pnl})
             if telegram_bot_token and telegram_chat_id:
                 emoji = "🎯" if "TAKE_PROFIT" in reason else "🛑"
@@ -598,7 +604,8 @@ def evaluate_autopilot_paper_trades(
                 except Exception as tg_err:
                     logger.debug("Failed sending Telegram SL/TP alert: %s", tg_err)
 
-    save_paper_account(state)
+    if not symbols_to_close:
+        save_paper_account(state)
 
     # 2. Check capacity for new entries
     current_open_count = len(state.get("positions", {}))
