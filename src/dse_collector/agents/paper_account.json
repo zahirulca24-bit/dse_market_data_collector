@@ -1,31 +1,8 @@
 {
   "starting_cash": 500000.0,
-  "cash_balance": 224413.32,
+  "cash_balance": 503131.49,
   "commission_rate": 0.004,
-  "positions": {
-    "BNICL": {
-      "symbol": "BNICL",
-      "quantity": 500,
-      "average_buy_price": 126.1,
-      "current_ltp": 44.2,
-      "stop_loss": 119.8,
-      "take_profit": 138.7,
-      "opened_at": "2026-10-27 01:17:35",
-      "notes": "Agent 1 Breakout 20D Signal",
-      "settlement_date": "2026-10-29"
-    },
-    "ORIONPHARM": {
-      "symbol": "ORIONPHARM",
-      "quantity": 6824,
-      "average_buy_price": 29.3,
-      "current_ltp": 48.3,
-      "stop_loss": 27.84,
-      "take_profit": 32.23,
-      "opened_at": "2026-10-27 03:03:16",
-      "notes": "Auto-Pilot Breakout Signal",
-      "settlement_date": "2026-10-29"
-    }
-  },
+  "positions": {},
   "pending_orders": [],
   "order_blotter": [
     {
@@ -116,6 +93,34 @@
       "status": "FILLED",
       "executed_at": "2026-11-02 19:42:21",
       "notes": "STOP_LOSS_TRIGGERED: Risk Protected"
+    },
+    {
+      "order_id": "ORD-1793627516876",
+      "symbol": "ORIONPHARM",
+      "side": "SELL",
+      "order_type": "LIMIT",
+      "quantity": 6824,
+      "price": 32.23,
+      "order_value": 219937.52,
+      "commission": 879.75,
+      "realized_pnl": 19114.57,
+      "status": "FILLED",
+      "executed_at": "2026-11-02 19:51:56",
+      "notes": "TAKE_PROFIT_TRIGGERED: Target Achieved"
+    },
+    {
+      "order_id": "ORD-1793627516884",
+      "symbol": "BNICL",
+      "side": "SELL",
+      "order_type": "LIMIT",
+      "quantity": 500,
+      "price": 119.8,
+      "order_value": 59900.0,
+      "commission": 239.6,
+      "realized_pnl": -3389.6,
+      "status": "FILLED",
+      "executed_at": "2026-11-02 19:51:56",
+      "notes": "STOP_LOSS_TRIGGERED: Risk Protected"
     }
   ],
   "closed_trades": [
@@ -130,8 +135,32 @@
       "realized_pnl_pct": -5.0,
       "closed_at": "2026-11-02 19:42:21",
       "reason": "STOP_LOSS_TRIGGERED: Risk Protected"
+    },
+    {
+      "symbol": "ORIONPHARM",
+      "quantity": 6824,
+      "buy_price": 29.3,
+      "sell_price": 32.23,
+      "order_value": 219937.52,
+      "commission": 879.75,
+      "realized_pnl": 19114.57,
+      "realized_pnl_pct": 10.0,
+      "closed_at": "2026-11-02 19:51:56",
+      "reason": "TAKE_PROFIT_TRIGGERED: Target Achieved"
+    },
+    {
+      "symbol": "BNICL",
+      "quantity": 500,
+      "buy_price": 126.1,
+      "sell_price": 119.8,
+      "order_value": 59900.0,
+      "commission": 239.6,
+      "realized_pnl": -3389.6,
+      "realized_pnl_pct": -5.0,
+      "closed_at": "2026-11-02 19:51:56",
+      "reason": "STOP_LOSS_TRIGGERED: Risk Protected"
     }
   ],
-  "total_commission_paid": 2609.48,
-  "updated_at": "2026-11-02 19:42:21"
+  "total_commission_paid": 3728.83,
+  "updated_at": "2026-11-02 19:51:56"
 }
