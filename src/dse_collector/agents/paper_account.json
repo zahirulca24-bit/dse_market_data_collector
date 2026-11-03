@@ -1,8 +1,74 @@
 {
   "starting_cash": 500000.0,
-  "cash_balance": 503131.49,
+  "cash_balance": 14943.62,
   "commission_rate": 0.004,
-  "positions": {},
+  "positions": {
+    "SOUTHEASTB": {
+      "symbol": "SOUTHEASTB",
+      "quantity": 7812,
+      "average_buy_price": 12.8,
+      "current_ltp": 12.8,
+      "stop_loss": 12.16,
+      "take_profit": 14.08,
+      "opened_at": "2026-11-04 01:21:29",
+      "purchased_date": "2026-11-04",
+      "settlement_date": "2026-11-08",
+      "settlement_cycle": "T+2",
+      "notes": "20-Day Breakout + Volume Surge (Delivery Swing)"
+    },
+    "PTL": {
+      "symbol": "PTL",
+      "quantity": 1265,
+      "average_buy_price": 79.0,
+      "current_ltp": 79.0,
+      "stop_loss": 75.05,
+      "take_profit": 86.9,
+      "opened_at": "2026-11-04 01:21:29",
+      "purchased_date": "2026-11-04",
+      "settlement_date": "2026-11-08",
+      "settlement_cycle": "T+2",
+      "notes": "20-Day Breakout + Volume Surge (Delivery Swing)"
+    },
+    "BNICL": {
+      "symbol": "BNICL",
+      "quantity": 793,
+      "average_buy_price": 126.1,
+      "current_ltp": 126.1,
+      "stop_loss": 119.79,
+      "take_profit": 138.71,
+      "opened_at": "2026-11-04 01:21:29",
+      "purchased_date": "2026-11-04",
+      "settlement_date": "2026-11-08",
+      "settlement_cycle": "T+2",
+      "notes": "20-Day Breakout + Volume Surge (Delivery Swing)"
+    },
+    "IFIC1STMF": {
+      "symbol": "IFIC1STMF",
+      "quantity": 23809,
+      "average_buy_price": 4.2,
+      "current_ltp": 4.2,
+      "stop_loss": 3.99,
+      "take_profit": 4.62,
+      "opened_at": "2026-11-04 01:21:29",
+      "purchased_date": "2026-11-04",
+      "settlement_date": "2026-11-08",
+      "settlement_cycle": "T+2",
+      "notes": "20-Day Breakout + Volume Surge (Delivery Swing)"
+    },
+    "SPCL": {
+      "symbol": "SPCL",
+      "quantity": 1496,
+      "average_buy_price": 57.7,
+      "current_ltp": 57.7,
+      "stop_loss": 54.81,
+      "take_profit": 63.47,
+      "opened_at": "2026-11-04 01:21:29",
+      "purchased_date": "2026-11-04",
+      "settlement_date": "2026-11-08",
+      "settlement_cycle": "T+2",
+      "notes": "20-Day Breakout + Volume Surge (Delivery Swing)"
+    }
+  },
   "pending_orders": [],
   "order_blotter": [
     {
@@ -121,6 +187,91 @@
       "status": "FILLED",
       "executed_at": "2026-11-02 19:51:56",
       "notes": "STOP_LOSS_TRIGGERED: Risk Protected"
+    },
+    {
+      "order_id": "ORD-1793733689215",
+      "symbol": "SOUTHEASTB",
+      "side": "BUY",
+      "order_type": "LIMIT",
+      "quantity": 7812,
+      "price": 12.8,
+      "order_value": 99993.6,
+      "commission": 399.97,
+      "status": "FILLED",
+      "executed_at": "2026-11-04 01:21:29",
+      "settlement_cycle": "T+2",
+      "settlement_date": "2026-11-08",
+      "stop_loss": 12.16,
+      "take_profit": 14.08,
+      "notes": "20-Day Breakout + Volume Surge (Delivery Swing)"
+    },
+    {
+      "order_id": "ORD-1793733689231",
+      "symbol": "PTL",
+      "side": "BUY",
+      "order_type": "LIMIT",
+      "quantity": 1265,
+      "price": 79.0,
+      "order_value": 99935.0,
+      "commission": 399.74,
+      "status": "FILLED",
+      "executed_at": "2026-11-04 01:21:29",
+      "settlement_cycle": "T+2",
+      "settlement_date": "2026-11-08",
+      "stop_loss": 75.05,
+      "take_profit": 86.9,
+      "notes": "20-Day Breakout + Volume Surge (Delivery Swing)"
+    },
+    {
+      "order_id": "ORD-1793733689239",
+      "symbol": "BNICL",
+      "side": "BUY",
+      "order_type": "LIMIT",
+      "quantity": 793,
+      "price": 126.1,
+      "order_value": 99997.3,
+      "commission": 399.99,
+      "status": "FILLED",
+      "executed_at": "2026-11-04 01:21:29",
+      "settlement_cycle": "T+2",
+      "settlement_date": "2026-11-08",
+      "stop_loss": 119.79,
+      "take_profit": 138.71,
+      "notes": "20-Day Breakout + Volume Surge (Delivery Swing)"
+    },
+    {
+      "order_id": "ORD-1793733689249",
+      "symbol": "IFIC1STMF",
+      "side": "BUY",
+      "order_type": "LIMIT",
+      "quantity": 23809,
+      "price": 4.2,
+      "order_value": 99997.8,
+      "commission": 399.99,
+      "status": "FILLED",
+      "executed_at": "2026-11-04 01:21:29",
+      "settlement_cycle": "T+2",
+      "settlement_date": "2026-11-08",
+      "stop_loss": 3.99,
+      "take_profit": 4.62,
+      "notes": "20-Day Breakout + Volume Surge (Delivery Swing)"
+    },
+    {
+      "order_id": "ORD-1793733689257",
+      "symbol": "SPCL",
+      "side": "BUY",
+      "order_type": "LIMIT",
+      "quantity": 1496,
+      "price": 57.7,
+      "order_value": 86319.2,
+      "commission": 345.28,
+      "status": "FILLED",
+      "executed_at": "2026-11-04 01:21:29",
+      "settlement_cycle": "T+2",
+      "settlement_date": "2026-11-08",
+      "stop_loss": 54.81,
+      "take_profit": 63.47,
+      "notes": "20-Day Breakout + Volume Surge (Delivery Swing)"
     }
   ],
   "closed_trades": [
@@ -161,6 +312,6 @@
       "reason": "STOP_LOSS_TRIGGERED: Risk Protected"
     }
   ],
-  "total_commission_paid": 3728.83,
-  "updated_at": "2026-11-02 19:51:56"
+  "total_commission_paid": 5673.8,
+  "updated_at": "2026-11-04 01:21:29"
 }
