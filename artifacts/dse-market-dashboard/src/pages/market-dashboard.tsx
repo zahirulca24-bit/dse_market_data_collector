@@ -26,6 +26,8 @@ import {
   Search,
   Server,
   SlidersHorizontal,
+  Star,
+  Plus,
   TrendingUp,
   X,
   Zap,
@@ -298,26 +300,88 @@ function AppHeader({ asOf, health, onRefresh, refreshing }: { asOf?: string; hea
   );
 }
 
-function StockTable({ stocks, loading, error, onRetry, selectedSymbol, onSelect }: { stocks: MarketStock[] | undefined; loading: boolean; error: boolean; onRetry: () => void; selectedSymbol: string; onSelect: (symbol: string) => void }) {
+function StockTable({
+  stocks,
+  loading,
+  error,
+  onRetry,
+  selectedSymbol,
+  onSelect,
+  watchlist,
+  onToggleWatchlist,
+}: {
+  stocks: MarketStock[] | undefined;
+  loading: boolean;
+  error: boolean;
+  onRetry: () => void;
+  selectedSymbol: string;
+  onSelect: (symbol: string) => void;
+  watchlist: string[];
+  onToggleWatchlist: (symbol: string) => void;
+}) {
   if (loading) return <div className="space-y-2 p-4">{Array.from({ length: 6 }).map((_, index) => <Skeleton key={index} className="h-12 w-full" />)}</div>;
   if (error) return <ErrorState onRetry={onRetry} />;
   if (!stocks?.length) return <EmptyState compact title="No stocks match" detail="Try clearing the search or sector filter." />;
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-[720px] border-collapse text-left">
-        <thead><tr className="border-b border-border bg-muted/60 font-mono text-[9px] uppercase tracking-[.13em] text-muted-foreground"><th className="px-4 py-3 font-medium">Symbol</th><th className="px-3 py-3 font-medium">Sector</th><th className="px-3 py-3 text-right font-medium">LTP</th><th className="px-3 py-3 text-right font-medium">Change</th><th className="px-3 py-3 text-right font-medium">High</th><th className="px-3 py-3 text-right font-medium">Low</th><th className="px-4 py-3 text-right font-medium">Volume</th></tr></thead>
-        <tbody>{stocks.map((stock) => {
-          const selected = stock.symbol === selectedSymbol;
-          return <tr key={stock.symbol} data-testid={`row-stock-${stock.symbol}`} onClick={() => onSelect(stock.symbol)} className={`cursor-pointer border-b border-border/70 transition-colors hover:bg-amber-50/70 ${selected ? 'bg-amber-50/90' : ''}`}>
-            <td className="px-4 py-3"><div className="flex items-center gap-2"><span className={`h-5 w-0.5 rounded-full ${selected ? 'bg-[#d39d19]' : 'bg-transparent'}`} /><span className="font-mono text-xs font-medium text-foreground">{stock.symbol}</span></div></td>
-            <td className="px-3 py-3 text-xs text-muted-foreground">{stock.sector}</td>
-            <td className="px-3 py-3 text-right font-mono text-xs font-medium tabular-nums">{formatNumber(stock.ltp)}</td>
-            <td className="px-3 py-3 text-right text-xs"><ToneValue value={stock.change} /></td>
-            <td className="px-3 py-3 text-right font-mono text-xs tabular-nums text-muted-foreground">{formatNumber(stock.high)}</td>
-            <td className="px-3 py-3 text-right font-mono text-xs tabular-nums text-muted-foreground">{formatNumber(stock.low)}</td>
-            <td className="px-4 py-3 text-right font-mono text-xs tabular-nums text-muted-foreground">{formatCompact(stock.volume)}</td>
-          </tr>;
-        })}</tbody>
+        <thead>
+          <tr className="border-b border-border bg-muted/60 font-mono text-[9px] uppercase tracking-[.13em] text-muted-foreground">
+            <th className="w-9 px-2 py-3 text-center">⭐</th>
+            <th className="px-3 py-3 font-medium">Symbol</th>
+            <th className="px-3 py-3 font-medium">Sector</th>
+            <th className="px-3 py-3 text-right font-medium">LTP</th>
+            <th className="px-3 py-3 text-right font-medium">Change</th>
+            <th className="px-3 py-3 text-right font-medium">High</th>
+            <th className="px-3 py-3 text-right font-medium">Low</th>
+            <th className="px-4 py-3 text-right font-medium">Volume</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stocks.map((stock) => {
+            const selected = stock.symbol === selectedSymbol;
+            const isStarred = watchlist.includes(stock.symbol);
+            return (
+              <tr
+                key={stock.symbol}
+                data-testid={`row-stock-${stock.symbol}`}
+                onClick={() => onSelect(stock.symbol)}
+                className={`cursor-pointer border-b border-border/70 transition-colors hover:bg-amber-50/70 ${selected ? 'bg-amber-50/90' : ''}`}
+              >
+                <td
+                  className="w-9 px-2 py-3 text-center"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleWatchlist(stock.symbol);
+                  }}
+                >
+                  <button
+                    type="button"
+                    title={isStarred ? "Remove from Priority Watchlist" : "Add to Priority Watchlist"}
+                    className="grid size-6 place-items-center rounded hover:bg-amber-500/20 transition mx-auto"
+                  >
+                    <Star
+                      size={14}
+                      className={isStarred ? "fill-amber-400 text-amber-400" : "text-slate-400 hover:text-amber-400"}
+                    />
+                  </button>
+                </td>
+                <td className="px-3 py-3">
+                  <div className="flex items-center gap-2">
+                    <span className={`h-5 w-0.5 rounded-full ${selected ? 'bg-[#d39d19]' : 'bg-transparent'}`} />
+                    <span className="font-mono text-xs font-bold text-foreground">{stock.symbol}</span>
+                  </div>
+                </td>
+                <td className="px-3 py-3 text-xs text-muted-foreground">{stock.sector}</td>
+                <td className="px-3 py-3 text-right font-mono text-xs font-medium tabular-nums">{formatNumber(stock.ltp)}</td>
+                <td className="px-3 py-3 text-right text-xs"><ToneValue value={stock.change} /></td>
+                <td className="px-3 py-3 text-right font-mono text-xs tabular-nums text-muted-foreground">{formatNumber(stock.high)}</td>
+                <td className="px-3 py-3 text-right font-mono text-xs tabular-nums text-muted-foreground">{formatNumber(stock.low)}</td>
+                <td className="px-4 py-3 text-right font-mono text-xs tabular-nums text-muted-foreground">{formatCompact(stock.volume)}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );
@@ -334,6 +398,42 @@ export default function MarketDashboard() {
   const [dailyHistoryError, setDailyHistoryError] = useState(false);
   const [notice, setNotice] = useState('');
 
+  // Personal Priority Watchlist State
+  const [watchlist, setWatchlist] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem('dse_user_watchlist') || localStorage.getItem('dse_chart_favorites');
+      return saved ? JSON.parse(saved) : ['SQURPHARMA', 'GP', 'BATBC', 'PTL', 'SPCL', 'SOUTHEASTB'];
+    } catch {
+      return ['SQURPHARMA', 'GP', 'BATBC', 'PTL', 'SPCL', 'SOUTHEASTB'];
+    }
+  });
+  const [watchlistOnly, setWatchlistOnly] = useState<boolean>(false);
+  const [newWatchlistSymbol, setNewWatchlistSymbol] = useState<string>('');
+
+  const toggleWatchlist = (symbol: string) => {
+    const sym = symbol.toUpperCase().trim();
+    if (!sym) return;
+    setWatchlist((prev) => {
+      const next = prev.includes(sym) ? prev.filter((s) => s !== sym) : [...prev, sym];
+      try {
+        localStorage.setItem('dse_user_watchlist', JSON.stringify(next));
+        localStorage.setItem('dse_chart_favorites', JSON.stringify(next));
+      } catch (e) {
+        console.error(e);
+      }
+      return next;
+    });
+  };
+
+  const handleAddWatchlistSymbol = (symbolToAdd: string) => {
+    const sym = symbolToAdd.toUpperCase().trim();
+    if (!sym) return;
+    if (!watchlist.includes(sym)) {
+      toggleWatchlist(sym);
+    }
+    setNewWatchlistSymbol('');
+  };
+
   const overviewQuery = useGetMarketOverview({ query: { queryKey: getGetMarketOverviewQueryKey(), refetchInterval: 30000 } });
   const ingestionQuery = useGetIngestionStatus({ query: { queryKey: getGetIngestionStatusQueryKey(), refetchInterval: 15000 } });
   const healthQuery = useHealthCheck({ query: { queryKey: getHealthCheckQueryKey(), refetchInterval: 60000 } });
@@ -341,7 +441,38 @@ export default function MarketDashboard() {
   const ingestionMutation = useStartIngestion();
 
   const overview = overviewQuery.data;
-  const stocks = stocksQuery.data;
+  const rawStocks = stocksQuery.data;
+  
+  // All known stocks map
+  const allKnownStocks = useMemo(() => {
+    const map = new Map<string, MarketStock>();
+    (overview?.stocks || []).forEach((s) => map.set(s.symbol, s));
+    (rawStocks || []).forEach((s) => map.set(s.symbol, s));
+    return map;
+  }, [overview?.stocks, rawStocks]);
+
+  // Priority Watchlist items with live market quotes
+  const watchlistStocks = useMemo(() => {
+    return watchlist.map((sym) => {
+      return (
+        allKnownStocks.get(sym) || {
+          symbol: sym,
+          sector: '—',
+          ltp: 0,
+          change: 0,
+          high: 0,
+          low: 0,
+          volume: 0,
+        }
+      );
+    });
+  }, [watchlist, allKnownStocks]);
+
+  // Filter stocks by Watchlist Only if enabled
+  const stocks = useMemo(() => {
+    if (!watchlistOnly) return rawStocks;
+    return (rawStocks || []).filter((s) => watchlist.includes(s.symbol));
+  }, [rawStocks, watchlistOnly, watchlist]);
   const sectors = overview?.sectors || [];
   const selectedStock = stocks?.find((stock) => stock.symbol === selectedSymbol) || overview?.stocks?.find((stock) => stock.symbol === selectedSymbol);
   const history = dailyHistory;
@@ -450,15 +581,132 @@ export default function MarketDashboard() {
               <IngestionCard ingestion={ingestion} loading={ingestionQuery.isLoading && !overview?.ingestion} onStart={startIngestion} pending={ingestionMutation.isPending} countdown={countdown} running={ingestionRunning} />
             </div>
 
+            {/* Personal Priority Watchlist Card */}
+            <section className="mt-5 rounded-xl border border-amber-500/30 bg-[#161c26] p-4 text-slate-200 shadow-md">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-slate-700/60 pb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="grid size-8 place-items-center rounded-lg bg-amber-500/20 text-amber-400">
+                    <Star size={16} className="fill-amber-400 text-amber-400" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-sm font-bold text-white tracking-wide">
+                        My Priority Watchlist (আমার ওয়াচলিস্ট)
+                      </h2>
+                      <span className="rounded-full bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-300">
+                        {watchlist.length} Stocks
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate-400">
+                      আপনার ব্যক্তিগত পছন্দের স্টক তালিকা • ক্লিক করে চার্ট দেখুন বা নতুন স্টক যোগ করুন
+                    </p>
+                  </div>
+                </div>
+
+                {/* Quick Add Symbol Input */}
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    placeholder="Add symbol (e.g. BEXIMCO)"
+                    value={newWatchlistSymbol}
+                    onChange={(e) => setNewWatchlistSymbol(e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleAddWatchlistSymbol(newWatchlistSymbol);
+                      }
+                    }}
+                    className="h-8 w-44 rounded-lg border border-slate-700 bg-[#0d1017] px-3 font-mono text-xs text-white placeholder-slate-500 outline-none focus:border-amber-400"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleAddWatchlistSymbol(newWatchlistSymbol)}
+                    className="flex h-8 items-center gap-1 rounded-lg bg-amber-500 hover:bg-amber-400 px-3 text-xs font-bold text-slate-950 transition shadow-sm"
+                  >
+                    <Plus size={14} />
+                    <span>Add</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Watchlist Quick Stock Cards */}
+              <div className="mt-3">
+                {watchlistStocks.length === 0 ? (
+                  <div className="py-6 text-center text-xs text-slate-400">
+                    কোনো স্টক যুক্ত করা নেই। উপরে সিম্বল লিখে <b>Add</b> বাটনে চাপুন অথবা নিচের টেবিলে <b>⭐</b> আইকনে ক্লিক করুন।
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+                    {watchlistStocks.map((stock) => {
+                      const isSelected = stock.symbol === selectedSymbol;
+                      const isPos = (stock.change ?? 0) >= 0;
+                      return (
+                        <div
+                          key={stock.symbol}
+                          onClick={() => setSelectedSymbol(stock.symbol)}
+                          className={`group relative flex flex-col justify-between rounded-lg border p-2.5 cursor-pointer transition ${
+                            isSelected
+                              ? 'border-amber-400 bg-amber-500/10'
+                              : 'border-slate-800 bg-[#12161f] hover:border-slate-700 hover:bg-[#18202d]'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="font-mono text-xs font-bold text-white">
+                              {stock.symbol}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleWatchlist(stock.symbol);
+                              }}
+                              title="Remove from Priority List"
+                              className="opacity-0 group-hover:opacity-100 p-0.5 rounded text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition"
+                            >
+                              <X size={12} />
+                            </button>
+                          </div>
+                          <div className="mt-2 flex items-baseline justify-between font-mono">
+                            <span className="text-xs font-semibold text-slate-200">
+                              ৳{formatNumber(stock.ltp)}
+                            </span>
+                            <span
+                              className={`text-[10px] font-bold ${
+                                isPos ? 'text-emerald-400' : 'text-rose-400'
+                              }`}
+                            >
+                              {isPos ? '+' : ''}
+                              {formatNumber(stock.change)}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </section>
+
             <section className="mt-5 rounded-lg border border-border bg-card">
               <div className="flex flex-col gap-4 border-b border-border px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
                 <div><div className="flex items-center gap-2"><Zap size={16} className="text-[#bf8d13]" /><h2 className="text-sm font-semibold">Sector stock browser</h2><span className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">{stocks?.length || 0} rows</span></div><p className="mt-1 text-xs text-muted-foreground">Click a symbol to pin its history above.</p></div>
-                <div className="flex flex-col gap-2 sm:flex-row">
+                <div className="flex flex-col gap-2 sm:flex-row items-center">
+                  <button
+                    type="button"
+                    onClick={() => setWatchlistOnly((prev) => !prev)}
+                    className={`flex h-8 items-center gap-1.5 rounded-md px-3 text-xs border transition ${
+                      watchlistOnly
+                        ? 'border-amber-400 bg-amber-500/20 text-amber-300 font-bold'
+                        : 'border-border bg-background text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    <Star size={13} className={watchlistOnly ? 'fill-amber-400 text-amber-400' : ''} />
+                    <span>Watchlist Only ({watchlist.length})</span>
+                  </button>
                   <label className="relative"><Search size={13} className="absolute left-2.5 top-2.5 text-muted-foreground" /><input data-testid="input-stock-search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search symbols" className="h-8 w-full rounded-md border border-border bg-background pl-8 pr-3 text-xs outline-none transition-colors focus:border-[#bf8d13] sm:w-44" /></label>
                   <label className="relative"><SlidersHorizontal size={13} className="pointer-events-none absolute left-2.5 top-2.5 text-muted-foreground" /><select data-testid="select-sector-filter" value={sector} onChange={(event) => setSector(event.target.value)} className="h-8 w-full appearance-none rounded-md border border-border bg-background pl-8 pr-8 text-xs outline-none transition-colors focus:border-[#bf8d13] sm:w-48"><option value="all">All sectors</option>{sectors.map((item) => <option key={item} value={item}>{item}</option>)}</select><ChevronDown size={13} className="pointer-events-none absolute right-2.5 top-2.5 text-muted-foreground" /></label>
                 </div>
               </div>
-              <StockTable stocks={stocks} loading={stocksQuery.isLoading} error={Boolean(stocksQuery.isError)} onRetry={() => void stocksQuery.refetch()} selectedSymbol={selectedSymbol} onSelect={setSelectedSymbol} />
+              <StockTable stocks={stocks} loading={stocksQuery.isLoading} error={Boolean(stocksQuery.isError)} onRetry={() => void stocksQuery.refetch()} selectedSymbol={selectedSymbol} onSelect={setSelectedSymbol} watchlist={watchlist} onToggleWatchlist={toggleWatchlist} />
               <div className="flex flex-wrap gap-x-5 gap-y-2 border-t border-border bg-muted/30 px-5 py-3">{sectorCounts.slice(0, 5).map(([name, count]) => <span key={name} className="font-mono text-[10px] text-muted-foreground"><span className="mr-1.5 text-foreground">{name}</span>{count}</span>)}{!sectorCounts.length && <span className="font-mono text-[10px] text-muted-foreground">Sector distribution will appear with the next market snapshot.</span>}</div>
             </section>
             <footer className="flex flex-col items-start justify-between gap-2 py-6 text-[10px] text-muted-foreground sm:flex-row sm:items-center"><span className="font-mono uppercase tracking-wider">DSE market control / internal use</span><span className="inline-flex items-center gap-1.5 font-mono"><Download size={12} /> Data refreshes from the scheduled collector</span></footer>
